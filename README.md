@@ -13,7 +13,7 @@
 ```html
 <script lang="ts">
 import { defineComponent } from 'vue'
-import VuePictureCropper, { cropper } from 'vue-picture-cropper'
+import VuePictureCropper from 'vue-picture-cropper'
 
 export default defineComponent({
   components: {
@@ -23,10 +23,6 @@ export default defineComponent({
 })
 </script>
 ```
-
-其中 `VuePictureCropper` 组件模板，`{ cropper }` 是方便我们操作api的实例。
-
-如果不导出实例，则需要通过 `VuePictureCropper.cropper` 才能操作，会比较繁琐。
 
 ## Used
 
@@ -55,8 +51,6 @@ template部分：
 
 上面是设定了一个裁剪区域，对于文件的选择/传入，以及裁切结果，请通过input或button绑定实例的events来获取。
 
-比如可以通过 `cropper.getCroppedCanvas().toDataURL('image/png')` 来获取一个base64结果。
-
 稍后会附上一个详细的demo。
 
 ## Props
@@ -70,5 +64,7 @@ events|一些cropper的回调函数，完整可参考 [events - cropperjs](https
 
 ## Api
 
-可通过`cropper`实例来调取插件的各种api，同步cropperjs的各种事件，完整可参考 [events - cropperjs](https://github.com/fengyuanchen/cropperjs#events)
+可通过 `VuePictureCropper.cropper` 实例来调取插件的各种api，比如可以通过 `VuePictureCropper.cropper.getCroppedCanvas().toDataURL('image/png')` 来获取一个base64结果。
+
+同步cropperjs的各种事件，完整可参考 [events - cropperjs](https://github.com/fengyuanchen/cropperjs#events)
 
