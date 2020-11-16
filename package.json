@@ -1,0 +1,76 @@
+{
+  "name": "vue-picture-cropper",
+  "version": "0.1.0",
+  "description": "An picture cropping tool that can be used in Vue 3.0.",
+  "main": "dist/vue-picture-cropper.ssr.js",
+  "browser": "dist/vue-picture-cropper.esm.js",
+  "module": "dist/vue-picture-cropper.esm.js",
+  "unpkg": "dist/vue-picture-cropper.min.js",
+  "types": "vue-picture-cropper.d.ts",
+  "files": [
+    "dist/*",
+    "vue-picture-cropper.d.ts",
+    "src/**/*.vue"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "serve": "vue-cli-service serve dev/serve.ts",
+    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
+    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chengpeiquan/vue-picture-cropper.git"
+  },
+  "keywords": [
+    "vue3图片裁切",
+    "vue3 cropper",
+    "vue3切图",
+    "vue3插件"
+  ],
+  "author": "chengpeiquan",
+  "license": "MIT",
+  "dependencies": {
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
+    "@vue/babel-preset-jsx": "^1.2.4",
+    "cropperjs": "^1.5.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.0",
+    "@babel/plugin-syntax-jsx": "^7.12.1",
+    "@babel/preset-env": "^7.12.0",
+    "@babel/preset-typescript": "^7.12.0",
+    "@rollup/plugin-alias": "^3.1.1",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-replace": "^2.3.3",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
+    "@vue/babel-plugin-jsx": "^1.0.0-rc.3",
+    "@vue/babel-preset-jsx": "^1.2.4",
+    "@vue/cli-plugin-babel": "^4.5.7",
+    "@vue/cli-plugin-typescript": "^4.5.7",
+    "@vue/cli-service": "^4.5.7",
+    "@vue/compiler-sfc": "^3.0.0",
+    "minimist": "^1.2.5",
+    "postcss-import": "^12.0.1",
+    "rollup": "^2.33.2",
+    "rollup-plugin-banner2": "^1.0.0",
+    "rollup-plugin-postcss": "^3.1.8",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-vue": "^6.0.0-beta.11",
+    "stylus": "^0.54.8",
+    "typescript": "^3.8.3",
+    "vue": "^3.0.0",
+    "yallist": "^4.0.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}
