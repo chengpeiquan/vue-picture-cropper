@@ -9,6 +9,8 @@ import {
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 
+export const cropper = ref<any>(null);
+
 /** 
  * 定义组件
  */
@@ -27,7 +29,6 @@ const VuePictureCropper = defineComponent({
     }
   },
   setup (props) {
-    const cropper = ref<any>(null);
     const cropperImg = ref<any>(null);
 
     
@@ -89,4 +90,6 @@ const VuePictureCropper = defineComponent({
   }
 })
 
-export default VuePictureCropper
+export default {
+  VuePictureCropper, cropper
+}
