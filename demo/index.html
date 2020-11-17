@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue cnzz analytics demo</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <style>
+    #app,
+    .section {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .nav {
+      margin-bottom: 20px;
+    }
+    .nav .item {
+      color: #666;
+      margin: 0 10px 20px;
+    }
+    .nav .cur {
+      color: #000;
+      font-weight: bold;
+    }
+    .label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .text {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 60px;
+      font-size: 14px;
+      margin-right: 20px;
+    }
+    .input {
+      display: flex;
+      align-items: center;
+      width: 240px;
+      height: 40px;
+      font-size: 14px;
+      box-sizing: border-box;
+      padding: 0 10px;
+    }
+    .button {
+      padding: 5px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <h1>Hello App!</h1>
+
+    <section class="section">
+      <h2>切换路由自动上报测试</h2>
+      <div class="nav">
+        <router-link class="item" to="/page1" exact>Go to Page1</router-link>
+        <router-link class="item" to="/page2">Go to Page2</router-link>
+        <router-link class="item" to="/page3">Go to Page3</router-link>
+      </div>
+      <router-view></router-view>
+    </section>
+
+    <section class="section">
+      <h2>提交pv测试</h2>
+      <label class="label">
+        <span class="text">pageUrl</span>
+        <input class="input" type="text" placeholder="输入页面的url" v-model="pageUrl">
+      </label>
+      <label class="label">
+        <span class="text">fromUrl</span>
+        <input class="input" type="text" placeholder="输入来路的url" v-model="fromUrl">
+      </label>
+      <button class="button" @click="pv">提交一个pv</button>
+    </section>
+
+    <section class="section">
+      <h2>提交event测试</h2>
+      <label class="label">
+        <span class="text">category</span>
+        <input class="input" type="text" placeholder="输入产生该事件的位置名称" v-model="category">
+      </label>
+      <label class="label">
+        <span class="text">action</span>
+        <input class="input" type="text" placeholder="输入产生该事件的行为描述" v-model="action">
+      </label>
+      <label class="label">
+        <span class="text">label</span>
+        <input class="input" type="text" placeholder="输入产生该事件的标签名称" v-model="label">
+      </label>
+      <label class="label">
+        <span class="text">value</span>
+        <input class="input" type="text" placeholder="输入该事件的分值" v-model="value">
+      </label>
+      <label class="label">
+        <span class="text">nodeId</span>
+        <input class="input" type="text" placeholder="输入产生该事件的元素id" v-model="nodeId">
+      </label>
+      <button class="button" @click="event">提交一个event</button>
+    </section>
+  </div>
+
+  <script src="../dist/vue-cnzz-analytics.js"></script>
+  <script src="js/main.js"></script>
+  
+</body>
+</html>
