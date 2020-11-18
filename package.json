@@ -1,6 +1,6 @@
 {
   "name": "vue-picture-cropper",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "An picture cropping tool that can be used in Vue 3.0.",
   "main": "dist/vue-picture-cropper.min.js",
   "types": "vue-picture-cropper.d.ts",
