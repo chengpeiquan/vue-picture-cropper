@@ -1,5 +1,5 @@
 import 'cropperjs/dist/cropper.css';
-export declare const cropper: any;
+export declare let cropper: any;
 declare const VuePictureCropper: import("vue").DefineComponent<{
     boxStyle: {
         type: ObjectConstructor;
@@ -11,10 +11,11 @@ declare const VuePictureCropper: import("vue").DefineComponent<{
         required: false;
         default: () => {};
     };
-}, {
-    cropperImg: any;
-    initCropper: () => void;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+}, unknown, {
+    cropper: any;
+}, {}, {
+    init(): Promise<void>;
+}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     options: Record<string, any>;
 } & {
     boxStyle?: Record<string, any>;

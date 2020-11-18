@@ -21,13 +21,13 @@ const ResolveBanner = () => {
 }
 
 export default {
-  // input: 'src/main.ts',
-  input: 'src/components/vue-picture-cropper.vue',
+  input: 'src/vue-picture-cropper.vue',
   output: [
     {
       file: `dist/vue-picture-cropper.js`,
       format: 'umd',
       name: 'vuePictureCropper',
+      exports: 'named',
       sourcemap: true,
       globals: {
         vue: 'Vue'
@@ -37,6 +37,7 @@ export default {
       file: `dist/vue-picture-cropper.min.js`,
       format: 'umd',
       name: 'vuePictureCropper',
+      exports: 'named',
       plugins: [
         terser()
       ],
@@ -58,10 +59,20 @@ export default {
     }),
     commonjs(),
     vue(),
+    // Process only `<style module>` blocks.
     postcss({
-      plugins: [
-        postcssImport()
-      ] 
+      modules: {
+        generateScopedName: '[local]___[hash:base64:5]',
+      },
+      include: /&module=.*\.css$/,
+      extensions: [ '.css' ],
+      plugins: [ postcssImport() ],
+    }),
+    // Process all `<style>` blocks except `<style module>`.
+    postcss({
+      include: /(?<!&module=.*)\.css$/,
+      extensions: [ '.css' ],
+      plugins: [ postcssImport() ], 
     }),
     json(),
     typescript(),
