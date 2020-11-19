@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 
@@ -74,6 +74,9 @@ const VuePictureCropper = defineComponent({
     }
 
   },
+  mounted () {
+    this.init();
+  },
   methods: {
 
     /** 
@@ -82,19 +85,31 @@ const VuePictureCropper = defineComponent({
     async init () {
       // 必须在视图渲染后再执行
       await this.$nextTick();
+      
+      // 执行挂载DOM的检查
+      const CHECK: any = setInterval( () => {
 
-      // 获取要挂载的DOM
-      const IMG_DOM: any = document.querySelector('.vue--picture-cropper__img');
+        // 获取要挂载的DOM
+        const IMG_DOM: any = document.querySelector('.vue--picture-cropper__img');
 
-      // 初始化并挂到Vue上
-      try {
-        this.cropper = new Cropper(IMG_DOM, this.options);
-      } catch (e) {
-        console.log(e);
-      }
+        // 只有DOM存在时才允许初始化
+        if ( IMG_DOM ) {
 
-      // 更新要暴露的实例
-      cropper = this.cropper;
+          // 初始化并挂到Vue上
+          try {
+            this.cropper = new Cropper(IMG_DOM, this.options);
+
+            // 移除检查
+            clearInterval(CHECK);
+
+            // 更新要暴露的实例
+            cropper = this.cropper;
+
+          } catch (e) {
+            console.log(e);
+          }
+        }
+      }, 10);
     }
 
   }
