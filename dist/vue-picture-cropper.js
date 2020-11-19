@@ -1,6 +1,6 @@
 /** 
  * name: vue-picture-cropper
- * version: v0.1.4
+ * version: v0.1.6
  * author: chengpeiquan
  */
  (function (global, factory) {
@@ -3899,23 +3899,32 @@
                 this.cropper.destroy();
             }
         },
+        mounted: function () {
+            this.init();
+        },
         methods: {
             init: function () {
                 return __awaiter(this, void 0, void 0, function () {
-                    var IMG_DOM;
+                    var CHECK;
+                    var _this = this;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0: return [4, this.$nextTick()];
                             case 1:
                                 _a.sent();
-                                IMG_DOM = document.querySelector('.vue--picture-cropper__img');
-                                try {
-                                    this.cropper = new cropper(IMG_DOM, this.options);
-                                }
-                                catch (e) {
-                                    console.log(e);
-                                }
-                                exports.cropper = this.cropper;
+                                CHECK = setInterval(function () {
+                                    var IMG_DOM = document.querySelector('.vue--picture-cropper__img');
+                                    if (IMG_DOM) {
+                                        try {
+                                            _this.cropper = new cropper(IMG_DOM, _this.options);
+                                            clearInterval(CHECK);
+                                            exports.cropper = _this.cropper;
+                                        }
+                                        catch (e) {
+                                            console.log(e);
+                                        }
+                                    }
+                                }, 10);
                                 return [2];
                         }
                     });
@@ -3936,7 +3945,7 @@
       ], 4 /* STYLE */))
     }
 
-    var css_248z$1 = "\n.vue--picture-cropper__img {\r\n  display: block;\r\n  width: auto;\r\n  height: auto;\r\n  max-width: 100%;\r\n  max-height: 100%;\n}\r\n";
+    var css_248z$1 = "\n.vue--picture-cropper__img {\n  display: block;\n  width: auto;\n  height: auto;\n  max-width: 100%;\n  max-height: 100%;\n}\n";
     styleInject(css_248z$1);
 
     VuePictureCropper.render = render;
