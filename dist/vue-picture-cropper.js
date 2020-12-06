@@ -1,6 +1,6 @@
 /** 
  * name: vue-picture-cropper
- * version: v0.1.6
+ * version: v0.1.7
  * author: chengpeiquan
  */
  (function (global, factory) {
@@ -3877,7 +3877,8 @@
         },
         data: function () {
             return {
-                cropper: null
+                cropper: null,
+                mimeType: ''
             };
         },
         watch: {
@@ -3888,6 +3889,7 @@
                 }
                 try {
                     this.cropper.replace(this.img);
+                    this.getImgSuffix();
                 }
                 catch (e) {
                     console.log(e);
@@ -3918,7 +3920,8 @@
                                         try {
                                             _this.cropper = new cropper(IMG_DOM, _this.options);
                                             clearInterval(CHECK);
-                                            exports.cropper = _this.cropper;
+                                            _this.updateInstance();
+                                            _this.getImgSuffix();
                                         }
                                         catch (e) {
                                             console.log(e);
@@ -3928,6 +3931,41 @@
                                 return [2];
                         }
                     });
+                });
+            },
+            updateInstance: function () {
+                exports.cropper = this.cropper;
+                exports.cropper.getDataURL = this.getDataURL;
+                exports.cropper.getBlob = this.getBlob;
+            },
+            getImgSuffix: function () {
+                var IMG_ARR = this.img.split(',');
+                var IMG_INFO = IMG_ARR[0];
+                var IMG_MIME_TYPE = IMG_INFO.replace(/data:(.*);base64/, '$1');
+                this.mimeType = IMG_MIME_TYPE;
+            },
+            getDataURL: function (options) {
+                if (options === void 0) { options = {}; }
+                try {
+                    var RESULT = this.cropper.getCroppedCanvas(options).toDataURL(this.mimeType);
+                    return RESULT;
+                }
+                catch (e) {
+                    return '';
+                }
+            },
+            getBlob: function (options) {
+                var DATA_URL = exports.cropper.getDataURL();
+                var IMG_ARR = DATA_URL.split(',');
+                var IMG_CONTENT = IMG_ARR[1].substring(0, IMG_ARR[1].length - 2);
+                var A2B = window.atob(IMG_CONTENT);
+                var n = A2B.length;
+                var U8_ARR = new Uint8Array(n);
+                while (n--) {
+                    U8_ARR[n] = A2B.charCodeAt(n);
+                }
+                return new Blob([U8_ARR], {
+                    type: this.mimeType
                 });
             }
         }
@@ -3945,7 +3983,7 @@
       ], 4 /* STYLE */))
     }
 
-    var css_248z$1 = "\n.vue--picture-cropper__img {\n  display: block;\n  width: auto;\n  height: auto;\n  max-width: 100%;\n  max-height: 100%;\n}\n";
+    var css_248z$1 = "\n.vue--picture-cropper__wrap {\r\n  width: 100%;\r\n  height: 100%;\r\n  margin: 0;\n}\n.vue--picture-cropper__img {\r\n  display: block;\r\n  width: auto;\r\n  height: auto;\r\n  max-width: 100%;\r\n  max-height: 100%;\n}\r\n";
     styleInject(css_248z$1);
 
     VuePictureCropper.render = render;

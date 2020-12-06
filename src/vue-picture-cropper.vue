@@ -39,7 +39,8 @@ const VuePictureCropper = defineComponent({
   },
   data () {
     return {
-      cropper: null
+      cropper: null,
+      mimeType: ''
     }
   },
   watch: {
@@ -58,6 +59,7 @@ const VuePictureCropper = defineComponent({
       // 实例存在时，只执行数据更新
       try {
         this.cropper.replace(this.img);
+        this.getImgSuffix();
       } catch (e) {
         console.log(e);
       }
@@ -103,13 +105,73 @@ const VuePictureCropper = defineComponent({
             clearInterval(CHECK);
 
             // 更新要暴露的实例
-            cropper = this.cropper;
+            // cropper = this.cropper;
+            this.updateInstance();
+
+            // 获取文件后缀
+            this.getImgSuffix();
 
           } catch (e) {
             console.log(e);
           }
         }
       }, 10);
+    },
+
+    /** 
+     * 更新实例和绑定方法
+     */
+    updateInstance () {
+      cropper = this.cropper;
+      cropper.getDataURL = this.getDataURL;
+      cropper.getBlob = this.getBlob;
+    },
+
+    /** 
+     * 获取图片后缀
+     */
+    getImgSuffix () {
+      const IMG_ARR: string[] = this.img.split(',');
+      const IMG_INFO: string = IMG_ARR[0];
+      const IMG_MIME_TYPE: string = IMG_INFO.replace(/data:(.*);base64/, '$1');
+      this.mimeType = IMG_MIME_TYPE;
+    },
+
+    /** 
+     * 获取base64结果
+     */
+    getDataURL (options: any = {}) {
+      try {
+        const RESULT: string = this.cropper.getCroppedCanvas(options).toDataURL(this.mimeType);
+        return RESULT;
+      } catch(e) {
+        return '';
+      }
+    },
+
+    /** 
+     * 获取blob结果
+     */
+    getBlob (options?: any) {
+      // 获取base64结果
+      const DATA_URL: string = cropper.getDataURL();
+      
+      // 提取图片信息
+      const IMG_ARR: string[] = DATA_URL.split(',');
+      const IMG_CONTENT: string = IMG_ARR[1].substring(0, IMG_ARR[1].length - 2);
+
+      // 进行base64解码
+      const A2B: string = (window as any).atob(IMG_CONTENT);
+      let n: number = A2B.length;
+      const U8_ARR: any = new Uint8Array(n);
+      while (n--) {
+        U8_ARR[n] = A2B.charCodeAt(n);
+      }
+
+      // 返回blob
+      return new Blob([U8_ARR], {
+        type: this.mimeType
+      });
     }
 
   }
@@ -119,6 +181,11 @@ export default VuePictureCropper
 </script>
 
 <style>
+.vue--picture-cropper__wrap {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
 .vue--picture-cropper__img {
   display: block;
   width: auto;
