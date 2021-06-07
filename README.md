@@ -1,14 +1,14 @@
 # vue-picture-cropper
 
-一个基于cropper.js，支持Vue 3.0的图片裁切工具组件（目前仅支持Vue 3.x）。
+一个基于 cropper.js ，支持 Vue 3.0 的图片裁切工具组件（目前仅支持 Vue 3.x ）。
 
 ## demo
 
-根据平时常见的使用习惯，弄了一个简单的在线demo，点击按钮选择图片后，弹出裁切框，裁切后生成裁切结果。
+根据平时常见的使用习惯，弄了一个简单的在线 DEMO ，点击按钮选择图片后，弹出裁切框，裁切后生成裁切结果。
 
 点击查看：[vue-picture-cropper-demo](https://chengpeiquan.github.io/vue-picture-cropper-demo/)
 
-![](https://chengpeiquan.github.io/vue-picture-cropper-demo/static/img/preview.jpg)
+![vue-picture-cropper-demo](https://chengpeiquan.github.io/vue-picture-cropper-demo/static/img/preview.jpg)
 
 ## 安装
 
@@ -18,11 +18,18 @@ npm install --save-dev vue-picture-cropper
 
 ## 导入
 
-目前仅支持在Vue组件里按需引入，模板和实例也仅限在组件内使用，根据Vue 3.x的设计思想，官方也不推荐全局导入各类插件。
+目前仅支持在 Vue 组件里按需引入，模板和实例也仅限在组件内使用，根据 Vue 3.x 的设计思想，官方也不推荐全局导入各类插件。
 
 ```js
 // xxx.vue
 import VuePictureCropper, { cropper } from 'vue-picture-cropper'
+```
+
+需要注意的是，如果是基于 [Vite](https://vitejs.dev/) 的项目，由于 Vite 需要使用 ESM 组件，所以导入方式需要改成从 `ESM` 版本导入：
+
+```js
+// xxx.vue（注意 from 后面的路径不同）
+import VuePictureCropper, { cropper } from 'vue-picture-cropper/dist/esm'
 ```
 
 导入的模块说明：
@@ -36,7 +43,7 @@ cropper|工具实例，可用于操作相关的api，必须用花括号导入该
 
 ## 用法
 
-工具的渲染方法如下，请注意在Vue 3.x里，除非你使用class风格来编写组件，否则组件都需要通过 `defineComponent` 来定义。
+工具的渲染方法如下，请注意在 Vue 3.x 里，除非你使用 class 风格来编写组件，否则组件都需要通过 `defineComponent` 来定义。
 
 ```html
 <template>
@@ -73,7 +80,11 @@ export default defineComponent({
 
 上面是设定了一个裁剪区域，对于文件的选择/传入，以及裁切结果，请通过 `<input type="file" >` 或 `button` 绑定实例的api来获取。
 
-可参考demo里面的用法：[dialog.vue - vue-picture-cropper-demo](https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/views/dialog.vue)
+可参考 DEMO 里面的用法：
+
+- [Vue 3.0 组合式 API 写法](https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/components/Dialog.vue)
+
+- [Vue 2.0 选项式 API 写法](https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/components/DialogWithOptionsAPI.vue)
 
 ## Props
 
@@ -92,13 +103,13 @@ btw: 远程图片会涉及到跨域问题，要服务端进行配合调整，请
 
 属性|类型|说明
 :--|:--|:--
-viewMode|number|可以决定裁切框的活动范围，可选0、1、2、3，建议选1（裁切框只能在图片区域内活动）
+viewMode|number|可以决定裁切框的活动范围，可选 0、1、2、3，建议选 1 （裁切框只能在图片区域内活动）
 aspectRatio|number|可以指定裁剪框的宽高比，不设置则为自由变化（建议按照裁切结果的尺寸设置对应的比例）
-preview|element/string|图片预览的容器，一个dom元素。必须可以被document.querySelectorAll获取到
+preview|element/string|图片预览的容器，一个 DOM 元素。必须可以被 document.querySelectorAll 获取到
 
 ## 常用方法
 
-可通过 `cropper` 实例来调取插件的各种api（也就是在import的时候花括号里的那个实例）。
+可通过 `cropper` 实例来调取插件的各种 API （也就是在 import 的时候花括号里的那个实例）。
 
 方法名|功能说明|用法示范
 :--|:--|:--
@@ -126,7 +137,7 @@ imageSmoothingQuality|string|图片平滑质量，可选low、medium、high|low
 用法示范：
 
 ```js
-// 设定裁切后指定尺寸为400x250，通常可以为banner图裁切指定尺寸
+// 设定裁切后指定尺寸为 400x250 ，通常可以为 banner 图裁切指定尺寸
 const OPT = {
   width: 400,
   height: 250
@@ -140,7 +151,8 @@ const DATA_URL = cropper.getDataURL(OPT);
 
 ## 其他说明
 
-因为本插件是对做了一层组件化的实现，所以本组件也同步了cropperjs的所有api，均可通过 `cropper.xxxx` 来使用原来的api。
+因为本插件是对做了一层组件化的实现，所以本组件也同步了 cropperjs 的所有 API ，均可通过 `cropper.xxxx` 来使用原来的 API 。
 
 如果你需要更多高级功能，可以戳原文档参考使用 [events - cropperjs](https://github.com/fengyuanchen/cropperjs#events)
 
+对 Vue 3.0 还不熟悉的同学，可以查阅我之前总结的文档 [《Vue3.0学习教程与实战案例》](http://vue3.chengpeiquan.com/)

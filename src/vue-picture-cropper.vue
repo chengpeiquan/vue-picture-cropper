@@ -126,8 +126,6 @@ const VuePictureCropper = defineComponent({
       cropper = this.cropper;
       cropper.getDataURL = this.getDataURL;
       cropper.getBlob = this.getBlob;
-      console.log('this.cropper', this.cropper);
-      console.log('cropper', cropper);
     },
 
     /**

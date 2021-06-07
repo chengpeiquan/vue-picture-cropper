@@ -1,6 +1,6 @@
 /**
  * name: vue-picture-cropper
- * version: v0.1.8
+ * version: v0.1.9
  * author: chengpeiquan
  */
  (function (global, factory) {
@@ -3939,8 +3939,6 @@
                 exports.cropper = this.cropper;
                 exports.cropper.getDataURL = this.getDataURL;
                 exports.cropper.getBlob = this.getBlob;
-                console.log('this.cropper', this.cropper);
-                console.log('cropper', exports.cropper);
             },
             getImgSuffix: function () {
                 var IMG_ARR = this.img.split(',');

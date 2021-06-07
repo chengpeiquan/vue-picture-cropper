@@ -1,7 +1,7 @@
 {
   "name": "vue-picture-cropper",
-  "version": "0.1.8",
-  "description": "An picture cropping tool that can be used in Vue 3.0.",
+  "version": "0.1.9",
+  "description": "A picture cropping tool that can be used in Vue 3.0.",
   "main": "dist/vue-picture-cropper.min.js",
   "types": "vue-picture-cropper.d.ts",
   "scripts": {
@@ -37,7 +37,6 @@
     "rollup-plugin-terser": "^7.0.0",
     "rollup-plugin-typescript2": "^0.27.2",
     "rollup-plugin-vue": "^6.0.0",
-    "stylus": "^0.54.8",
     "tslib": "^2.0.1",
     "typescript": "^4.0.2",
     "vue": "^3.0.5"
