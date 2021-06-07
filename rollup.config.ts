@@ -11,13 +11,23 @@ import postcssImport from 'postcss-import'
 import pkg from './package.json'
 
 // 版权信息配置
-const ResolveBanner = () => {
-  return `/** 
+const resolveBanner = () => {
+  return `/**
  * name: ${pkg.name}
  * version: v${pkg.version}
  * author: ${pkg.author}
  */
  `;
+}
+
+// 打包的公共配置
+const COMMON_OUT_OPTIONS = {
+  name: 'vuePictureCropper',
+  exports: 'named',
+  sourcemap: true,
+  globals: {
+    vue: 'Vue'
+  }
 }
 
 export default {
@@ -26,31 +36,30 @@ export default {
     {
       file: `dist/vue-picture-cropper.js`,
       format: 'umd',
-      name: 'vuePictureCropper',
-      exports: 'named',
-      sourcemap: true,
-      globals: {
-        vue: 'Vue'
-      }
+      ...COMMON_OUT_OPTIONS,
     },
     {
       file: `dist/vue-picture-cropper.min.js`,
       format: 'umd',
-      name: 'vuePictureCropper',
-      exports: 'named',
       plugins: [
         terser()
       ],
-      sourcemap: true,
-      globals: {
-        vue: 'Vue'
-      }
+      ...COMMON_OUT_OPTIONS,
+    },
+    {
+      file: `dist/esm.js`,
+      format: 'esm',
+      plugins: [
+        terser()
+      ],
+      ...COMMON_OUT_OPTIONS,
     }
   ],
   external: [
     'vue'
   ],
   plugins: [
+    vue(),
     resolve({
       browser: true
     }),
@@ -58,7 +67,6 @@ export default {
       babelHelpers: 'bundled'
     }),
     commonjs(),
-    vue(),
     // Process only `<style module>` blocks.
     postcss({
       modules: {
@@ -72,11 +80,11 @@ export default {
     postcss({
       include: /(?<!&module=.*)\.css$/,
       extensions: [ '.css' ],
-      plugins: [ postcssImport() ], 
+      plugins: [ postcssImport() ],
     }),
     json(),
     typescript(),
-    banner2( ResolveBanner, {
+    banner2( resolveBanner, {
       sourcemap: true
     })
   ]
