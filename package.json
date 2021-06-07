@@ -1,6 +1,6 @@
 {
   "name": "vue-picture-cropper",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "An picture cropping tool that can be used in Vue 3.0.",
   "main": "dist/vue-picture-cropper.min.js",
   "types": "vue-picture-cropper.d.ts",
@@ -29,24 +29,23 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@types/babel__core": "^7.1.9",
-    "@vue/compiler-sfc": "^3.0.2",
+    "@vue/compiler-sfc": "^3.0.5",
     "postcss-import": "^12.0.1",
-    "rollup": "^2.26.4",
-    "rollup-plugin-banner": "^0.2.1",
+    "rollup": "^2.51.0",
     "rollup-plugin-banner2": "^1.0.0",
     "rollup-plugin-postcss": "^3.1.8",
     "rollup-plugin-terser": "^7.0.0",
     "rollup-plugin-typescript2": "^0.27.2",
-    "rollup-plugin-vue": "^6.0.0-beta.10",
+    "rollup-plugin-vue": "^6.0.0",
     "stylus": "^0.54.8",
     "tslib": "^2.0.1",
     "typescript": "^4.0.2",
-    "vue": "^3.0.2"
+    "vue": "^3.0.5"
   },
   "peerDependencies": {
-    "vue": "^3.0.2"
+    "vue": "^3.0.5"
   },
   "dependencies": {
-    "cropperjs": "^1.5.9"
+    "cropperjs": "^1.5.11"
   }
 }

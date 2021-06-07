@@ -4,6 +4,7 @@ declare const VuePictureCropper: import("vue").DefineComponent<{
     boxStyle: {
         type: ObjectConstructor;
         required: false;
+        default: () => {};
     };
     img: StringConstructor;
     options: {
@@ -21,11 +22,12 @@ declare const VuePictureCropper: import("vue").DefineComponent<{
     getDataURL(options?: any): string;
     getBlob(options?: any): Blob;
 }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+    boxStyle: Record<string, any>;
     options: Record<string, any>;
 } & {
-    boxStyle?: Record<string, any>;
     img?: string;
 }>, {
+    boxStyle: Record<string, any>;
     options: Record<string, any>;
 }>;
 export default VuePictureCropper;

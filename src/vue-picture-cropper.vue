@@ -15,12 +15,12 @@ import { defineComponent, ref } from 'vue'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 
-/** 
+/**
  * 暴露一个实例供组件内操作api
  */
 export let cropper: any = null;
 
-/** 
+/**
  * 定义组件
  */
 const VuePictureCropper = defineComponent({
@@ -28,7 +28,8 @@ const VuePictureCropper = defineComponent({
   props: {
     boxStyle: {
       type: Object,
-      required: false
+      required: false,
+      default: () => ({})
     },
     img: String,
     options: {
@@ -44,7 +45,7 @@ const VuePictureCropper = defineComponent({
     }
   },
   watch: {
-    /** 
+    /**
      * 监听图片变化
      * 实例存在的时候，不允许多次初始化
      */
@@ -68,7 +69,7 @@ const VuePictureCropper = defineComponent({
   },
   beforeUnmount () {
 
-    /** 
+    /**
      * 组件销毁之前，销毁掉实例
      */
     if ( this.cropper ) {
@@ -81,13 +82,13 @@ const VuePictureCropper = defineComponent({
   },
   methods: {
 
-    /** 
+    /**
      * 初始化实例
      */
     async init () {
       // 必须在视图渲染后再执行
       await this.$nextTick();
-      
+
       // 执行挂载DOM的检查
       const CHECK: any = setInterval( () => {
 
@@ -118,16 +119,18 @@ const VuePictureCropper = defineComponent({
       }, 10);
     },
 
-    /** 
+    /**
      * 更新实例和绑定方法
      */
     updateInstance () {
       cropper = this.cropper;
       cropper.getDataURL = this.getDataURL;
       cropper.getBlob = this.getBlob;
+      console.log('this.cropper', this.cropper);
+      console.log('cropper', cropper);
     },
 
-    /** 
+    /**
      * 获取图片后缀
      */
     getImgSuffix () {
@@ -137,7 +140,7 @@ const VuePictureCropper = defineComponent({
       this.mimeType = IMG_MIME_TYPE;
     },
 
-    /** 
+    /**
      * 获取base64结果
      */
     getDataURL (options: any = {}) {
@@ -149,13 +152,13 @@ const VuePictureCropper = defineComponent({
       }
     },
 
-    /** 
+    /**
      * 获取blob结果
      */
     getBlob (options?: any) {
       // 获取base64结果
       const DATA_URL: string = cropper.getDataURL();
-      
+
       // 提取图片信息
       const IMG_ARR: string[] = DATA_URL.split(',');
       const IMG_CONTENT: string = IMG_ARR[1].substring(0, IMG_ARR[1].length - 2);
