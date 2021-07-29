@@ -43,7 +43,7 @@ const VuePictureCropper = defineComponent({
      * 监听图片变化
      * 实例存在的时候，不允许多次初始化
      */
-    img(newVal, oldVal) {
+    img(newVal, oldVal): boolean {
       // 实例不存在时，执行初始化
       if (!this.cropper) {
         this.init()
@@ -142,13 +142,13 @@ const VuePictureCropper = defineComponent({
      */
     getBlob(options?: any) {
       // 获取base64结果
-      const dataUrl: string = cropper.getDataURL()
-      if (!dataUrl) {
+      const dataURL: string = cropper.getDataURL()
+      if (!dataURL) {
         return null
       }
 
       // 提取图片信息
-      const imgArr: string[] = dataUrl.split(',')
+      const imgArr: string[] = dataURL.split(',')
       const imgContent: string = imgArr[1].substring(0, imgArr[1].length - 2)
 
       // 进行base64解码
