@@ -1,6 +1,6 @@
 /**
  * name: vue-picture-cropper
- * version: v0.1.10
+ * version: v0.1.11
  * author: chengpeiquan
  */
 ;(function (global, factory) {

@@ -1178,7 +1178,7 @@
     "@vue/compiler-core" "3.1.5"
     "@vue/shared" "3.1.5"
 
-"@vue/compiler-sfc@^3.1.5":
+"@vue/compiler-sfc@^3.0.5":
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.1.5.tgz#e61e54f3a963b0f4a8e523fbb8632390dc52b0d6"
   integrity sha512-mtMY6xMvZeSRx9MTa1+NgJWndrkzVTdJ1pQAmAKQuxyb5LsHVvrgP7kcQFvxPHVpLVTORbTJWHaiqoKrJvi1iA==
@@ -4395,7 +4395,7 @@ vue-eslint-parser@^7.0.0, vue-eslint-parser@^7.9.0:
     lodash "^4.17.21"
     semver "^6.3.0"
 
-vue@^3.1.5:
+vue@^3.0.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.1.5.tgz#12879b11d0685ee4478c8869551799630a52f9fe"
   integrity sha512-Ho7HNb1nfDoO+HVb6qYZgeaobt1XbY6KXFe4HGs1b9X6RhkWG/113n4/SrtM1LUclM6OrP/Se5aPHHvAPG1iVQ==
