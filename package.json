@@ -1,11 +1,12 @@
 {
   "name": "vue-picture-cropper",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "A picture cropping tool that can be used in Vue 3.0.",
   "main": "dist/vue-picture-cropper.min.js",
   "types": "vue-picture-cropper.d.ts",
   "scripts": {
-    "build": "rollup -c rollup.config.ts"
+    "build": "rollup -c rollup.config.ts",
+    "prettier": "prettier --write src"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
     "vue3插件"
   ],
   "author": "chengpeiquan",
+  "homepage": "https://github.com/chengpeiquan/vue-picture-cropper",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.11.1",
@@ -29,8 +31,14 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@types/babel__core": "^7.1.9",
-    "@vue/compiler-sfc": "^3.0.5",
+    "@vue/compiler-sfc": "^3.1.5",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "4.2.3",
+    "lint-staged": "^11.1.1",
     "postcss-import": "^12.0.1",
+    "prettier": "^2.3.2",
     "rollup": "^2.51.0",
     "rollup-plugin-banner2": "^1.0.0",
     "rollup-plugin-postcss": "^3.1.8",
@@ -39,12 +47,12 @@
     "rollup-plugin-vue": "^6.0.0",
     "tslib": "^2.0.1",
     "typescript": "^4.0.2",
-    "vue": "^3.0.5"
+    "vue": "^3.1.5"
   },
   "peerDependencies": {
-    "vue": "^3.0.5"
+    "vue": "^3.1.5"
   },
   "dependencies": {
-    "cropperjs": "^1.5.11"
+    "cropperjs": "^1.5.12"
   }
 }

@@ -22,6 +22,10 @@ declare const VuePictureCropper: import("vue").DefineComponent<{
     getDataURL(options?: any): string;
     getBlob(options?: any): Blob;
 }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+    boxStyle?: unknown;
+    img?: unknown;
+    options?: unknown;
+} & {
     boxStyle: Record<string, any>;
     options: Record<string, any>;
 } & {
