@@ -31,6 +31,8 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@types/babel__core": "^7.1.9",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
     "@vue/compiler-sfc": "^3.1.5",
     "eslint": "^7.31.0",
     "eslint-config-prettier": "^8.3.0",
@@ -54,5 +56,18 @@
   },
   "dependencies": {
     "cropperjs": "^1.5.12"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "node scripts/verifyCommit.js"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
