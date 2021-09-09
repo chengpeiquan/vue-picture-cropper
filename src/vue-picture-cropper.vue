@@ -6,7 +6,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Base64 } from 'js-base64'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 
