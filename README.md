@@ -121,7 +121,13 @@ getFile|获取裁切后的 file 结果，可用于传给服务端|const file = c
 clear|清除裁切框|cropper.clear()|
 reset|重置默认的裁切区域|cropper.reset()|
 
-`getDataURL`、 `getBlob` 和 `getFile` 均属于插件自带的方法，均为同步操作，生成的文件格式都是基于源图片的格式，仅支持处理本地图片，不支持远程图片。
+**需要注意的是**
+
+`getDataURL` 是同步方法，可以直接拿到结果。
+
+但 `getBlob` 和 `getFile` 自 `0.3.0` 版本开始是异步方法！！！需配合 `Promise` 或 `async / await` 等方式来获取结果。
+
+三者均属于插件自带的方法，生成的文件格式都是基于源图片的格式，仅支持处理本地图片，不支持远程图片。
 
 其中均可传入选项来控制获取到的结果变化：
 
@@ -136,7 +142,7 @@ maxHeight|number|设置裁切结果的最大高度|无上限
 fillColor|string|设置裁剪结果的背景色，比如你想改变png透明区域的颜色|transparent
 imageSmoothingEnabled|boolean|是否让裁剪后的图片显得平滑|true
 imageSmoothingQuality|string|图片平滑质量，可选low、medium、high|low
-fileName|string|文件名，目前只有 `getFile` 会用到该参数，如果不传的话，默认文件名格式为 “cropped-时间戳.文件后缀”
+fileName|string|文件名，目前只有 `getFile` 会用到该参数，可不传|cropped-当前时间戳.原文件后缀
 
 用法示范：
 
@@ -149,6 +155,22 @@ const opt = {
 
 // 裁切后会按照该尺寸生成结果
 const dataURL = cropper.getDataURL(opt);
+```
+
+如果是要获取 blob 和 file ，请记得用异步方法：
+
+```js
+cropper.getBlob()
+  .then((blob) => {
+    console.log('blob', blob)
+  })
+// 或者是 await cropper.getBlob()
+
+cropper.getFile()
+  .then((file) => {
+    console.log('file', file)
+  })
+// 或者是 await cropper.getFile()
 ```
 
 具体在项目工程里的使用可以参考文档前面附的 DEMO 源码。

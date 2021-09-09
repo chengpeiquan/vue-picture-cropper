@@ -25,8 +25,8 @@ declare const VuePictureCropper: import('vue').DefineComponent<
     updateInstance(): void
     getImgSuffix(): void
     getDataURL(options?: { [key: string]: unknown }): string
-    getBlob(options?: { [key: string]: unknown }): Blob | null
-    getFile(options?: { [key: string]: unknown }): File
+    getBlob(options?: { [key: string]: unknown }): Promise<Blob | null>
+    getFile(options?: { [key: string]: unknown }): Promise<File>
   },
   import('vue').ComponentOptionsMixin,
   import('vue').ComponentOptionsMixin,

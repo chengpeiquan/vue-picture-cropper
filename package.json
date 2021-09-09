@@ -1,6 +1,6 @@
 {
   "name": "vue-picture-cropper",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A picture cropping tool that can be used in Vue 3.0.",
   "main": "dist/vue-picture-cropper.min.js",
   "types": "vue-picture-cropper.d.ts",
@@ -41,7 +41,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.14.0",
     "husky": "4.2.3",
-    "js-base64": "^3.7.0",
     "lint-staged": "^11.1.1",
     "postcss-import": "^12.0.1",
     "prettier": "^2.3.2",
