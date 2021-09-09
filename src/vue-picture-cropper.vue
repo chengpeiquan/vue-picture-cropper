@@ -145,43 +145,46 @@ const VuePictureCropper = defineComponent({
     /**
      * 获取blob结果
      */
-    getBlob(options: { [key: string]: unknown } = {}): Blob | null {
-      // 获取base64结果
-      const dataURL: string = this.getDataURL(options)
-      if (!dataURL) {
-        return null
-      }
-
-      // 提取图片信息
-      const imgArr: string[] = dataURL.split(',')
-      const imgContent: string = imgArr[1].substring(0, imgArr[1].length - 2)
-      const u8Arr: Uint8Array = Base64.toUint8Array(imgContent)
-
-      // 返回blob
-      return new Blob([u8Arr], {
-        type: this.mimeType,
+    async getBlob(
+      options: { [key: string]: unknown } = {}
+    ): Promise<Blob | null> {
+      return new Promise((resolve) => {
+        try {
+          const result: string = this.cropper
+            .getCroppedCanvas(options)
+            .toBlob((blob: Blob) => {
+              resolve(blob)
+            }, this.mimeType)
+          return result
+        } catch (e) {
+          resolve(null)
+        }
       })
     },
 
     /**
      * 获取file结果
      */
-    getFile(options: { [key: string]: unknown } = {}): File {
-      // 获取文件名
-      const { fileName: optFileName } = options
-      const suffix: string = this.mimeType.replace(/image\//, '')
-      const fileName: string = optFileName
-        ? `${optFileName}.${suffix}`
-        : `cropped-${Date.now()}.${suffix}`
+    async getFile(options: { [key: string]: unknown } = {}): Promise<File> {
+      return new Promise((resolve) => {
+        ;(async () => {
+          // 获取文件名
+          const { fileName: optFileName } = options
+          const suffix: string = this.mimeType.replace(/image\//, '')
+          const fileName: string = optFileName
+            ? `${optFileName}.${suffix}`
+            : `cropped-${Date.now()}.${suffix}`
 
-      // 获取文件信息
-      const blob: Blob = this.getBlob(options)
+          // 获取文件信息
+          const blob: Blob = await this.getBlob(options)
 
-      // 生成文件并返回
-      const file: File = new File([blob], fileName, {
-        type: this.mimeType,
+          // 生成文件并返回
+          const file: File = new File([blob], fileName, {
+            type: this.mimeType,
+          })
+          resolve(file)
+        })()
       })
-      return file
     },
   },
 })
