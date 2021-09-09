@@ -5,13 +5,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
+import { Base64 } from 'js-base64'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 
 /**
  * 暴露一个实例供组件内操作api
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export let cropper: any = null
 
 /**
@@ -43,11 +45,11 @@ const VuePictureCropper = defineComponent({
      * 监听图片变化
      * 实例存在的时候，不允许多次初始化
      */
-    img(newVal, oldVal): boolean {
+    img(): void {
       // 实例不存在时，执行初始化
       if (!this.cropper) {
         this.init()
-        return false
+        return
       }
 
       // 实例存在时，只执行数据更新
@@ -74,23 +76,25 @@ const VuePictureCropper = defineComponent({
     /**
      * 初始化实例
      */
-    async init() {
+    async init(): Promise<void> {
       // 必须在视图渲染后再执行
       await this.$nextTick()
 
       // 执行挂载DOM的检查
-      const check: any = setInterval(() => {
+      const check: number = window.setInterval(() => {
         // 获取要挂载的DOM
-        const imgDOM: any = document.querySelector('.vue--picture-cropper__img')
+        const imgElement: HTMLImageElement = document.querySelector(
+          '.vue--picture-cropper__img'
+        )
 
         // 只有DOM存在时才允许初始化
-        if (imgDOM) {
+        if (imgElement) {
           // 初始化并挂到Vue上
           try {
-            this.cropper = new Cropper(imgDOM, this.options)
+            this.cropper = new Cropper(imgElement, this.options)
 
             // 移除检查
-            clearInterval(check)
+            window.clearInterval(check)
 
             // 更新要暴露的实例
             this.updateInstance()
@@ -107,16 +111,17 @@ const VuePictureCropper = defineComponent({
     /**
      * 更新实例和绑定方法
      */
-    updateInstance() {
+    updateInstance(): void {
       cropper = this.cropper
       cropper.getDataURL = this.getDataURL
       cropper.getBlob = this.getBlob
+      cropper.getFile = this.getFile
     },
 
     /**
      * 获取图片后缀
      */
-    getImgSuffix() {
+    getImgSuffix(): void {
       const imgArr: string[] = this.img.split(',')
       const imgInfo: string = imgArr[0]
       const imgMimeType: string = imgInfo.replace(/data:(.*);base64/, '$1')
@@ -126,7 +131,7 @@ const VuePictureCropper = defineComponent({
     /**
      * 获取base64结果
      */
-    getDataURL(options: any = {}) {
+    getDataURL(options: { [key: string]: unknown } = {}): string {
       try {
         const result: string = this.cropper
           .getCroppedCanvas(options)
@@ -140,9 +145,9 @@ const VuePictureCropper = defineComponent({
     /**
      * 获取blob结果
      */
-    getBlob(options?: any) {
+    getBlob(options: { [key: string]: unknown } = {}): Blob | null {
       // 获取base64结果
-      const dataURL: string = cropper.getDataURL()
+      const dataURL: string = this.getDataURL(options)
       if (!dataURL) {
         return null
       }
@@ -150,19 +155,33 @@ const VuePictureCropper = defineComponent({
       // 提取图片信息
       const imgArr: string[] = dataURL.split(',')
       const imgContent: string = imgArr[1].substring(0, imgArr[1].length - 2)
-
-      // 进行base64解码
-      const a2b: string = (window as any).atob(imgContent)
-      let n: number = a2b.length
-      const u8Arr: any = new Uint8Array(n)
-      while (n--) {
-        u8Arr[n] = a2b.charCodeAt(n)
-      }
+      const u8Arr: Uint8Array = Base64.toUint8Array(imgContent)
 
       // 返回blob
       return new Blob([u8Arr], {
         type: this.mimeType,
       })
+    },
+
+    /**
+     * 获取file结果
+     */
+    getFile(options: { [key: string]: unknown } = {}): File {
+      // 获取文件名
+      const { fileName: optFileName } = options
+      const suffix: string = this.mimeType.replace(/image\//, '')
+      const fileName: string = optFileName
+        ? `${optFileName}.${suffix}`
+        : `cropped-${Date.now()}.${suffix}`
+
+      // 获取文件信息
+      const blob: Blob = this.getBlob(options)
+
+      // 生成文件并返回
+      const file: File = new File([blob], fileName, {
+        type: this.mimeType,
+      })
+      return file
     },
   },
 })

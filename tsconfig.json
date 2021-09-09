@@ -12,9 +12,6 @@
       "@/*": [
         "src/*"
       ],
-      "@m/*": [
-        "src/modules/*"
-      ],
       "@cp/*": [
         "src/components/*"
       ]

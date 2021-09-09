@@ -2,6 +2,8 @@
 
 一个基于 cropper.js ，支持 Vue 3.0 的图片裁切工具组件（目前仅支持 Vue 3.x ）。
 
+对 Vue 3.0 还不熟悉的同学，可以查阅我之前总结的文档 [《Vue3.0学习教程与实战案例》](http://vue3.chengpeiquan.com/)
+
 ## demo
 
 根据平时常见的使用习惯，弄了一个简单的在线 DEMO ，点击按钮选择图片后，弹出裁切框，裁切后生成裁切结果。
@@ -111,14 +113,15 @@ preview|element/string|图片预览的容器，一个 DOM 元素。必须可以�
 
 可通过 `cropper` 实例来调取插件的各种 API （也就是在 import 的时候花括号里的那个实例）。
 
-方法名|功能说明|用法示范
-:--|:--|:--
-getDataURL|获取裁切后的base64结果，可用于本地预览展示|const DATA_URL = cropper.getDataURL()
-getBlob|获取裁切后的blob结果，可用于传给服务端|const BLOB = cropper.getBlob()
-clear|清除裁切框|cropper.clear()
-reset|重置默认的裁切区域|cropper.reset()
+方法名|功能说明|用法示范|备注
+:--|:--|:--|:--
+getDataURL|获取裁切后的base64结果，可用于本地预览展示|const dataURL = cropper.getDataURL()|
+getBlob|获取裁切后的 blob 结果，可用于传给服务端|const blob = cropper.getBlob()|
+getFile|获取裁切后的 file 结果，可用于传给服务端|const file = cropper.getFile()|`0.2.0` 版本开始才支持该方法
+clear|清除裁切框|cropper.clear()|
+reset|重置默认的裁切区域|cropper.reset()|
 
-`getDataURL` 和 `getBlob` 属于插件自带的方法，均为同步操作，生成的文件格式都是基于源图片的格式，仅支持处理本地图片，不支持远程图片。
+`getDataURL`、 `getBlob` 和 `getFile` 均属于插件自带的方法，均为同步操作，生成的文件格式都是基于源图片的格式，仅支持处理本地图片，不支持远程图片。
 
 其中均可传入选项来控制获取到的结果变化：
 
@@ -133,19 +136,22 @@ maxHeight|number|设置裁切结果的最大高度|无上限
 fillColor|string|设置裁剪结果的背景色，比如你想改变png透明区域的颜色|transparent
 imageSmoothingEnabled|boolean|是否让裁剪后的图片显得平滑|true
 imageSmoothingQuality|string|图片平滑质量，可选low、medium、high|low
+fileName|string|文件名，目前只有 `getFile` 会用到该参数，如果不传的话，默认文件名格式为 “cropped-时间戳.文件后缀”
 
 用法示范：
 
 ```js
 // 设定裁切后指定尺寸为 400x250 ，通常可以为 banner 图裁切指定尺寸
-const OPT = {
+const opt = {
   width: 400,
   height: 250
 };
 
 // 裁切后会按照该尺寸生成结果
-const DATA_URL = cropper.getDataURL(OPT);
+const dataURL = cropper.getDataURL(opt);
 ```
+
+具体在项目工程里的使用可以参考文档前面附的 DEMO 源码。
 
 如果需要转换格式或者处理远程图片，请使用 [getCroppedCanvas](https://github.com/fengyuanchen/cropperjs#getcroppedcanvasoptions) （需注意：这个方法存在部分异步操作，请留意用法说明）
 
@@ -154,5 +160,3 @@ const DATA_URL = cropper.getDataURL(OPT);
 因为本插件是对做了一层组件化的实现，所以本组件也同步了 cropperjs 的所有 API ，均可通过 `cropper.xxxx` 来使用原来的 API 。
 
 如果你需要更多高级功能，可以戳原文档参考使用 [events - cropperjs](https://github.com/fengyuanchen/cropperjs#events)
-
-对 Vue 3.0 还不熟悉的同学，可以查阅我之前总结的文档 [《Vue3.0学习教程与实战案例》](http://vue3.chengpeiquan.com/)
