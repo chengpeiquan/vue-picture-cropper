@@ -1,5 +1,9 @@
 <template>
-  <div class="vue--picture-cropper__wrap" :style="boxStyle">
+  <div
+    class="vue--picture-cropper__wrap"
+    :class="{ 'vue--picture-cropper__wrap-round': presetMode.mode === 'round' }"
+    :style="boxStyle"
+  >
     <img class="vue--picture-cropper__img" :src="img" />
   </div>
 </template>
@@ -133,8 +137,9 @@ const VuePictureCropper = defineComponent({
 
       const { mode, width, height } = this.presetMode
       switch (mode) {
-        // 固定尺寸
-        case 'fixedSize': {
+        // 固定尺寸和圆形
+        case 'fixedSize':
+        case 'round': {
           this.cropper.setCropBoxData({
             width,
             height,
@@ -165,8 +170,9 @@ const VuePictureCropper = defineComponent({
 
       const { mode, width, height } = this.presetMode
       switch (mode) {
-        // 固定尺寸
-        case 'fixedSize': {
+        // 固定尺寸和圆形
+        case 'fixedSize':
+        case 'round': {
           options.width = width
           options.height = height
           break
@@ -180,10 +186,14 @@ const VuePictureCropper = defineComponent({
      * 获取图片后缀
      */
     getImgSuffix(): void {
-      const imgArr: string[] = this.img.split(',')
-      const imgInfo: string = imgArr[0]
-      const imgMimeType: string = imgInfo.replace(/data:(.*);base64/, '$1')
-      this.mimeType = imgMimeType
+      if (this.presetMode.mode === 'round') {
+        this.mimeType = 'image/png'
+      } else {
+        const imgArr: string[] = this.img.split(',')
+        const imgInfo: string = imgArr[0]
+        const imgMimeType: string = imgInfo.replace(/data:(.*);base64/, '$1')
+        this.mimeType = imgMimeType
+      }
     },
 
     /**
@@ -192,9 +202,11 @@ const VuePictureCropper = defineComponent({
     getDataURL(options: { [key: string]: unknown } = {}): string {
       options = this.updateResultOptions(options)
       try {
-        const result: string = this.cropper
-          .getCroppedCanvas(options)
-          .toDataURL(this.mimeType)
+        let croppedCanvas = this.cropper.getCroppedCanvas(options)
+        if (this.presetMode.mode === 'round') {
+          croppedCanvas = this.getRoundedCanvas(croppedCanvas)
+        }
+        const result: string = croppedCanvas.toDataURL(this.mimeType)
         return result
       } catch (e) {
         return ''
@@ -210,11 +222,19 @@ const VuePictureCropper = defineComponent({
       options = this.updateResultOptions(options)
       return new Promise((resolve) => {
         try {
-          const result: string = this.cropper
-            .getCroppedCanvas(options)
-            .toBlob((blob: Blob) => {
-              resolve(blob)
-            }, this.mimeType)
+          let croppedCanvas = this.cropper.getCroppedCanvas(options)
+          if (this.presetMode.mode === 'round') {
+            croppedCanvas = this.getRoundedCanvas(croppedCanvas)
+          }
+          const result: string = croppedCanvas.toBlob((blob: Blob) => {
+            resolve(blob)
+          }, this.mimeType)
+
+          // const result: string = this.cropper
+          //   .getCroppedCanvas(options)
+          //   .toBlob((blob: Blob) => {
+          //     resolve(blob)
+          //   }, this.mimeType)
           return result
         } catch (e) {
           resolve(null)
@@ -246,6 +266,72 @@ const VuePictureCropper = defineComponent({
         })()
       })
     },
+
+    /**
+     * 获取圆形画布
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    getRoundedCanvas(sourceCanvas: any) {
+      const canvas = document.createElement('canvas')
+      const context = canvas.getContext('2d')
+      const { width, height } = sourceCanvas
+
+      canvas.width = width
+      canvas.height = height
+      context.imageSmoothingEnabled = true
+      context.drawImage(sourceCanvas, 0, 0, width, height)
+      context.globalCompositeOperation = 'destination-in'
+      context.beginPath()
+      context.arc(
+        width / 2,
+        height / 2,
+        Math.min(width, height) / 2,
+        0,
+        2 * Math.PI,
+        true
+      )
+      context.fill()
+
+      return canvas
+    },
+
+    // createRoundedCanvas() {
+    //   window.addEventListener('DOMContentLoaded', () => {
+    //     var image = document.getElementById('image')
+    //     var button = document.getElementById('button')
+    //     var result = document.getElementById('result')
+    //     var croppable = false
+    //     var cropper = new Cropper(image, {
+    //       aspectRatio: 1,
+    //       viewMode: 1,
+    //       ready: function () {
+    //         croppable = true
+    //       },
+    //     })
+
+    //     button.onclick = function () {
+    //       var croppedCanvas
+    //       var roundedCanvas
+    //       var roundedImage
+
+    //       if (!croppable) {
+    //         return
+    //       }
+
+    //       // Crop
+    //       croppedCanvas = cropper.getCroppedCanvas()
+
+    //       // Round
+    //       roundedCanvas = this.getRoundedCanvas(croppedCanvas)
+
+    //       // Show
+    //       roundedImage = document.createElement('img')
+    //       roundedImage.src = roundedCanvas.toDataURL()
+    //       result.innerHTML = ''
+    //       result.appendChild(roundedImage)
+    //     }
+    //   })
+    // },
   },
 })
 
@@ -264,5 +350,9 @@ export default VuePictureCropper
   height: auto;
   max-width: 100%;
   max-height: 100%;
+}
+.vue--picture-cropper__wrap-round .cropper-view-box,
+.vue--picture-cropper__wrap-round .cropper-face {
+  border-radius: 50%;
 }
 </style>

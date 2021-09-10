@@ -303,9 +303,9 @@ var r,
           z = ''.concat(v, '-disabled'),
           W = ''.concat(v, '-hidden'),
           H = ''.concat(v, '-hide'),
-          N = ''.concat(v, '-invisible'),
-          S = ''.concat(v, '-modal'),
-          R = ''.concat(v, '-move'),
+          R = ''.concat(v, '-invisible'),
+          N = ''.concat(v, '-modal'),
+          S = ''.concat(v, '-move'),
           L = ''.concat(v, 'Action'),
           j = ''.concat(v, 'Preview'),
           X = 'crop',
@@ -505,21 +505,21 @@ var r,
         function Ht(t) {
           return t.replace(Wt, '$1-$2').toLowerCase()
         }
-        function Nt(t, e) {
+        function Rt(t, e) {
           return ft(t[e])
             ? t[e]
             : t.dataset
             ? t.dataset[e]
             : t.getAttribute('data-'.concat(Ht(e)))
         }
-        function St(t, e, i) {
+        function Nt(t, e, i) {
           ft(i)
             ? (t[e] = i)
             : t.dataset
             ? (t.dataset[e] = i)
             : t.setAttribute('data-'.concat(Ht(e)), i)
         }
-        function Rt(t, e) {
+        function St(t, e) {
           if (ft(t[e]))
             try {
               delete t[e]
@@ -759,21 +759,21 @@ var r,
             z = document.createElement('canvas'),
             W = z.getContext('2d'),
             H = Vt({ aspectRatio: m, width: D, height: B }),
-            N = Vt({ aspectRatio: m, width: T, height: E }, 'cover'),
-            S = Math.min(H.width, Math.max(N.width, g)),
-            R = Math.min(H.height, Math.max(N.height, f)),
+            R = Vt({ aspectRatio: m, width: T, height: E }, 'cover'),
+            N = Math.min(H.width, Math.max(R.width, g)),
+            S = Math.min(H.height, Math.max(R.height, f)),
             L = Vt({ aspectRatio: a, width: D, height: B }),
             j = Vt({ aspectRatio: a, width: T, height: E }, 'cover'),
             X = Math.min(L.width, Math.max(j.width, o)),
             Y = Math.min(L.height, Math.max(j.height, r)),
             I = [-X / 2, -Y / 2, X, Y]
           return (
-            (z.width = kt(S)),
-            (z.height = kt(R)),
+            (z.width = kt(N)),
+            (z.height = kt(S)),
             (W.fillStyle = w),
-            W.fillRect(0, 0, S, R),
+            W.fillRect(0, 0, N, S),
             W.save(),
-            W.translate(S / 2, R / 2),
+            W.translate(N / 2, S / 2),
             W.rotate((c * Math.PI) / 180),
             W.scale(l, u),
             (W.imageSmoothingEnabled = x),
@@ -1178,7 +1178,7 @@ var r,
                 (i.oldTop = i.top),
                 t.movable &&
                   t.cropBoxMovable &&
-                  St(
+                  Nt(
                     this.face,
                     L,
                     i.width >= e.width && i.height >= e.height ? x : w
@@ -1220,7 +1220,7 @@ var r,
                   (this.previews = r),
                   Mt(r, function (t) {
                     var i = document.createElement('img')
-                    St(t, j, {
+                    Nt(t, j, {
                       width: t.offsetWidth,
                       height: t.offsetHeight,
                       html: t.innerHTML,
@@ -1237,10 +1237,10 @@ var r,
             },
             resetPreview: function () {
               Mt(this.previews, function (t) {
-                var e = Nt(t, j)
+                var e = Rt(t, j)
                 At(t, { width: e.width, height: e.height }),
                   (t.innerHTML = e.html),
-                  Rt(t, j)
+                  St(t, j)
               })
             },
             preview: function () {
@@ -1263,7 +1263,7 @@ var r,
                   )
                 ),
                 Mt(this.previews, function (e) {
-                  var i = Nt(e, j),
+                  var i = Rt(e, j),
                     c = i.width,
                     p = i.height,
                     l = c,
@@ -1406,14 +1406,14 @@ var r,
                   (n =
                     Object.keys(o).length > 1 && a.zoomable && a.zoomOnTouch
                       ? y
-                      : Nt(t.target, L)),
+                      : Rt(t.target, L)),
                   at.test(n) &&
                     !1 !==
                       It(this.element, _, { originalEvent: t, action: n }) &&
                     (t.preventDefault(),
                     (this.action = n),
                     (this.cropping = !1),
-                    n === b && ((this.cropping = !0), Ot(this.dragBox, S)))
+                    n === b && ((this.cropping = !0), Ot(this.dragBox, N)))
               }
             },
             cropMove: function (t) {
@@ -1444,7 +1444,7 @@ var r,
                     Object.keys(i).length || (this.action = ''),
                     this.cropping &&
                       ((this.cropping = !1),
-                      zt(this.dragBox, S, this.cropped && this.options.modal)),
+                      zt(this.dragBox, N, this.cropped && this.options.modal)),
                     It(this.element, U, { originalEvent: t, action: e }))
               }
             },
@@ -1477,84 +1477,84 @@ var r,
                   (v = g + Math.min(a.width, n.width, n.left + n.width)),
                   (E = f + Math.min(a.height, n.height, n.top + n.height)))
               var H = r[Object.keys(r)[0]],
-                N = { x: H.endX - H.startX, y: H.endY - H.startY },
-                S = function (t) {
+                R = { x: H.endX - H.startX, y: H.endY - H.startY },
+                N = function (t) {
                   switch (t) {
                     case M:
-                      u + N.x > v && (N.x = v - u)
+                      u + R.x > v && (R.x = v - u)
                       break
                     case C:
-                      c + N.x < g && (N.x = g - c)
+                      c + R.x < g && (R.x = g - c)
                       break
                     case k:
-                      p + N.y < f && (N.y = f - p)
+                      p + R.y < f && (R.y = f - p)
                       break
                     case D:
-                      m + N.y > E && (N.y = E - m)
+                      m + R.y > E && (R.y = E - m)
                   }
                 }
               switch (h) {
                 case w:
-                  ;(c += N.x), (p += N.y)
+                  ;(c += R.x), (p += R.y)
                   break
                 case M:
-                  if (N.x >= 0 && (u >= v || (s && (p <= f || m >= E)))) {
+                  if (R.x >= 0 && (u >= v || (s && (p <= f || m >= E)))) {
                     z = !1
                     break
                   }
-                  S(M),
-                    (l += N.x) < 0 && ((h = C), (c -= l = -l)),
+                  N(M),
+                    (l += R.x) < 0 && ((h = C), (c -= l = -l)),
                     s && ((d = l / s), (p += (o.height - d) / 2))
                   break
                 case k:
-                  if (N.y <= 0 && (p <= f || (s && (c <= g || u >= v)))) {
+                  if (R.y <= 0 && (p <= f || (s && (c <= g || u >= v)))) {
                     z = !1
                     break
                   }
-                  S(k),
-                    (d -= N.y),
-                    (p += N.y),
+                  N(k),
+                    (d -= R.y),
+                    (p += R.y),
                     d < 0 && ((h = D), (p -= d = -d)),
                     s && ((l = d * s), (c += (o.width - l) / 2))
                   break
                 case C:
-                  if (N.x <= 0 && (c <= g || (s && (p <= f || m >= E)))) {
+                  if (R.x <= 0 && (c <= g || (s && (p <= f || m >= E)))) {
                     z = !1
                     break
                   }
-                  S(C),
-                    (l -= N.x),
-                    (c += N.x),
+                  N(C),
+                    (l -= R.x),
+                    (c += R.x),
                     l < 0 && ((h = M), (c -= l = -l)),
                     s && ((d = l / s), (p += (o.height - d) / 2))
                   break
                 case D:
-                  if (N.y >= 0 && (m >= E || (s && (c <= g || u >= v)))) {
+                  if (R.y >= 0 && (m >= E || (s && (c <= g || u >= v)))) {
                     z = !1
                     break
                   }
-                  S(D),
-                    (d += N.y) < 0 && ((h = k), (p -= d = -d)),
+                  N(D),
+                    (d += R.y) < 0 && ((h = k), (p -= d = -d)),
                     s && ((l = d * s), (c += (o.width - l) / 2))
                   break
                 case B:
                   if (s) {
-                    if (N.y <= 0 && (p <= f || u >= v)) {
+                    if (R.y <= 0 && (p <= f || u >= v)) {
                       z = !1
                       break
                     }
-                    S(k), (d -= N.y), (p += N.y), (l = d * s)
+                    N(k), (d -= R.y), (p += R.y), (l = d * s)
                   } else
-                    S(k),
-                      S(M),
-                      N.x >= 0
+                    N(k),
+                      N(M),
+                      R.x >= 0
                         ? u < v
-                          ? (l += N.x)
-                          : N.y <= 0 && p <= f && (z = !1)
-                        : (l += N.x),
-                      N.y <= 0
-                        ? p > f && ((d -= N.y), (p += N.y))
-                        : ((d -= N.y), (p += N.y))
+                          ? (l += R.x)
+                          : R.y <= 0 && p <= f && (z = !1)
+                        : (l += R.x),
+                      R.y <= 0
+                        ? p > f && ((d -= R.y), (p += R.y))
+                        : ((d -= R.y), (p += R.y))
                   l < 0 && d < 0
                     ? ((h = O), (p -= d = -d), (c -= l = -l))
                     : l < 0
@@ -1563,26 +1563,26 @@ var r,
                   break
                 case A:
                   if (s) {
-                    if (N.y <= 0 && (p <= f || c <= g)) {
+                    if (R.y <= 0 && (p <= f || c <= g)) {
                       z = !1
                       break
                     }
-                    S(k),
-                      (d -= N.y),
-                      (p += N.y),
+                    N(k),
+                      (d -= R.y),
+                      (p += R.y),
                       (l = d * s),
                       (c += o.width - l)
                   } else
-                    S(k),
-                      S(C),
-                      N.x <= 0
+                    N(k),
+                      N(C),
+                      R.x <= 0
                         ? c > g
-                          ? ((l -= N.x), (c += N.x))
-                          : N.y <= 0 && p <= f && (z = !1)
-                        : ((l -= N.x), (c += N.x)),
-                      N.y <= 0
-                        ? p > f && ((d -= N.y), (p += N.y))
-                        : ((d -= N.y), (p += N.y))
+                          ? ((l -= R.x), (c += R.x))
+                          : R.y <= 0 && p <= f && (z = !1)
+                        : ((l -= R.x), (c += R.x)),
+                      R.y <= 0
+                        ? p > f && ((d -= R.y), (p += R.y))
+                        : ((d -= R.y), (p += R.y))
                   l < 0 && d < 0
                     ? ((h = T), (p -= d = -d), (c -= l = -l))
                     : l < 0
@@ -1591,20 +1591,20 @@ var r,
                   break
                 case O:
                   if (s) {
-                    if (N.x <= 0 && (c <= g || m >= E)) {
+                    if (R.x <= 0 && (c <= g || m >= E)) {
                       z = !1
                       break
                     }
-                    S(C), (l -= N.x), (c += N.x), (d = l / s)
+                    N(C), (l -= R.x), (c += R.x), (d = l / s)
                   } else
-                    S(D),
-                      S(C),
-                      N.x <= 0
+                    N(D),
+                      N(C),
+                      R.x <= 0
                         ? c > g
-                          ? ((l -= N.x), (c += N.x))
-                          : N.y >= 0 && m >= E && (z = !1)
-                        : ((l -= N.x), (c += N.x)),
-                      N.y >= 0 ? m < E && (d += N.y) : (d += N.y)
+                          ? ((l -= R.x), (c += R.x))
+                          : R.y >= 0 && m >= E && (z = !1)
+                        : ((l -= R.x), (c += R.x)),
+                      R.y >= 0 ? m < E && (d += R.y) : (d += R.y)
                   l < 0 && d < 0
                     ? ((h = B), (p -= d = -d), (c -= l = -l))
                     : l < 0
@@ -1613,20 +1613,20 @@ var r,
                   break
                 case T:
                   if (s) {
-                    if (N.x >= 0 && (u >= v || m >= E)) {
+                    if (R.x >= 0 && (u >= v || m >= E)) {
                       z = !1
                       break
                     }
-                    S(M), (d = (l += N.x) / s)
+                    N(M), (d = (l += R.x) / s)
                   } else
-                    S(D),
-                      S(M),
-                      N.x >= 0
+                    N(D),
+                      N(M),
+                      R.x >= 0
                         ? u < v
-                          ? (l += N.x)
-                          : N.y >= 0 && m >= E && (z = !1)
-                        : (l += N.x),
-                      N.y >= 0 ? m < E && (d += N.y) : (d += N.y)
+                          ? (l += R.x)
+                          : R.y >= 0 && m >= E && (z = !1)
+                        : (l += R.x),
+                      R.y >= 0 ? m < E && (d += R.y) : (d += R.y)
                   l < 0 && d < 0
                     ? ((h = A), (p -= d = -d), (c -= l = -l))
                     : l < 0
@@ -1634,13 +1634,13 @@ var r,
                     : d < 0 && ((h = B), (p -= d = -d))
                   break
                 case x:
-                  this.move(N.x, N.y), (z = !1)
+                  this.move(R.x, R.y), (z = !1)
                   break
                 case y:
                   this.zoom($t(r), t), (z = !1)
                   break
                 case b:
-                  if (!N.x || !N.y) {
+                  if (!R.x || !R.y) {
                     z = !1
                     break
                   }
@@ -1649,10 +1649,10 @@ var r,
                     (p = H.startY - e.top),
                     (l = o.minWidth),
                     (d = o.minHeight),
-                    N.x > 0
-                      ? (h = N.y > 0 ? T : B)
-                      : N.x < 0 && ((c -= l), (h = N.y > 0 ? O : A)),
-                    N.y < 0 && (p -= d),
+                    R.x > 0
+                      ? (h = R.y > 0 ? T : B)
+                      : R.x < 0 && ((c -= l), (h = R.y > 0 ? O : A)),
+                    R.y < 0 && (p -= d),
                     this.cropped ||
                       (Et(this.cropBox, W),
                       (this.cropped = !0),
@@ -1678,7 +1678,7 @@ var r,
                   this.disabled ||
                   ((this.cropped = !0),
                   this.limitCropBox(!0, !0),
-                  this.options.modal && Ot(this.dragBox, S),
+                  this.options.modal && Ot(this.dragBox, N),
                   Et(this.cropBox, W),
                   this.setCropBoxData(this.initialCropBoxData)),
                 this
@@ -1710,7 +1710,7 @@ var r,
                   this.renderCropBox(),
                   this.limitCanvas(!0, !0),
                   this.renderCanvas(),
-                  Et(this.dragBox, S),
+                  Et(this.dragBox, N),
                   Ot(this.cropBox, W)),
                 this
               )
@@ -2144,10 +2144,10 @@ var r,
                   o = e.movable && t === Y
                 ;(t = a || o ? t : I),
                   (e.dragMode = t),
-                  St(i, L, t),
+                  Nt(i, L, t),
                   zt(i, E, a),
-                  zt(i, R, o),
-                  e.cropBoxMovable || (St(n, L, t), zt(n, E, a), zt(n, R, o))
+                  zt(i, S, o),
+                  e.cropBoxMovable || (Nt(n, L, t), zt(n, E, a), zt(n, S, o))
               }
               return this
             },
@@ -2388,8 +2388,8 @@ var r,
                               W
                             ),
                           e.background && Ot(o, ''.concat(v, '-bg')),
-                          e.highlight || Ot(c, N),
-                          e.cropBoxMovable && (Ot(c, R), St(c, L, w)),
+                          e.highlight || Ot(c, R),
+                          e.cropBoxMovable && (Ot(c, S), Nt(c, L, w)),
                           e.cropBoxResizable ||
                             (Ot(
                               s.getElementsByClassName(''.concat(v, '-line')),
@@ -2580,6 +2580,7 @@ var p = null,
             n = t.height
           switch (e) {
             case 'fixedSize':
+            case 'round':
               this.cropper.setCropBoxData({ width: i, height: n })
           }
         }
@@ -2600,6 +2601,7 @@ var p = null,
             a = e.height
           switch (i) {
             case 'fixedSize':
+            case 'round':
               ;(t.width = n), (t.height = a)
           }
           return t
@@ -2612,7 +2614,11 @@ var p = null,
       getDataURL: function (t) {
         void 0 === t && (t = {}), (t = this.updateResultOptions(t))
         try {
-          return this.cropper.getCroppedCanvas(t).toDataURL(this.mimeType)
+          var e = this.cropper.getCroppedCanvas(t)
+          return (
+            'round' === this.presetMode.mode && (e = this.getRoundedCanvas(e)),
+            e.toDataURL(this.mimeType)
+          )
         } catch (t) {
           return ''
         }
@@ -2629,9 +2635,14 @@ var p = null,
                   2,
                   new Promise(function (i) {
                     try {
-                      return e.cropper.getCroppedCanvas(t).toBlob(function (t) {
-                        i(t)
-                      }, e.mimeType)
+                      var n = e.cropper.getCroppedCanvas(t)
+                      return (
+                        'round' === e.presetMode.mode &&
+                          (n = e.getRoundedCanvas(n)),
+                        n.toBlob(function (t) {
+                          i(t)
+                        }, e.mimeType)
+                      )
                     } catch (t) {
                       i(null)
                     }
@@ -2680,17 +2691,42 @@ var p = null,
           })
         )
       },
+      getRoundedCanvas: function (t) {
+        var e = document.createElement('canvas'),
+          i = e.getContext('2d'),
+          n = t.width,
+          a = t.height
+        return (
+          (e.width = n),
+          (e.height = a),
+          (i.imageSmoothingEnabled = !0),
+          i.drawImage(t, 0, 0, n, a),
+          (i.globalCompositeOperation = 'destination-in'),
+          i.beginPath(),
+          i.arc(n / 2, a / 2, Math.min(n, a) / 2, 0, 2 * Math.PI, !0),
+          i.fill(),
+          e
+        )
+      },
     },
   })
 c(
-  '\n.vue--picture-cropper__wrap {\n  width: 100%;\n  height: 100%;\n  margin: 0;\n}\n.vue--picture-cropper__img {\n  display: block;\n  width: auto;\n  height: auto;\n  max-width: 100%;\n  max-height: 100%;\n}\n'
+  '\n.vue--picture-cropper__wrap {\n  width: 100%;\n  height: 100%;\n  margin: 0;\n}\n.vue--picture-cropper__img {\n  display: block;\n  width: auto;\n  height: auto;\n  max-width: 100%;\n  max-height: 100%;\n}\n.vue--picture-cropper__wrap-round .cropper-view-box,\n.vue--picture-cropper__wrap-round .cropper-face {\n  border-radius: 50%;\n}\n'
 ),
   (l.render = function (t, a, o, r, h, s) {
     return (
       e(),
       i(
         'div',
-        { class: 'vue--picture-cropper__wrap', style: t.boxStyle },
+        {
+          class: [
+            'vue--picture-cropper__wrap',
+            {
+              'vue--picture-cropper__wrap-round': 'round' === t.presetMode.mode,
+            },
+          ],
+          style: t.boxStyle,
+        },
         [
           n(
             'img',
@@ -2700,7 +2736,7 @@ c(
             ['src']
           ),
         ],
-        4
+        6
       )
     )
   }),

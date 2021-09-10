@@ -36,6 +36,7 @@ declare const VuePictureCropper: import('vue').DefineComponent<
     getDataURL(options?: { [key: string]: unknown }): string
     getBlob(options?: { [key: string]: unknown }): Promise<Blob | null>
     getFile(options?: { [key: string]: unknown }): Promise<File>
+    getRoundedCanvas(sourceCanvas: any): HTMLCanvasElement
   },
   import('vue').ComponentOptionsMixin,
   import('vue').ComponentOptionsMixin,
