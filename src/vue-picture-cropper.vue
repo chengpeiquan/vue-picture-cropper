@@ -10,7 +10,7 @@ import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 
 /**
- * 暴露一个实例供组件内操作api
+ * 暴露一个实例供组件内操作 API
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export let cropper: any = null
@@ -21,13 +21,25 @@ export let cropper: any = null
 const VuePictureCropper = defineComponent({
   name: 'VuePictureCropper',
   props: {
+    // 裁剪框样式
     boxStyle: {
       type: Object,
       required: false,
       default: () => ({}),
     },
+
+    // 要裁切的图片src
     img: String,
+
+    // 裁剪选项
     options: {
+      type: Object,
+      required: false,
+      default: () => ({}),
+    },
+
+    // 预设模式
+    presetMode: {
       type: Object,
       required: false,
       default: () => ({}),
@@ -100,11 +112,36 @@ const VuePictureCropper = defineComponent({
 
             // 获取文件后缀
             this.getImgSuffix()
+
+            // 检查是否需要启动预设模式
+            imgElement.addEventListener('ready', () => {
+              this.usePresetMode()
+            })
           } catch (e) {
             console.log(e)
           }
         }
       }, 10)
+    },
+
+    /**
+     * 使用预设模式
+     */
+    usePresetMode() {
+      if (Object.prototype.toString.call(this.presetMode) !== '[object Object]')
+        return
+
+      const { mode, width, height } = this.presetMode
+      switch (mode) {
+        // 固定尺寸
+        case 'fixedSize': {
+          this.cropper.setCropBoxData({
+            width,
+            height,
+          })
+          break
+        }
+      }
     },
 
     /**
@@ -115,6 +152,28 @@ const VuePictureCropper = defineComponent({
       cropper.getDataURL = this.getDataURL
       cropper.getBlob = this.getBlob
       cropper.getFile = this.getFile
+    },
+
+    /**
+     * 更新结果选项
+     */
+    updateResultOptions(options: { [key: string]: unknown } = {}): {
+      [key: string]: unknown
+    } {
+      if (Object.prototype.toString.call(this.presetMode) !== '[object Object]')
+        return
+
+      const { mode, width, height } = this.presetMode
+      switch (mode) {
+        // 固定尺寸
+        case 'fixedSize': {
+          options.width = width
+          options.height = height
+          break
+        }
+      }
+
+      return options
     },
 
     /**
@@ -131,6 +190,7 @@ const VuePictureCropper = defineComponent({
      * 获取base64结果
      */
     getDataURL(options: { [key: string]: unknown } = {}): string {
+      options = this.updateResultOptions(options)
       try {
         const result: string = this.cropper
           .getCroppedCanvas(options)
@@ -147,6 +207,7 @@ const VuePictureCropper = defineComponent({
     async getBlob(
       options: { [key: string]: unknown } = {}
     ): Promise<Blob | null> {
+      options = this.updateResultOptions(options)
       return new Promise((resolve) => {
         try {
           const result: string = this.cropper

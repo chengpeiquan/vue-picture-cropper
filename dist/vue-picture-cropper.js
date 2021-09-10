@@ -1,6 +1,6 @@
 /**
  * name: vue-picture-cropper
- * version: v0.3.0
+ * version: v0.4.0
  * author: chengpeiquan
  */
 ;(function (global, factory) {
@@ -4478,6 +4478,13 @@
           return {}
         },
       },
+      presetMode: {
+        type: Object,
+        required: false,
+        default: function () {
+          return {}
+        },
+      },
     },
     data: function () {
       return {
@@ -4528,6 +4535,9 @@
                       window.clearInterval(check)
                       _this.updateInstance()
                       _this.getImgSuffix()
+                      imgElement.addEventListener('ready', function () {
+                        _this.usePresetMode()
+                      })
                     } catch (e) {
                       console.log(e)
                     }
@@ -4538,11 +4548,51 @@
           })
         })
       },
+      usePresetMode: function () {
+        if (
+          Object.prototype.toString.call(this.presetMode) !== '[object Object]'
+        )
+          return
+        var _a = this.presetMode,
+          mode = _a.mode,
+          width = _a.width,
+          height = _a.height
+        switch (mode) {
+          case 'fixedSize': {
+            this.cropper.setCropBoxData({
+              width: width,
+              height: height,
+            })
+            break
+          }
+        }
+      },
       updateInstance: function () {
         exports.cropper = this.cropper
         exports.cropper.getDataURL = this.getDataURL
         exports.cropper.getBlob = this.getBlob
         exports.cropper.getFile = this.getFile
+      },
+      updateResultOptions: function (options) {
+        if (options === void 0) {
+          options = {}
+        }
+        if (
+          Object.prototype.toString.call(this.presetMode) !== '[object Object]'
+        )
+          return
+        var _a = this.presetMode,
+          mode = _a.mode,
+          width = _a.width,
+          height = _a.height
+        switch (mode) {
+          case 'fixedSize': {
+            options.width = width
+            options.height = height
+            break
+          }
+        }
+        return options
       },
       getImgSuffix: function () {
         var imgArr = this.img.split(',')
@@ -4554,6 +4604,7 @@
         if (options === void 0) {
           options = {}
         }
+        options = this.updateResultOptions(options)
         try {
           var result = this.cropper
             .getCroppedCanvas(options)
@@ -4570,6 +4621,7 @@
         return __awaiter(this, void 0, void 0, function () {
           var _this = this
           return __generator(this, function (_a) {
+            options = this.updateResultOptions(options)
             return [
               2,
               new Promise(function (resolve) {
