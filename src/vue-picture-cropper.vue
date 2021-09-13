@@ -1,5 +1,9 @@
 <template>
-  <div class="vue--picture-cropper__wrap" :style="boxStyle">
+  <div
+    class="vue--picture-cropper__wrap"
+    :class="{ 'vue--picture-cropper__wrap-round': presetMode.mode === 'round' }"
+    :style="boxStyle"
+  >
     <img class="vue--picture-cropper__img" :src="img" />
   </div>
 </template>
@@ -10,7 +14,7 @@ import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 
 /**
- * 暴露一个实例供组件内操作api
+ * 暴露一个实例供组件内操作 API
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export let cropper: any = null
@@ -21,13 +25,25 @@ export let cropper: any = null
 const VuePictureCropper = defineComponent({
   name: 'VuePictureCropper',
   props: {
+    // 裁剪框样式
     boxStyle: {
       type: Object,
       required: false,
       default: () => ({}),
     },
+
+    // 要裁切的图片src
     img: String,
+
+    // 裁剪选项
     options: {
+      type: Object,
+      required: false,
+      default: () => ({}),
+    },
+
+    // 预设模式
+    presetMode: {
       type: Object,
       required: false,
       default: () => ({}),
@@ -100,11 +116,37 @@ const VuePictureCropper = defineComponent({
 
             // 获取文件后缀
             this.getImgSuffix()
+
+            // 检查是否需要启动预设模式
+            imgElement.addEventListener('ready', () => {
+              this.usePresetMode()
+            })
           } catch (e) {
             console.log(e)
           }
         }
       }, 10)
+    },
+
+    /**
+     * 使用预设模式
+     */
+    usePresetMode() {
+      if (Object.prototype.toString.call(this.presetMode) !== '[object Object]')
+        return
+
+      const { mode, width, height } = this.presetMode
+      switch (mode) {
+        // 固定尺寸和圆形
+        case 'fixedSize':
+        case 'round': {
+          this.cropper.setCropBoxData({
+            width,
+            height,
+          })
+          break
+        }
+      }
     },
 
     /**
@@ -118,23 +160,57 @@ const VuePictureCropper = defineComponent({
     },
 
     /**
+     * 更新结果选项
+     */
+    updateResultOptions(options: { [key: string]: unknown } = {}): {
+      [key: string]: unknown
+    } {
+      if (Object.prototype.toString.call(this.presetMode) !== '[object Object]')
+        return
+
+      const { mode, width, height } = this.presetMode
+      switch (mode) {
+        // 固定尺寸和圆形，按照裁切框的大小返回宽高
+        case 'fixedSize':
+        case 'round': {
+          options.width = width
+          options.height = height
+          break
+        }
+      }
+
+      return options
+    },
+
+    /**
      * 获取图片后缀
      */
     getImgSuffix(): void {
-      const imgArr: string[] = this.img.split(',')
-      const imgInfo: string = imgArr[0]
-      const imgMimeType: string = imgInfo.replace(/data:(.*);base64/, '$1')
-      this.mimeType = imgMimeType
+      // 圆形模式只处理为png
+      if (this.presetMode.mode === 'round') {
+        this.mimeType = 'image/png'
+      }
+      // 其他按照原图片的类型处理
+      else {
+        const imgArr: string[] = this.img.split(',')
+        const imgInfo: string = imgArr[0]
+        const imgMimeType: string = imgInfo.replace(/data:(.*);base64/, '$1')
+        this.mimeType = imgMimeType
+      }
     },
 
     /**
      * 获取base64结果
      */
     getDataURL(options: { [key: string]: unknown } = {}): string {
+      options = this.updateResultOptions(options)
       try {
-        const result: string = this.cropper
-          .getCroppedCanvas(options)
-          .toDataURL(this.mimeType)
+        let croppedCanvas = this.cropper.getCroppedCanvas(options)
+        if (this.presetMode.mode === 'round') {
+          croppedCanvas = this.getRoundedCanvas(croppedCanvas)
+        }
+
+        const result: string = croppedCanvas.toDataURL(this.mimeType)
         return result
       } catch (e) {
         return ''
@@ -147,14 +223,17 @@ const VuePictureCropper = defineComponent({
     async getBlob(
       options: { [key: string]: unknown } = {}
     ): Promise<Blob | null> {
+      options = this.updateResultOptions(options)
       return new Promise((resolve) => {
         try {
-          const result: string = this.cropper
-            .getCroppedCanvas(options)
-            .toBlob((blob: Blob) => {
-              resolve(blob)
-            }, this.mimeType)
-          return result
+          let croppedCanvas = this.cropper.getCroppedCanvas(options)
+          if (this.presetMode.mode === 'round') {
+            croppedCanvas = this.getRoundedCanvas(croppedCanvas)
+          }
+
+          croppedCanvas.toBlob((blob: Blob) => {
+            resolve(blob)
+          }, this.mimeType)
         } catch (e) {
           resolve(null)
         }
@@ -185,6 +264,35 @@ const VuePictureCropper = defineComponent({
         })()
       })
     },
+
+    /**
+     * 获取圆形画布
+     * @description 取自作者的一个演示方案
+     * @see https://fengyuanchen.github.io/cropperjs/examples/crop-a-round-image.html
+     */
+    getRoundedCanvas(sourceCanvas: HTMLCanvasElement) {
+      const canvas = document.createElement('canvas')
+      const context = canvas.getContext('2d')
+      const { width, height } = sourceCanvas
+
+      canvas.width = width
+      canvas.height = height
+      context.imageSmoothingEnabled = true
+      context.drawImage(sourceCanvas, 0, 0, width, height)
+      context.globalCompositeOperation = 'destination-in'
+      context.beginPath()
+      context.arc(
+        width / 2,
+        height / 2,
+        Math.min(width, height) / 2,
+        0,
+        2 * Math.PI,
+        true
+      )
+      context.fill()
+
+      return canvas
+    },
   },
 })
 
@@ -203,5 +311,9 @@ export default VuePictureCropper
   height: auto;
   max-width: 100%;
   max-height: 100%;
+}
+.vue--picture-cropper__wrap-round .cropper-view-box,
+.vue--picture-cropper__wrap-round .cropper-face {
+  border-radius: 50%;
 }
 </style>

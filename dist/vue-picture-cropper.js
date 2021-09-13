@@ -1,6 +1,6 @@
 /**
  * name: vue-picture-cropper
- * version: v0.3.0
+ * version: v0.4.0
  * author: chengpeiquan
  */
 ;(function (global, factory) {
@@ -4478,6 +4478,13 @@
           return {}
         },
       },
+      presetMode: {
+        type: Object,
+        required: false,
+        default: function () {
+          return {}
+        },
+      },
     },
     data: function () {
       return {
@@ -4528,6 +4535,9 @@
                       window.clearInterval(check)
                       _this.updateInstance()
                       _this.getImgSuffix()
+                      imgElement.addEventListener('ready', function () {
+                        _this.usePresetMode()
+                      })
                     } catch (e) {
                       console.log(e)
                     }
@@ -4538,26 +4548,75 @@
           })
         })
       },
+      usePresetMode: function () {
+        if (
+          Object.prototype.toString.call(this.presetMode) !== '[object Object]'
+        )
+          return
+        var _a = this.presetMode,
+          mode = _a.mode,
+          width = _a.width,
+          height = _a.height
+        switch (mode) {
+          case 'fixedSize':
+          case 'round': {
+            this.cropper.setCropBoxData({
+              width: width,
+              height: height,
+            })
+            break
+          }
+        }
+      },
       updateInstance: function () {
         exports.cropper = this.cropper
         exports.cropper.getDataURL = this.getDataURL
         exports.cropper.getBlob = this.getBlob
         exports.cropper.getFile = this.getFile
       },
+      updateResultOptions: function (options) {
+        if (options === void 0) {
+          options = {}
+        }
+        if (
+          Object.prototype.toString.call(this.presetMode) !== '[object Object]'
+        )
+          return
+        var _a = this.presetMode,
+          mode = _a.mode,
+          width = _a.width,
+          height = _a.height
+        switch (mode) {
+          case 'fixedSize':
+          case 'round': {
+            options.width = width
+            options.height = height
+            break
+          }
+        }
+        return options
+      },
       getImgSuffix: function () {
-        var imgArr = this.img.split(',')
-        var imgInfo = imgArr[0]
-        var imgMimeType = imgInfo.replace(/data:(.*);base64/, '$1')
-        this.mimeType = imgMimeType
+        if (this.presetMode.mode === 'round') {
+          this.mimeType = 'image/png'
+        } else {
+          var imgArr = this.img.split(',')
+          var imgInfo = imgArr[0]
+          var imgMimeType = imgInfo.replace(/data:(.*);base64/, '$1')
+          this.mimeType = imgMimeType
+        }
       },
       getDataURL: function (options) {
         if (options === void 0) {
           options = {}
         }
+        options = this.updateResultOptions(options)
         try {
-          var result = this.cropper
-            .getCroppedCanvas(options)
-            .toDataURL(this.mimeType)
+          var croppedCanvas = this.cropper.getCroppedCanvas(options)
+          if (this.presetMode.mode === 'round') {
+            croppedCanvas = this.getRoundedCanvas(croppedCanvas)
+          }
+          var result = croppedCanvas.toDataURL(this.mimeType)
           return result
         } catch (e) {
           return ''
@@ -4570,16 +4629,18 @@
         return __awaiter(this, void 0, void 0, function () {
           var _this = this
           return __generator(this, function (_a) {
+            options = this.updateResultOptions(options)
             return [
               2,
               new Promise(function (resolve) {
                 try {
-                  var result = _this.cropper
-                    .getCroppedCanvas(options)
-                    .toBlob(function (blob) {
-                      resolve(blob)
-                    }, _this.mimeType)
-                  return result
+                  var croppedCanvas = _this.cropper.getCroppedCanvas(options)
+                  if (_this.presetMode.mode === 'round') {
+                    croppedCanvas = _this.getRoundedCanvas(croppedCanvas)
+                  }
+                  croppedCanvas.toBlob(function (blob) {
+                    resolve(blob)
+                  }, _this.mimeType)
                 } catch (e) {
                   resolve(null)
                 }
@@ -4626,6 +4687,28 @@
           })
         })
       },
+      getRoundedCanvas: function (sourceCanvas) {
+        var canvas = document.createElement('canvas')
+        var context = canvas.getContext('2d')
+        var width = sourceCanvas.width,
+          height = sourceCanvas.height
+        canvas.width = width
+        canvas.height = height
+        context.imageSmoothingEnabled = true
+        context.drawImage(sourceCanvas, 0, 0, width, height)
+        context.globalCompositeOperation = 'destination-in'
+        context.beginPath()
+        context.arc(
+          width / 2,
+          height / 2,
+          Math.min(width, height) / 2,
+          0,
+          2 * Math.PI,
+          true
+        )
+        context.fill()
+        return canvas
+      },
     },
   })
 
@@ -4635,7 +4718,13 @@
       vue.createBlock(
         'div',
         {
-          class: 'vue--picture-cropper__wrap',
+          class: [
+            'vue--picture-cropper__wrap',
+            {
+              'vue--picture-cropper__wrap-round':
+                _ctx.presetMode.mode === 'round',
+            },
+          ],
           style: _ctx.boxStyle,
         },
         [
@@ -4650,13 +4739,13 @@
             ['src']
           ),
         ],
-        4 /* STYLE */
+        6 /* CLASS, STYLE */
       )
     )
   }
 
   var css_248z =
-    '\n.vue--picture-cropper__wrap {\n  width: 100%;\n  height: 100%;\n  margin: 0;\n}\n.vue--picture-cropper__img {\n  display: block;\n  width: auto;\n  height: auto;\n  max-width: 100%;\n  max-height: 100%;\n}\n'
+    '\n.vue--picture-cropper__wrap {\n  width: 100%;\n  height: 100%;\n  margin: 0;\n}\n.vue--picture-cropper__img {\n  display: block;\n  width: auto;\n  height: auto;\n  max-width: 100%;\n  max-height: 100%;\n}\n.vue--picture-cropper__wrap-round .cropper-view-box,\n.vue--picture-cropper__wrap-round .cropper-face {\n  border-radius: 50%;\n}\n'
   styleInject(css_248z)
 
   VuePictureCropper.render = render

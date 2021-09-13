@@ -13,6 +13,11 @@ declare const VuePictureCropper: import('vue').DefineComponent<
       required: false
       default: () => {}
     }
+    presetMode: {
+      type: ObjectConstructor
+      required: false
+      default: () => {}
+    }
   },
   unknown,
   {
@@ -22,11 +27,16 @@ declare const VuePictureCropper: import('vue').DefineComponent<
   {},
   {
     init(): Promise<void>
+    usePresetMode(): void
     updateInstance(): void
+    updateResultOptions(options?: { [key: string]: unknown }): {
+      [key: string]: unknown
+    }
     getImgSuffix(): void
     getDataURL(options?: { [key: string]: unknown }): string
     getBlob(options?: { [key: string]: unknown }): Promise<Blob | null>
     getFile(options?: { [key: string]: unknown }): Promise<File>
+    getRoundedCanvas(sourceCanvas: HTMLCanvasElement): HTMLCanvasElement
   },
   import('vue').ComponentOptionsMixin,
   import('vue').ComponentOptionsMixin,
@@ -40,9 +50,11 @@ declare const VuePictureCropper: import('vue').DefineComponent<
       boxStyle?: unknown
       img?: unknown
       options?: unknown
+      presetMode?: unknown
     } & {
       boxStyle: Record<string, any>
       options: Record<string, any>
+      presetMode: Record<string, any>
     } & {
       img?: string
     }
@@ -50,6 +62,7 @@ declare const VuePictureCropper: import('vue').DefineComponent<
   {
     boxStyle: Record<string, any>
     options: Record<string, any>
+    presetMode: Record<string, any>
   }
 >
 export default VuePictureCropper
