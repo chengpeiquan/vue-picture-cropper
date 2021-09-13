@@ -4597,10 +4597,14 @@
         return options
       },
       getImgSuffix: function () {
-        var imgArr = this.img.split(',')
-        var imgInfo = imgArr[0]
-        var imgMimeType = imgInfo.replace(/data:(.*);base64/, '$1')
-        this.mimeType = imgMimeType
+        if (this.presetMode.mode === 'round') {
+          this.mimeType = 'image/png'
+        } else {
+          var imgArr = this.img.split(',')
+          var imgInfo = imgArr[0]
+          var imgMimeType = imgInfo.replace(/data:(.*);base64/, '$1')
+          this.mimeType = imgMimeType
+        }
       },
       getDataURL: function (options) {
         if (options === void 0) {
@@ -4634,10 +4638,9 @@
                   if (_this.presetMode.mode === 'round') {
                     croppedCanvas = _this.getRoundedCanvas(croppedCanvas)
                   }
-                  var result = croppedCanvas.toBlob(function (blob) {
+                  croppedCanvas.toBlob(function (blob) {
                     resolve(blob)
                   }, _this.mimeType)
-                  return result
                 } catch (e) {
                   resolve(null)
                 }

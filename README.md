@@ -2,7 +2,7 @@
 
 一个基于 cropper.js ，支持 Vue 3.0 的图片裁切工具组件（目前仅支持 Vue 3.x ）。
 
-对 Vue 3.0 还不熟悉的同学，可以查阅我之前总结的文档 [《Vue3.0学习教程与实战案例》](http://vue3.chengpeiquan.com/)
+对 Vue 3.0 还不熟悉的同学，可以查阅我之前总结的文档 [《Vue3.0学习教程与实战案例》](https://vue3.chengpeiquan.com/)
 
 ## demo
 
@@ -84,20 +84,21 @@ export default defineComponent({
 
 可参考 DEMO 里面的用法：
 
-- [Vue 3.0 组合式 API 写法](https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/components/Dialog.vue)
+- [Vue 3.0 组合式 API 写法](https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/views/composition.vue)
 
-- [Vue 2.0 选项式 API 写法](https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/components/DialogWithOptionsAPI.vue)
+- [Vue 2.0 选项式 API 写法](https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/views/options.vue)
 
 ## Props
 
 简单的说明如下，可参考上方的用法示范自行调整。
 
-props|类型|作用
-:--|:--|:--
-boxStyle|object|定义裁剪区域的样式，也就是包裹cropper的父级元素样式
-img|string|要用来裁切的图片地址
-options|object|一些cropper的设定参数，完整可参考 [options - cropperjs](https://github.com/fengyuanchen/cropperjs#options)
-events|function|一些cropper的回调函数，完整可参考 [events - cropperjs](https://github.com/fengyuanchen/cropperjs#events)
+props|类型|作用|备注
+:--|:--|:--|:--
+boxStyle|object|定义裁剪区域的样式，也就是包裹cropper的父级元素样式|
+img|string|要用来裁切的图片地址|
+options|object|一些cropper的设定参数，完整可参考 [options - cropperjs](https://github.com/fengyuanchen/cropperjs#options)|
+events|function|一些cropper的回调函数，完整可参考 [events - cropperjs](https://github.com/fengyuanchen/cropperjs#events)|
+presetMode|object|预设模式，可以开箱即用的预设效果|`0.4.0` 版本才开始支持，详见下方的 [预设模式](#预设模式) 部分文档
 
 btw: 远程图片会涉及到跨域问题，要服务端进行配合调整，请尽量使用本地图片来避免一些奇怪的问题出现。
 
@@ -176,6 +177,114 @@ cropper.getFile()
 具体在项目工程里的使用可以参考文档前面附的 DEMO 源码。
 
 如果需要转换格式或者处理远程图片，请使用 [getCroppedCanvas](https://github.com/fengyuanchen/cropperjs#getcroppedcanvasoptions) （需注意：这个方法存在部分异步操作，请留意用法说明）
+
+## 预设模式
+
+这里提供了一些常用的预设模式，方便在日常的业务场景里快速使用。
+
+通过 `presetMode` 来指定启用哪个预设模式。
+
+属性|类型|说明
+:--|:--|:--
+mode|string|fixedSize=固定尺寸模式，round=圆形模式
+width|number|裁切区的宽度，需要大于0
+height|number|裁切区的高度，需要大于0
+
+### 注意事项：
+
+- `presetMode` 只提供了一些简化的配置，比如你要获取圆形头像，就无需自己去处理很多额外的东西，但是一些该传入的 `options` ，还是需要在 `options` 指定，请留意对应的示范代码
+
+- 目前使用 `presetMode` 的情况下， “裁切区域” 和 “裁切结果” 都是一样大的，也就是说，这里指定的 `width` 和 `height`，会覆盖 `getDataURL` 等获取结果 API 传入的 `width` 和 `height` 。
+
+- 在指定 `presetMode.width` 和 `presetMode.height` 的时候，请留意宽高比例是否与 `aspectRatio` 一致，如果不一致可能得不到你想要的结果
+
+- `presetMode.mode` 只接收文档里提及到的值，传入其他将不起作用
+
+### 固定尺寸模式
+
+可用固定裁切区域的大小，并且获得和裁切区域一样大的裁切结果（这种情况下你可以禁止用户修改裁切区域大小）。
+
+在线 DEMO ：[fixedSize - vue-picture-cropper-demo](https://chengpeiquan.github.io/vue-picture-cropper-demo/#/fixedSize)
+
+DEMO 源码：[fixedSize.vue - vue-picture-cropper-demo](https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/views/fixedSize.vue)
+
+使用方法：
+
+- 将 `presetMode` 的 `mode` 指定为 `fixedSize`
+- 将 `presetMode` 的 `width` 和 `height` 指定为想要的尺寸
+- 将 `options` 的 `dragMode` 设置为 `move` 可以防止裁剪框被取消
+- 将 `options` 的 `cropBoxResizable` 设置为 `false` 可以关闭裁剪区的大小调整功能
+- 将 `options` 的 `aspectRatio` 比例指定为 `width / height` 的比例
+
+```html
+<template>
+  <vue-picture-cropper
+    :boxStyle="{
+      width: '100%',
+      height: '100%',
+      backgroundColor: '#f8f8f8',
+      margin: 'auto',
+    }"
+    :img="pic"
+    :options="{
+      viewMode: 1,
+      dragMode: 'move',
+      aspectRatio: 1,
+      cropBoxResizable: false,
+    }"
+    :presetMode="{
+      mode: 'fixedSize',
+      width: 50,
+      height: 50,
+    }"
+  />
+</template>
+```
+
+### 圆形模式
+
+如果你在用户头像等地方，需要裁切为圆形图片，可以使用该模式来帮助你获得一个圆形的 png 图。
+
+它也是固定裁切区域的大小，并且获得和裁切区域一样大的裁切结果（这种情况下你可以禁止用户修改裁切区域大小）。
+
+这个情况下，裁切结果固定是 `png` 图片（否则似乎没有什么裁圆形的意义…）。
+
+在线 DEMO ：[round - vue-picture-cropper-demo](https://chengpeiquan.github.io/vue-picture-cropper-demo/#/round)
+
+DEMO 源码：[round.vue - vue-picture-cropper-demo](https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/views/round.vue)
+
+使用方法：
+
+- 将 `presetMode` 的 `mode` 指定为 `fixedSize`
+- 将 `presetMode` 的 `width` 和 `height` 指定为想要的尺寸，两个值需要一样
+- 将 `options` 的 `dragMode` 设置为 `move` 可以防止裁剪框被取消
+- 将 `options` 的 `cropBoxResizable` 设置为 `false` 可以关闭裁剪区的大小调整功能
+- 将 `options` 的 `aspectRatio` 比例指定为 `1`
+
+```html
+<template>
+  <vue-picture-cropper
+    :boxStyle="{
+      width: '100%',
+      height: '100%',
+      backgroundColor: '#f8f8f8',
+      margin: 'auto',
+    }"
+    :img="pic"
+    :options="{
+      viewMode: 1,
+      dragMode: 'move',
+      aspectRatio: 1,
+      cropBoxResizable: false,
+    }"
+    :presetMode="{
+      mode: 'round',
+      width: 100,
+      height: 100,
+    }"
+  />
+</template>
+```
 
 ## 其他说明
 

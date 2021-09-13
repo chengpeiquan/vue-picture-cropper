@@ -170,7 +170,7 @@ const VuePictureCropper = defineComponent({
 
       const { mode, width, height } = this.presetMode
       switch (mode) {
-        // 固定尺寸和圆形
+        // 固定尺寸和圆形，按照裁切框的大小返回宽高
         case 'fixedSize':
         case 'round': {
           options.width = width
@@ -186,9 +186,12 @@ const VuePictureCropper = defineComponent({
      * 获取图片后缀
      */
     getImgSuffix(): void {
+      // 圆形模式只处理为png
       if (this.presetMode.mode === 'round') {
         this.mimeType = 'image/png'
-      } else {
+      }
+      // 其他按照原图片的类型处理
+      else {
         const imgArr: string[] = this.img.split(',')
         const imgInfo: string = imgArr[0]
         const imgMimeType: string = imgInfo.replace(/data:(.*);base64/, '$1')
@@ -206,6 +209,7 @@ const VuePictureCropper = defineComponent({
         if (this.presetMode.mode === 'round') {
           croppedCanvas = this.getRoundedCanvas(croppedCanvas)
         }
+
         const result: string = croppedCanvas.toDataURL(this.mimeType)
         return result
       } catch (e) {
@@ -226,16 +230,10 @@ const VuePictureCropper = defineComponent({
           if (this.presetMode.mode === 'round') {
             croppedCanvas = this.getRoundedCanvas(croppedCanvas)
           }
-          const result: string = croppedCanvas.toBlob((blob: Blob) => {
+
+          croppedCanvas.toBlob((blob: Blob) => {
             resolve(blob)
           }, this.mimeType)
-
-          // const result: string = this.cropper
-          //   .getCroppedCanvas(options)
-          //   .toBlob((blob: Blob) => {
-          //     resolve(blob)
-          //   }, this.mimeType)
-          return result
         } catch (e) {
           resolve(null)
         }
@@ -269,9 +267,10 @@ const VuePictureCropper = defineComponent({
 
     /**
      * 获取圆形画布
+     * @description 取自作者的一个演示方案
+     * @see https://fengyuanchen.github.io/cropperjs/examples/crop-a-round-image.html
      */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    getRoundedCanvas(sourceCanvas: any) {
+    getRoundedCanvas(sourceCanvas: HTMLCanvasElement) {
       const canvas = document.createElement('canvas')
       const context = canvas.getContext('2d')
       const { width, height } = sourceCanvas
@@ -294,44 +293,6 @@ const VuePictureCropper = defineComponent({
 
       return canvas
     },
-
-    // createRoundedCanvas() {
-    //   window.addEventListener('DOMContentLoaded', () => {
-    //     var image = document.getElementById('image')
-    //     var button = document.getElementById('button')
-    //     var result = document.getElementById('result')
-    //     var croppable = false
-    //     var cropper = new Cropper(image, {
-    //       aspectRatio: 1,
-    //       viewMode: 1,
-    //       ready: function () {
-    //         croppable = true
-    //       },
-    //     })
-
-    //     button.onclick = function () {
-    //       var croppedCanvas
-    //       var roundedCanvas
-    //       var roundedImage
-
-    //       if (!croppable) {
-    //         return
-    //       }
-
-    //       // Crop
-    //       croppedCanvas = cropper.getCroppedCanvas()
-
-    //       // Round
-    //       roundedCanvas = this.getRoundedCanvas(croppedCanvas)
-
-    //       // Show
-    //       roundedImage = document.createElement('img')
-    //       roundedImage.src = roundedCanvas.toDataURL()
-    //       result.innerHTML = ''
-    //       result.appendChild(roundedImage)
-    //     }
-    //   })
-    // },
   },
 })
 
