@@ -69,9 +69,7 @@ const VuePictureCropper = defineComponent({
      * 监听图片变化
      * 实例存在的时候，不允许多次初始化
      */
-    img(v, ov): void {
-      console.log({ v, ov })
-
+    img(): void {
       // 实例不存在时，执行初始化
       if (!this.cropper) {
         this.init()
