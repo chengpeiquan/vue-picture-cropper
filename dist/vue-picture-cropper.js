@@ -1,6 +1,6 @@
 /**
  * name: vue-picture-cropper
- * version: v0.4.0
+ * version: v0.5.0
  * author: chengpeiquan
  */
 ;(function (global, factory) {
@@ -4460,6 +4460,7 @@
   styleInject(css_248z$1)
 
   exports.cropper = null
+  var croppers = []
   var VuePictureCropper = vue.defineComponent({
     name: 'VuePictureCropper',
     props: {
@@ -4469,6 +4470,11 @@
         default: function () {
           return {}
         },
+      },
+      imgId: {
+        type: String,
+        required: false,
+        default: '',
       },
       img: String,
       options: {
@@ -4493,7 +4499,8 @@
       }
     },
     watch: {
-      img: function () {
+      img: function (v, ov) {
+        console.log({ v: v, ov: ov })
         if (!this.cropper) {
           this.init()
           return
@@ -4501,6 +4508,7 @@
         try {
           this.cropper.replace(this.img)
           this.getImgSuffix()
+          this.updateInstance()
         } catch (e) {
           console.log(e)
         }
@@ -4526,9 +4534,9 @@
               case 1:
                 _a.sent()
                 check = window.setInterval(function () {
-                  var imgElement = document.querySelector(
-                    '.vue--picture-cropper__img'
-                  )
+                  var imgElement = _this.imgId
+                    ? document.querySelector('#' + _this.imgId)
+                    : document.querySelector('.vue--picture-cropper__img')
                   if (imgElement) {
                     try {
                       _this.cropper = new cropper(imgElement, _this.options)
@@ -4578,6 +4586,7 @@
         if (options === void 0) {
           options = {}
         }
+        this.updateInstance()
         if (
           Object.prototype.toString.call(this.presetMode) !== '[object Object]'
         )
@@ -4733,10 +4742,11 @@
             {
               class: 'vue--picture-cropper__img',
               src: _ctx.img,
+              id: _ctx.imgId || null,
             },
             null,
             8 /* PROPS */,
-            ['src']
+            ['src', 'id']
           ),
         ],
         6 /* CLASS, STYLE */
@@ -4751,6 +4761,7 @@
   VuePictureCropper.render = render
   VuePictureCropper.__file = 'src/vue-picture-cropper.vue'
 
+  exports.croppers = croppers
   exports.default = VuePictureCropper
 
   Object.defineProperty(exports, '__esModule', { value: true })

@@ -99,6 +99,7 @@ img|string|要用来裁切的图片地址|
 options|object|一些cropper的设定参数，完整可参考 [options - cropperjs](https://github.com/fengyuanchen/cropperjs#options)|
 events|function|一些cropper的回调函数，完整可参考 [events - cropperjs](https://github.com/fengyuanchen/cropperjs#events)|
 presetMode|object|预设模式，可以开箱即用的预设效果|`0.4.0` 版本才开始支持，详见下方的 [预设模式](#预设模式) 部分文档
+imgId|string|如果需要在同一页面内初始化多个裁剪框，请传入唯一id|`0.5.0` 版本才开始支持，详见下方的 [多个裁剪框](#多个裁剪框) 部分文档
 
 btw: 远程图片会涉及到跨域问题，要服务端进行配合调整，请尽量使用本地图片来避免一些奇怪的问题出现。
 
@@ -285,6 +286,10 @@ DEMO 源码：[round.vue - vue-picture-cropper-demo](https://github.com/chengpei
   />
 </template>
 ```
+
+### 多个裁剪框
+
+从 `0.5.0` 版本开始支持在同一个页面里传入多个裁剪框
 
 ## 其他说明
 

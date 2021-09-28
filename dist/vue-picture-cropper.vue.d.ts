@@ -1,11 +1,17 @@
 import 'cropperjs/dist/cropper.css'
 export declare let cropper: any
+export declare const croppers: any
 declare const VuePictureCropper: import('vue').DefineComponent<
   {
     boxStyle: {
       type: ObjectConstructor
       required: false
       default: () => {}
+    }
+    imgId: {
+      type: StringConstructor
+      required: false
+      default: string
     }
     img: StringConstructor
     options: {
@@ -48,11 +54,13 @@ declare const VuePictureCropper: import('vue').DefineComponent<
   Readonly<
     {
       boxStyle?: unknown
+      imgId?: unknown
       img?: unknown
       options?: unknown
       presetMode?: unknown
     } & {
       boxStyle: Record<string, any>
+      imgId: string
       options: Record<string, any>
       presetMode: Record<string, any>
     } & {
@@ -61,6 +69,7 @@ declare const VuePictureCropper: import('vue').DefineComponent<
   >,
   {
     boxStyle: Record<string, any>
+    imgId: string
     options: Record<string, any>
     presetMode: Record<string, any>
   }
