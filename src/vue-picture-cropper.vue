@@ -1,10 +1,11 @@
 <template>
   <div
+    :id="`vpc-wrap-${randomId}`"
     class="vue--picture-cropper__wrap"
     :class="{ 'vue--picture-cropper__wrap-round': presetMode.mode === 'round' }"
     :style="boxStyle"
   >
-    <img class="vue--picture-cropper__img" :src="img" :id="imgId || null" />
+    <img class="vue--picture-cropper__img" :src="imgSrc" :id="randomId ? `vpc-img-${randomId}` : null" />
   </div>
 </template>
 
@@ -12,14 +13,13 @@
 import { defineComponent } from 'vue'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
+import getRandomString from './libs/getRandomString'
 
 /**
  * 暴露一个实例供组件内操作 API
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export let cropper: any = null
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const croppers: any = []
 
 /**
  * 定义组件
@@ -32,13 +32,6 @@ const VuePictureCropper = defineComponent({
       type: Object,
       required: false,
       default: () => ({}),
-    },
-
-    // 图片元素绑定的id
-    imgId: {
-      type: String,
-      required: false,
-      default: '',
     },
 
     // 要裁切的图片src
@@ -62,6 +55,7 @@ const VuePictureCropper = defineComponent({
     return {
       cropper: null,
       mimeType: '',
+      randomId: '',
     }
   },
   watch: {
@@ -86,6 +80,11 @@ const VuePictureCropper = defineComponent({
       }
     },
   },
+  computed: {
+    imgSrc() {
+      return this.img
+    }
+  },
   beforeUnmount() {
     /**
      * 组件销毁之前，销毁掉实例
@@ -105,11 +104,14 @@ const VuePictureCropper = defineComponent({
       // 必须在视图渲染后再执行
       await this.$nextTick()
 
+      // 生成随机ID
+      this.randomId = getRandomString(10)
+
       // 执行挂载DOM的检查
       const check: number = window.setInterval(() => {
         // 获取要挂载的DOM
-        const imgElement: HTMLImageElement = this.imgId
-          ? document.querySelector(`#${this.imgId}`)
+        const imgElement: HTMLImageElement = this.randomId
+          ? document.querySelector(`#vpc-img-${this.randomId}`)
           : document.querySelector('.vue--picture-cropper__img')
 
         // 只有DOM存在时才允许初始化
@@ -167,22 +169,6 @@ const VuePictureCropper = defineComponent({
       cropper.getDataURL = this.getDataURL
       cropper.getBlob = this.getBlob
       cropper.getFile = this.getFile
-
-      // let _cropper = null
-      // _cropper = this.cropper
-      // _cropper.getDataURL = this.getDataURL
-      // _cropper.getBlob = this.getBlob
-      // _cropper.getFile = this.getFile
-
-      // croppers.push(_cropper)
-
-      // if (this.imgId) {
-      //   cropper = croppers.find((item: any) => item.element.id === this.imgId)
-      // } else {
-      //   cropper = _cropper
-      // }
-      // console.log('cropper', cropper)
-      // console.log('this.cropper', this.cropper)
     },
 
     /**
@@ -191,8 +177,6 @@ const VuePictureCropper = defineComponent({
     updateResultOptions(options: { [key: string]: unknown } = {}): {
       [key: string]: unknown
     } {
-      this.updateInstance()
-
       if (Object.prototype.toString.call(this.presetMode) !== '[object Object]')
         return
 
