@@ -1,10 +1,15 @@
 <template>
   <div
+    :id="`vpc-wrap-${randomId}`"
     class="vue--picture-cropper__wrap"
     :class="{ 'vue--picture-cropper__wrap-round': presetMode.mode === 'round' }"
     :style="boxStyle"
   >
-    <img class="vue--picture-cropper__img" :src="img" />
+    <img
+      class="vue--picture-cropper__img"
+      :src="img"
+      :id="`vpc-img-${randomId}`"
+    />
   </div>
 </template>
 
@@ -12,6 +17,7 @@
 import { defineComponent } from 'vue'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
+import getRandomString from './libs/getRandomString'
 
 /**
  * 暴露一个实例供组件内操作 API
@@ -53,6 +59,7 @@ const VuePictureCropper = defineComponent({
     return {
       cropper: null,
       mimeType: '',
+      randomId: '',
     }
   },
   watch: {
@@ -71,6 +78,7 @@ const VuePictureCropper = defineComponent({
       try {
         this.cropper.replace(this.img)
         this.getImgSuffix()
+        this.updateInstance()
       } catch (e) {
         console.log(e)
       }
@@ -95,12 +103,15 @@ const VuePictureCropper = defineComponent({
       // 必须在视图渲染后再执行
       await this.$nextTick()
 
+      // 生成随机ID
+      this.randomId = getRandomString(10)
+
       // 执行挂载DOM的检查
       const check: number = window.setInterval(() => {
         // 获取要挂载的DOM
-        const imgElement: HTMLImageElement = document.querySelector(
-          '.vue--picture-cropper__img'
-        )
+        const imgElement: HTMLImageElement = this.randomId
+          ? document.querySelector(`#vpc-img-${this.randomId}`)
+          : document.querySelector('.vue--picture-cropper__img')
 
         // 只有DOM存在时才允许初始化
         if (imgElement) {

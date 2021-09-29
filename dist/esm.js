@@ -1,6 +1,6 @@
 /**
  * name: vue-picture-cropper
- * version: v0.4.0
+ * version: v0.5.0
  * author: chengpeiquan
  */
 import {
@@ -243,10 +243,10 @@ var r,
           )
         }
         function h(t) {
-          return s(t) || c(t) || p(t) || d()
+          return s(t) || c(t) || p(t) || l()
         }
         function s(t) {
-          if (Array.isArray(t)) return l(t)
+          if (Array.isArray(t)) return d(t)
         }
         function c(t) {
           if (
@@ -257,7 +257,7 @@ var r,
         }
         function p(t, e) {
           if (t) {
-            if ('string' == typeof t) return l(t, e)
+            if ('string' == typeof t) return d(t, e)
             var i = Object.prototype.toString.call(t).slice(8, -1)
             return (
               'Object' === i && t.constructor && (i = t.constructor.name),
@@ -265,17 +265,17 @@ var r,
                 ? Array.from(t)
                 : 'Arguments' === i ||
                   /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(i)
-                ? l(t, e)
+                ? d(t, e)
                 : void 0
             )
           }
         }
-        function l(t, e) {
+        function d(t, e) {
           ;(null == e || e > t.length) && (e = t.length)
           for (var i = 0, n = new Array(e); i < e; i++) n[i] = t[i]
           return n
         }
-        function d() {
+        function l() {
           throw new TypeError(
             'Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
           )
@@ -304,8 +304,8 @@ var r,
           W = ''.concat(v, '-hidden'),
           H = ''.concat(v, '-hide'),
           R = ''.concat(v, '-invisible'),
-          N = ''.concat(v, '-modal'),
-          S = ''.concat(v, '-move'),
+          S = ''.concat(v, '-modal'),
+          N = ''.concat(v, '-move'),
           L = ''.concat(v, 'Action'),
           j = ''.concat(v, 'Preview'),
           X = 'crop',
@@ -374,11 +374,11 @@ var r,
             crop: null,
             zoom: null,
           },
-          lt =
+          dt =
             '<div class="cropper-container" touch-action="none"><div class="cropper-wrap-box"><div class="cropper-canvas"></div></div><div class="cropper-drag-box"></div><div class="cropper-crop-box"><span class="cropper-view-box"></span><span class="cropper-dashed dashed-h"></span><span class="cropper-dashed dashed-v"></span><span class="cropper-center"></span><span class="cropper-face"></span><span class="cropper-line line-e" data-cropper-action="e"></span><span class="cropper-line line-n" data-cropper-action="n"></span><span class="cropper-line line-w" data-cropper-action="w"></span><span class="cropper-line line-s" data-cropper-action="s"></span><span class="cropper-point point-e" data-cropper-action="e"></span><span class="cropper-point point-n" data-cropper-action="n"></span><span class="cropper-point point-w" data-cropper-action="w"></span><span class="cropper-point point-s" data-cropper-action="s"></span><span class="cropper-point point-ne" data-cropper-action="ne"></span><span class="cropper-point point-nw" data-cropper-action="nw"></span><span class="cropper-point point-sw" data-cropper-action="sw"></span><span class="cropper-point point-se" data-cropper-action="se"></span></div></div>',
-          dt = Number.isNaN || m.isNaN
+          lt = Number.isNaN || m.isNaN
         function ut(t) {
-          return 'number' == typeof t && !dt(t)
+          return 'number' == typeof t && !lt(t)
         }
         var mt = function (t) {
           return t > 0 && t < 1 / 0
@@ -512,14 +512,14 @@ var r,
             ? t.dataset[e]
             : t.getAttribute('data-'.concat(Ht(e)))
         }
-        function Nt(t, e, i) {
+        function St(t, e, i) {
           ft(i)
             ? (t[e] = i)
             : t.dataset
             ? (t.dataset[e] = i)
             : t.setAttribute('data-'.concat(Ht(e)), i)
         }
-        function St(t, e) {
+        function Nt(t, e) {
           if (ft(t[e]))
             try {
               delete t[e]
@@ -736,9 +736,9 @@ var r,
             s = e.rotate,
             c = void 0 === s ? 0 : s,
             p = e.scaleX,
-            l = void 0 === p ? 1 : p,
-            d = e.scaleY,
-            u = void 0 === d ? 1 : d,
+            d = void 0 === p ? 1 : p,
+            l = e.scaleY,
+            u = void 0 === l ? 1 : l,
             m = i.aspectRatio,
             g = i.naturalWidth,
             f = i.naturalHeight,
@@ -760,22 +760,22 @@ var r,
             W = z.getContext('2d'),
             H = Vt({ aspectRatio: m, width: D, height: B }),
             R = Vt({ aspectRatio: m, width: T, height: E }, 'cover'),
-            N = Math.min(H.width, Math.max(R.width, g)),
-            S = Math.min(H.height, Math.max(R.height, f)),
+            S = Math.min(H.width, Math.max(R.width, g)),
+            N = Math.min(H.height, Math.max(R.height, f)),
             L = Vt({ aspectRatio: a, width: D, height: B }),
             j = Vt({ aspectRatio: a, width: T, height: E }, 'cover'),
             X = Math.min(L.width, Math.max(j.width, o)),
             Y = Math.min(L.height, Math.max(j.height, r)),
             I = [-X / 2, -Y / 2, X, Y]
           return (
-            (z.width = kt(N)),
-            (z.height = kt(S)),
+            (z.width = kt(S)),
+            (z.height = kt(N)),
             (W.fillStyle = w),
-            W.fillRect(0, 0, N, S),
+            W.fillRect(0, 0, S, N),
             W.save(),
-            W.translate(N / 2, S / 2),
+            W.translate(S / 2, N / 2),
             W.rotate((c * Math.PI) / 180),
-            W.scale(l, u),
+            W.scale(d, u),
             (W.imageSmoothingEnabled = x),
             (W.imageSmoothingQuality = M),
             W.drawImage.apply(
@@ -844,12 +844,12 @@ var r,
               }
             }
             if (o) {
-              var l,
-                d,
+              var d,
+                l,
                 u = i.getUint16(o, n)
-              for (d = 0; d < u; d += 1)
-                if (((l = o + 12 * d + 2), 274 === i.getUint16(l, n))) {
-                  ;(l += 8), (e = i.getUint16(l, n)), i.setUint16(l, 1, n)
+              for (l = 0; l < u; l += 1)
+                if (((d = o + 12 * l + 2), 274 === i.getUint16(d, n))) {
+                  ;(d += 8), (e = i.getUint16(d, n)), i.setUint16(d, 1, n)
                   break
                 }
             }
@@ -972,9 +972,9 @@ var r,
                       : s &&
                         ((c = o.width),
                         (p = o.height) * h > c ? (c = p * h) : (p = c / h)))
-                var l = Vt({ aspectRatio: h, width: c, height: p })
-                ;(c = l.width),
-                  (p = l.height),
+                var d = Vt({ aspectRatio: h, width: c, height: p })
+                ;(c = d.width),
+                  (p = d.height),
                   (a.minWidth = c),
                   (a.minHeight = p),
                   (a.maxWidth = 1 / 0),
@@ -982,11 +982,11 @@ var r,
               }
               if (e)
                 if (r > (s ? 0 : 1)) {
-                  var d = n.width - a.width,
+                  var l = n.width - a.width,
                     u = n.height - a.height
-                  ;(a.minLeft = Math.min(0, d)),
+                  ;(a.minLeft = Math.min(0, l)),
                     (a.minTop = Math.min(0, u)),
-                    (a.maxLeft = Math.max(0, d)),
+                    (a.maxLeft = Math.max(0, l)),
                     (a.maxTop = Math.max(0, u)),
                     s &&
                       this.limited &&
@@ -1002,8 +1002,8 @@ var r,
                       (a.maxTop = o.top),
                       2 === r &&
                         (a.width >= n.width &&
-                          ((a.minLeft = Math.min(0, d)),
-                          (a.maxLeft = Math.max(0, d))),
+                          ((a.minLeft = Math.min(0, l)),
+                          (a.maxLeft = Math.max(0, l))),
                         a.height >= n.height &&
                           ((a.minTop = Math.min(0, u)),
                           (a.maxTop = Math.max(0, u)))))
@@ -1122,7 +1122,7 @@ var r,
                         n.width - a.left
                       )
                     : n.width,
-                  l = r
+                  d = r
                     ? Math.min(
                         n.height,
                         a.height,
@@ -1140,11 +1140,11 @@ var r,
                       : s
                       ? (c = s / h)
                       : c && (s = c * h),
-                    l * h > p ? (l = p / h) : (p = l * h)),
+                    d * h > p ? (d = p / h) : (p = d * h)),
                   (o.minWidth = Math.min(s, p)),
-                  (o.minHeight = Math.min(c, l)),
+                  (o.minHeight = Math.min(c, d)),
                   (o.maxWidth = p),
-                  (o.maxHeight = l)
+                  (o.maxHeight = d)
               }
               e &&
                 (r
@@ -1178,7 +1178,7 @@ var r,
                 (i.oldTop = i.top),
                 t.movable &&
                   t.cropBoxMovable &&
-                  Nt(
+                  St(
                     this.face,
                     L,
                     i.width >= e.width && i.height >= e.height ? x : w
@@ -1220,7 +1220,7 @@ var r,
                   (this.previews = r),
                   Mt(r, function (t) {
                     var i = document.createElement('img')
-                    Nt(t, j, {
+                    St(t, j, {
                       width: t.offsetWidth,
                       height: t.offsetHeight,
                       html: t.innerHTML,
@@ -1240,7 +1240,7 @@ var r,
                 var e = Rt(t, j)
                 At(t, { width: e.width, height: e.height }),
                   (t.innerHTML = e.html),
-                  St(t, j)
+                  Nt(t, j)
               })
             },
             preview: function () {
@@ -1266,12 +1266,12 @@ var r,
                   var i = Rt(e, j),
                     c = i.width,
                     p = i.height,
-                    l = c,
-                    d = p,
+                    d = c,
+                    l = p,
                     u = 1
-                  n && (d = a * (u = c / n)),
-                    a && d > p && ((l = n * (u = p / a)), (d = p)),
-                    At(e, { width: l, height: d }),
+                  n && (l = a * (u = c / n)),
+                    a && l > p && ((d = n * (u = p / a)), (l = p)),
+                    At(e, { width: d, height: l }),
                     At(
                       e.getElementsByTagName('img')[0],
                       Ct(
@@ -1413,7 +1413,7 @@ var r,
                     (t.preventDefault(),
                     (this.action = n),
                     (this.cropping = !1),
-                    n === b && ((this.cropping = !0), Ot(this.dragBox, N)))
+                    n === b && ((this.cropping = !0), Ot(this.dragBox, S)))
               }
             },
             cropMove: function (t) {
@@ -1444,12 +1444,12 @@ var r,
                     Object.keys(i).length || (this.action = ''),
                     this.cropping &&
                       ((this.cropping = !1),
-                      zt(this.dragBox, N, this.cropped && this.options.modal)),
+                      zt(this.dragBox, S, this.cropped && this.options.modal)),
                     It(this.element, U, { originalEvent: t, action: e }))
               }
             },
           },
-          le = {
+          de = {
             change: function (t) {
               var e,
                 i = this.options,
@@ -1461,16 +1461,16 @@ var r,
                 s = i.aspectRatio,
                 c = o.left,
                 p = o.top,
-                l = o.width,
-                d = o.height,
-                u = c + l,
-                m = p + d,
+                d = o.width,
+                l = o.height,
+                u = c + d,
+                m = p + l,
                 g = 0,
                 f = 0,
                 v = a.width,
                 E = a.height,
                 z = !0
-              !s && t.shiftKey && (s = l && d ? l / d : 1),
+              !s && t.shiftKey && (s = d && l ? d / l : 1),
                 this.limited &&
                   ((g = o.minLeft),
                   (f = o.minTop),
@@ -1478,7 +1478,7 @@ var r,
                   (E = f + Math.min(a.height, n.height, n.top + n.height)))
               var H = r[Object.keys(r)[0]],
                 R = { x: H.endX - H.startX, y: H.endY - H.startY },
-                N = function (t) {
+                S = function (t) {
                   switch (t) {
                     case M:
                       u + R.x > v && (R.x = v - u)
@@ -1502,40 +1502,40 @@ var r,
                     z = !1
                     break
                   }
-                  N(M),
-                    (l += R.x) < 0 && ((h = C), (c -= l = -l)),
-                    s && ((d = l / s), (p += (o.height - d) / 2))
+                  S(M),
+                    (d += R.x) < 0 && ((h = C), (c -= d = -d)),
+                    s && ((l = d / s), (p += (o.height - l) / 2))
                   break
                 case k:
                   if (R.y <= 0 && (p <= f || (s && (c <= g || u >= v)))) {
                     z = !1
                     break
                   }
-                  N(k),
-                    (d -= R.y),
+                  S(k),
+                    (l -= R.y),
                     (p += R.y),
-                    d < 0 && ((h = D), (p -= d = -d)),
-                    s && ((l = d * s), (c += (o.width - l) / 2))
+                    l < 0 && ((h = D), (p -= l = -l)),
+                    s && ((d = l * s), (c += (o.width - d) / 2))
                   break
                 case C:
                   if (R.x <= 0 && (c <= g || (s && (p <= f || m >= E)))) {
                     z = !1
                     break
                   }
-                  N(C),
-                    (l -= R.x),
+                  S(C),
+                    (d -= R.x),
                     (c += R.x),
-                    l < 0 && ((h = M), (c -= l = -l)),
-                    s && ((d = l / s), (p += (o.height - d) / 2))
+                    d < 0 && ((h = M), (c -= d = -d)),
+                    s && ((l = d / s), (p += (o.height - l) / 2))
                   break
                 case D:
                   if (R.y >= 0 && (m >= E || (s && (c <= g || u >= v)))) {
                     z = !1
                     break
                   }
-                  N(D),
-                    (d += R.y) < 0 && ((h = k), (p -= d = -d)),
-                    s && ((l = d * s), (c += (o.width - l) / 2))
+                  S(D),
+                    (l += R.y) < 0 && ((h = k), (p -= l = -l)),
+                    s && ((d = l * s), (c += (o.width - d) / 2))
                   break
                 case B:
                   if (s) {
@@ -1543,23 +1543,23 @@ var r,
                       z = !1
                       break
                     }
-                    N(k), (d -= R.y), (p += R.y), (l = d * s)
+                    S(k), (l -= R.y), (p += R.y), (d = l * s)
                   } else
-                    N(k),
-                      N(M),
+                    S(k),
+                      S(M),
                       R.x >= 0
                         ? u < v
-                          ? (l += R.x)
+                          ? (d += R.x)
                           : R.y <= 0 && p <= f && (z = !1)
-                        : (l += R.x),
+                        : (d += R.x),
                       R.y <= 0
-                        ? p > f && ((d -= R.y), (p += R.y))
-                        : ((d -= R.y), (p += R.y))
-                  l < 0 && d < 0
-                    ? ((h = O), (p -= d = -d), (c -= l = -l))
-                    : l < 0
-                    ? ((h = A), (c -= l = -l))
-                    : d < 0 && ((h = T), (p -= d = -d))
+                        ? p > f && ((l -= R.y), (p += R.y))
+                        : ((l -= R.y), (p += R.y))
+                  d < 0 && l < 0
+                    ? ((h = O), (p -= l = -l), (c -= d = -d))
+                    : d < 0
+                    ? ((h = A), (c -= d = -d))
+                    : l < 0 && ((h = T), (p -= l = -l))
                   break
                 case A:
                   if (s) {
@@ -1567,27 +1567,27 @@ var r,
                       z = !1
                       break
                     }
-                    N(k),
-                      (d -= R.y),
+                    S(k),
+                      (l -= R.y),
                       (p += R.y),
-                      (l = d * s),
-                      (c += o.width - l)
+                      (d = l * s),
+                      (c += o.width - d)
                   } else
-                    N(k),
-                      N(C),
+                    S(k),
+                      S(C),
                       R.x <= 0
                         ? c > g
-                          ? ((l -= R.x), (c += R.x))
+                          ? ((d -= R.x), (c += R.x))
                           : R.y <= 0 && p <= f && (z = !1)
-                        : ((l -= R.x), (c += R.x)),
+                        : ((d -= R.x), (c += R.x)),
                       R.y <= 0
-                        ? p > f && ((d -= R.y), (p += R.y))
-                        : ((d -= R.y), (p += R.y))
-                  l < 0 && d < 0
-                    ? ((h = T), (p -= d = -d), (c -= l = -l))
-                    : l < 0
-                    ? ((h = B), (c -= l = -l))
-                    : d < 0 && ((h = O), (p -= d = -d))
+                        ? p > f && ((l -= R.y), (p += R.y))
+                        : ((l -= R.y), (p += R.y))
+                  d < 0 && l < 0
+                    ? ((h = T), (p -= l = -l), (c -= d = -d))
+                    : d < 0
+                    ? ((h = B), (c -= d = -d))
+                    : l < 0 && ((h = O), (p -= l = -l))
                   break
                 case O:
                   if (s) {
@@ -1595,21 +1595,21 @@ var r,
                       z = !1
                       break
                     }
-                    N(C), (l -= R.x), (c += R.x), (d = l / s)
+                    S(C), (d -= R.x), (c += R.x), (l = d / s)
                   } else
-                    N(D),
-                      N(C),
+                    S(D),
+                      S(C),
                       R.x <= 0
                         ? c > g
-                          ? ((l -= R.x), (c += R.x))
+                          ? ((d -= R.x), (c += R.x))
                           : R.y >= 0 && m >= E && (z = !1)
-                        : ((l -= R.x), (c += R.x)),
-                      R.y >= 0 ? m < E && (d += R.y) : (d += R.y)
-                  l < 0 && d < 0
-                    ? ((h = B), (p -= d = -d), (c -= l = -l))
-                    : l < 0
-                    ? ((h = T), (c -= l = -l))
-                    : d < 0 && ((h = A), (p -= d = -d))
+                        : ((d -= R.x), (c += R.x)),
+                      R.y >= 0 ? m < E && (l += R.y) : (l += R.y)
+                  d < 0 && l < 0
+                    ? ((h = B), (p -= l = -l), (c -= d = -d))
+                    : d < 0
+                    ? ((h = T), (c -= d = -d))
+                    : l < 0 && ((h = A), (p -= l = -l))
                   break
                 case T:
                   if (s) {
@@ -1617,21 +1617,21 @@ var r,
                       z = !1
                       break
                     }
-                    N(M), (d = (l += R.x) / s)
+                    S(M), (l = (d += R.x) / s)
                   } else
-                    N(D),
-                      N(M),
+                    S(D),
+                      S(M),
                       R.x >= 0
                         ? u < v
-                          ? (l += R.x)
+                          ? (d += R.x)
                           : R.y >= 0 && m >= E && (z = !1)
-                        : (l += R.x),
-                      R.y >= 0 ? m < E && (d += R.y) : (d += R.y)
-                  l < 0 && d < 0
-                    ? ((h = A), (p -= d = -d), (c -= l = -l))
-                    : l < 0
-                    ? ((h = O), (c -= l = -l))
-                    : d < 0 && ((h = B), (p -= d = -d))
+                        : (d += R.x),
+                      R.y >= 0 ? m < E && (l += R.y) : (l += R.y)
+                  d < 0 && l < 0
+                    ? ((h = A), (p -= l = -l), (c -= d = -d))
+                    : d < 0
+                    ? ((h = O), (c -= d = -d))
+                    : l < 0 && ((h = B), (p -= l = -l))
                   break
                 case x:
                   this.move(R.x, R.y), (z = !1)
@@ -1647,20 +1647,20 @@ var r,
                   ;(e = Pt(this.cropper)),
                     (c = H.startX - e.left),
                     (p = H.startY - e.top),
-                    (l = o.minWidth),
-                    (d = o.minHeight),
+                    (d = o.minWidth),
+                    (l = o.minHeight),
                     R.x > 0
                       ? (h = R.y > 0 ? T : B)
-                      : R.x < 0 && ((c -= l), (h = R.y > 0 ? O : A)),
-                    R.y < 0 && (p -= d),
+                      : R.x < 0 && ((c -= d), (h = R.y > 0 ? O : A)),
+                    R.y < 0 && (p -= l),
                     this.cropped ||
                       (Et(this.cropBox, W),
                       (this.cropped = !0),
                       this.limited && this.limitCropBox(!0, !0))
               }
               z &&
-                ((o.width = l),
-                (o.height = d),
+                ((o.width = d),
+                (o.height = l),
                 (o.left = c),
                 (o.top = p),
                 (this.action = h),
@@ -1670,7 +1670,7 @@ var r,
                 })
             },
           },
-          de = {
+          le = {
             crop: function () {
               return (
                 !this.ready ||
@@ -1678,7 +1678,7 @@ var r,
                   this.disabled ||
                   ((this.cropped = !0),
                   this.limitCropBox(!0, !0),
-                  this.options.modal && Ot(this.dragBox, N),
+                  this.options.modal && Ot(this.dragBox, S),
                   Et(this.cropBox, W),
                   this.setCropBoxData(this.initialCropBoxData)),
                 this
@@ -1710,7 +1710,7 @@ var r,
                   this.renderCropBox(),
                   this.limitCanvas(!0, !0),
                   this.renderCanvas(),
-                  Et(this.dragBox, N),
+                  Et(this.dragBox, S),
                   Ot(this.cropBox, W)),
                 this
               )
@@ -1826,14 +1826,14 @@ var r,
                 )
                   return this
                 if (i) {
-                  var l = this.pointers,
-                    d = Pt(this.cropper),
+                  var d = this.pointers,
+                    l = Pt(this.cropper),
                     u =
-                      l && Object.keys(l).length
-                        ? Gt(l)
+                      d && Object.keys(d).length
+                        ? Gt(d)
                         : { pageX: i.pageX, pageY: i.pageY }
-                  ;(a.left -= (c - o) * ((u.pageX - d.left - a.left) / o)),
-                    (a.top -= (p - r) * ((u.pageY - d.top - a.top) / r))
+                  ;(a.left -= (c - o) * ((u.pageX - l.left - a.left) / o)),
+                    (a.top -= (p - r) * ((u.pageY - l.top - a.top) / r))
                 } else
                   wt(e) && ut(e.x) && ut(e.y)
                     ? ((a.left -= (c - o) * ((e.x - a.left) / o)),
@@ -2053,12 +2053,12 @@ var r,
                 c = i.width / Math.floor(e.naturalWidth)
               1 !== c && ((a *= c), (o *= c), (r *= c), (s *= c))
               var p = r / s,
-                l = Vt({
+                d = Vt({
                   aspectRatio: p,
                   width: t.maxWidth || 1 / 0,
                   height: t.maxHeight || 1 / 0,
                 }),
-                d = Vt(
+                l = Vt(
                   {
                     aspectRatio: p,
                     width: t.minWidth || 0,
@@ -2073,8 +2073,8 @@ var r,
                 }),
                 m = u.width,
                 g = u.height
-              ;(m = Math.min(l.width, Math.max(d.width, m))),
-                (g = Math.min(l.height, Math.max(d.height, g)))
+              ;(m = Math.min(d.width, Math.max(l.width, m))),
+                (g = Math.min(d.height, Math.max(l.height, g)))
               var f = document.createElement('canvas'),
                 v = f.getContext('2d')
               ;(f.width = kt(m)),
@@ -2144,10 +2144,10 @@ var r,
                   o = e.movable && t === Y
                 ;(t = a || o ? t : I),
                   (e.dragMode = t),
-                  Nt(i, L, t),
+                  St(i, L, t),
                   zt(i, E, a),
-                  zt(i, S, o),
-                  e.cropBoxMovable || (Nt(n, L, t), zt(n, E, a), zt(n, S, o))
+                  zt(i, N, o),
+                  e.cropBoxMovable || (St(n, L, t), zt(n, E, a), zt(n, N, o))
               }
               return this
             },
@@ -2349,7 +2349,7 @@ var r,
                           i = this.image,
                           n = t.parentNode,
                           a = document.createElement('div')
-                        a.innerHTML = lt
+                        a.innerHTML = dt
                         var o = a.querySelector('.'.concat(v, '-container')),
                           r = o.querySelector('.'.concat(v, '-canvas')),
                           h = o.querySelector('.'.concat(v, '-drag-box')),
@@ -2389,7 +2389,7 @@ var r,
                             ),
                           e.background && Ot(o, ''.concat(v, '-bg')),
                           e.highlight || Ot(c, R),
-                          e.cropBoxMovable && (Ot(c, S), Nt(c, L, w)),
+                          e.cropBoxMovable && (Ot(c, N), St(c, L, w)),
                           e.cropBoxResizable ||
                             (Ot(
                               s.getElementsByClassName(''.concat(v, '-line')),
@@ -2455,7 +2455,7 @@ var r,
               t
             )
           })()
-        return Ct(me.prototype, he, se, ce, pe, le, de), me
+        return Ct(me.prototype, he, se, ce, pe, de, le), me
       })()
     })(
       (h = {
@@ -2491,7 +2491,7 @@ c(
   "/*!\n * Cropper.js v1.5.12\n * https://fengyuanchen.github.io/cropperjs\n *\n * Copyright 2015-present Chen Fengyuan\n * Released under the MIT license\n *\n * Date: 2021-06-12T08:00:11.623Z\n */\n\n.cropper-container {\n  direction: ltr;\n  font-size: 0;\n  line-height: 0;\n  position: relative;\n  -ms-touch-action: none;\n  touch-action: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n\n.cropper-container img {\n  display: block;\n  height: 100%;\n  image-orientation: 0deg;\n  max-height: none !important;\n  max-width: none !important;\n  min-height: 0 !important;\n  min-width: 0 !important;\n  width: 100%;\n}\n\n.cropper-wrap-box,\n.cropper-canvas,\n.cropper-drag-box,\n.cropper-crop-box,\n.cropper-modal {\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n\n.cropper-wrap-box,\n.cropper-canvas {\n  overflow: hidden;\n}\n\n.cropper-drag-box {\n  background-color: #fff;\n  opacity: 0;\n}\n\n.cropper-modal {\n  background-color: #000;\n  opacity: 0.5;\n}\n\n.cropper-view-box {\n  display: block;\n  height: 100%;\n  outline: 1px solid #39f;\n  outline-color: rgba(51, 153, 255, 0.75);\n  overflow: hidden;\n  width: 100%;\n}\n\n.cropper-dashed {\n  border: 0 dashed #eee;\n  display: block;\n  opacity: 0.5;\n  position: absolute;\n}\n\n.cropper-dashed.dashed-h {\n  border-bottom-width: 1px;\n  border-top-width: 1px;\n  height: calc(100% / 3);\n  left: 0;\n  top: calc(100% / 3);\n  width: 100%;\n}\n\n.cropper-dashed.dashed-v {\n  border-left-width: 1px;\n  border-right-width: 1px;\n  height: 100%;\n  left: calc(100% / 3);\n  top: 0;\n  width: calc(100% / 3);\n}\n\n.cropper-center {\n  display: block;\n  height: 0;\n  left: 50%;\n  opacity: 0.75;\n  position: absolute;\n  top: 50%;\n  width: 0;\n}\n\n.cropper-center::before,\n.cropper-center::after {\n  background-color: #eee;\n  content: ' ';\n  display: block;\n  position: absolute;\n}\n\n.cropper-center::before {\n  height: 1px;\n  left: -3px;\n  top: 0;\n  width: 7px;\n}\n\n.cropper-center::after {\n  height: 7px;\n  left: 0;\n  top: -3px;\n  width: 1px;\n}\n\n.cropper-face,\n.cropper-line,\n.cropper-point {\n  display: block;\n  height: 100%;\n  opacity: 0.1;\n  position: absolute;\n  width: 100%;\n}\n\n.cropper-face {\n  background-color: #fff;\n  left: 0;\n  top: 0;\n}\n\n.cropper-line {\n  background-color: #39f;\n}\n\n.cropper-line.line-e {\n  cursor: ew-resize;\n  right: -3px;\n  top: 0;\n  width: 5px;\n}\n\n.cropper-line.line-n {\n  cursor: ns-resize;\n  height: 5px;\n  left: 0;\n  top: -3px;\n}\n\n.cropper-line.line-w {\n  cursor: ew-resize;\n  left: -3px;\n  top: 0;\n  width: 5px;\n}\n\n.cropper-line.line-s {\n  bottom: -3px;\n  cursor: ns-resize;\n  height: 5px;\n  left: 0;\n}\n\n.cropper-point {\n  background-color: #39f;\n  height: 5px;\n  opacity: 0.75;\n  width: 5px;\n}\n\n.cropper-point.point-e {\n  cursor: ew-resize;\n  margin-top: -3px;\n  right: -3px;\n  top: 50%;\n}\n\n.cropper-point.point-n {\n  cursor: ns-resize;\n  left: 50%;\n  margin-left: -3px;\n  top: -3px;\n}\n\n.cropper-point.point-w {\n  cursor: ew-resize;\n  left: -3px;\n  margin-top: -3px;\n  top: 50%;\n}\n\n.cropper-point.point-s {\n  bottom: -3px;\n  cursor: s-resize;\n  left: 50%;\n  margin-left: -3px;\n}\n\n.cropper-point.point-ne {\n  cursor: nesw-resize;\n  right: -3px;\n  top: -3px;\n}\n\n.cropper-point.point-nw {\n  cursor: nwse-resize;\n  left: -3px;\n  top: -3px;\n}\n\n.cropper-point.point-sw {\n  bottom: -3px;\n  cursor: nesw-resize;\n  left: -3px;\n}\n\n.cropper-point.point-se {\n  bottom: -3px;\n  cursor: nwse-resize;\n  height: 20px;\n  opacity: 1;\n  right: -3px;\n  width: 20px;\n}\n\n@media (min-width: 768px) {\n  .cropper-point.point-se {\n    height: 15px;\n    width: 15px;\n  }\n}\n\n@media (min-width: 992px) {\n  .cropper-point.point-se {\n    height: 10px;\n    width: 10px;\n  }\n}\n\n@media (min-width: 1200px) {\n  .cropper-point.point-se {\n    height: 5px;\n    opacity: 0.75;\n    width: 5px;\n  }\n}\n\n.cropper-point.point-se::before {\n  background-color: #39f;\n  bottom: -50%;\n  content: ' ';\n  display: block;\n  height: 200%;\n  opacity: 0;\n  position: absolute;\n  right: -50%;\n  width: 200%;\n}\n\n.cropper-invisible {\n  opacity: 0;\n}\n\n.cropper-bg {\n  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC');\n}\n\n.cropper-hide {\n  display: block;\n  height: 0;\n  position: absolute;\n  width: 0;\n}\n\n.cropper-hidden {\n  display: none !important;\n}\n\n.cropper-move {\n  cursor: move;\n}\n\n.cropper-crop {\n  cursor: crosshair;\n}\n\n.cropper-disabled .cropper-drag-box,\n.cropper-disabled .cropper-face,\n.cropper-disabled .cropper-line,\n.cropper-disabled .cropper-point {\n  cursor: not-allowed;\n}\n"
 )
 var p = null,
-  l = t({
+  d = t({
     name: 'VuePictureCropper',
     props: {
       boxStyle: {
@@ -2518,13 +2518,15 @@ var p = null,
       },
     },
     data: function () {
-      return { cropper: null, mimeType: '' }
+      return { cropper: null, mimeType: '', randomId: '' }
     },
     watch: {
       img: function () {
         if (this.cropper)
           try {
-            this.cropper.replace(this.img), this.getImgSuffix()
+            this.cropper.replace(this.img),
+              this.getImgSuffix(),
+              this.updateInstance()
           } catch (t) {
             console.log(t)
           }
@@ -2549,8 +2551,24 @@ var p = null,
               case 1:
                 return (
                   i.sent(),
+                  (this.randomId = (function (t) {
+                    void 0 === t && (t = 10)
+                    for (
+                      var e =
+                          'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz012345678',
+                        i = e.length,
+                        n = '',
+                        a = 0;
+                      a < t;
+                      a++
+                    )
+                      n += e.charAt(Math.floor(Math.random() * i))
+                    return n
+                  })(10)),
                   (t = window.setInterval(function () {
-                    var i = document.querySelector('.vue--picture-cropper__img')
+                    var i = e.randomId
+                      ? document.querySelector('#vpc-img-' + e.randomId)
+                      : document.querySelector('.vue--picture-cropper__img')
                     if (i)
                       try {
                         ;(e.cropper = new s(i, e.options)),
@@ -2714,12 +2732,13 @@ var p = null,
 c(
   '\n.vue--picture-cropper__wrap {\n  width: 100%;\n  height: 100%;\n  margin: 0;\n}\n.vue--picture-cropper__img {\n  display: block;\n  width: auto;\n  height: auto;\n  max-width: 100%;\n  max-height: 100%;\n}\n.vue--picture-cropper__wrap-round .cropper-view-box,\n.vue--picture-cropper__wrap-round .cropper-face {\n  border-radius: 50%;\n}\n'
 ),
-  (l.render = function (t, a, o, r, h, s) {
+  (d.render = function (t, a, o, r, h, s) {
     return (
       e(),
       i(
         'div',
         {
+          id: `vpc-wrap-${t.randomId}`,
           class: [
             'vue--picture-cropper__wrap',
             {
@@ -2731,17 +2750,22 @@ c(
         [
           n(
             'img',
-            { class: 'vue--picture-cropper__img', src: t.img },
+            {
+              class: 'vue--picture-cropper__img',
+              src: t.img,
+              id: `vpc-img-${t.randomId}`,
+            },
             null,
             8,
-            ['src']
+            ['src', 'id']
           ),
         ],
-        6
+        14,
+        ['id']
       )
     )
   }),
-  (l.__file = 'src/vue-picture-cropper.vue')
-export default l
+  (d.__file = 'src/vue-picture-cropper.vue')
+export default d
 export { p as cropper }
 //# sourceMappingURL=esm.js.map

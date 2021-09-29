@@ -4,6 +4,10 @@
 
 对 Vue 3.0 还不熟悉的同学，可以查阅我之前总结的文档 [《Vue3.0学习教程与实战案例》](https://vue3.chengpeiquan.com/)
 
+## 更新记录
+
+如果您是老用户，可以先查阅更新记录了解每次的版本变化：[点击查看](https://github.com/chengpeiquan/vue-picture-cropper/releases)
+
 ## demo
 
 根据平时常见的使用习惯，弄了一个简单的在线 DEMO ，点击按钮选择图片后，弹出裁切框，裁切后生成裁切结果。
@@ -285,6 +289,24 @@ DEMO 源码：[round.vue - vue-picture-cropper-demo](https://github.com/chengpei
   />
 </template>
 ```
+
+### 多个裁剪框
+
+从 `0.5.0` 版本开始支持在同一个页面里使用多个裁剪框
+
+在线 DEMO ：[multiple - vue-picture-cropper-demo](https://chengpeiquan.github.io/vue-picture-cropper-demo/#/multiple)
+
+DEMO 源码：[multiple.vue - vue-picture-cropper-demo](https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/views/multiple.vue)
+
+使用方法：
+
+不需要额外添加什么参数，直接引入即可，具体看 DEMO 。
+
+注意事项：
+
+多个裁剪框时，在input选择了图片之后，需要重置掉原先裁剪目标的值，避免使用同一张图片无法触发 watch，导致实例无法切换。
+
+请见 DEMO 的 [selectFile](https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/views/composition.vue#L110-L111) 方法里的注释说明。
 
 ## 其他说明
 

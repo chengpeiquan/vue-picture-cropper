@@ -23,6 +23,7 @@ declare const VuePictureCropper: import('vue').DefineComponent<
   {
     cropper: any
     mimeType: string
+    randomId: string
   },
   {},
   {
