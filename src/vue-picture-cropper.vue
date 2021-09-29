@@ -5,7 +5,11 @@
     :class="{ 'vue--picture-cropper__wrap-round': presetMode.mode === 'round' }"
     :style="boxStyle"
   >
-    <img class="vue--picture-cropper__img" :src="imgSrc" :id="randomId ? `vpc-img-${randomId}` : null" />
+    <img
+      class="vue--picture-cropper__img"
+      :src="img"
+      :id="`vpc-img-${randomId}`"
+    />
   </div>
 </template>
 
@@ -79,11 +83,6 @@ const VuePictureCropper = defineComponent({
         console.log(e)
       }
     },
-  },
-  computed: {
-    imgSrc() {
-      return this.img
-    }
   },
   beforeUnmount() {
     /**
