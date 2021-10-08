@@ -1,13 +1,14 @@
 {
   "name": "vue-picture-cropper",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A picture cropping tool that can be used in Vue 3.0.",
   "main": "dist/vue-picture-cropper.min.js",
   "types": "vue-picture-cropper.d.ts",
   "scripts": {
     "build": "rollup -c rollup.config.ts",
     "lint": "eslint src --ext .js,.ts,.vue",
-    "prettier": "prettier --write src"
+    "format": "prettier --write src",
+    "git": "git add . && git commit -m \"chore: save the coding progress\" && git push"
   },
   "repository": {
     "type": "git",
