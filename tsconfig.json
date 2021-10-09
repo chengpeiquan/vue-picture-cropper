@@ -17,7 +17,7 @@
       ]
     },
     "declaration": true,
-    "declarationDir": "./dist",
+    "declarationDir": "./types",
     "jsx": "preserve"
   },
   "include": [

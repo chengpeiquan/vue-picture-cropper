@@ -24,14 +24,14 @@ npm install --save-dev vue-picture-cropper
 
 ## 导入
 
-目前仅支持在 Vue 组件里按需引入，模板和实例也仅限在组件内使用，根据 Vue 3.x 的设计思想，官方也不推荐全局导入各类插件。
+目前只支持在 Vue 组件里按需引入，模板和实例也仅限在组件内使用，根据 Vue 3.x 的设计思想，官方也不推荐全局导入各类插件。
 
 ```js
 // xxx.vue
 import VuePictureCropper, { cropper } from 'vue-picture-cropper'
 ```
 
-需要注意的是，如果是基于 [Vite](https://vitejs.dev/) 的项目，由于 Vite 需要使用 ESM 组件，所以导入方式需要改成从 `ESM` 版本导入：
+如果是基于 [Vite](https://vitejs.dev/) 的项目，Vite 需要使用 ESM 组件，从 `0.5.1` 版本开始应该可以自动识别需要的组件类型，如果通过上面的方式导入有问题，可以尝试手动指定从 `ESM` 版本导入：
 
 ```js
 // xxx.vue（注意 from 后面的路径不同）
