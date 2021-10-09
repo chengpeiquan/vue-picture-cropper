@@ -3,7 +3,8 @@
   "version": "0.5.1",
   "description": "A picture cropping tool that can be used in Vue 3.0.",
   "main": "dist/vue-picture-cropper.min.js",
-  "types": "vue-picture-cropper.d.ts",
+  "module": "dist/esm.js",
+  "types": "types/vue-picture-cropper.vue.d.ts",
   "scripts": {
     "build": "rollup -c rollup.config.ts",
     "lint": "eslint src --ext .js,.ts,.vue",

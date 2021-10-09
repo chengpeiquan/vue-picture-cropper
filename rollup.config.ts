@@ -17,7 +17,7 @@ const resolveBanner = () => {
  * version: v${pkg.version}
  * author: ${pkg.author}
  */
- `;
+ `
 }
 
 // 打包的公共配置
@@ -26,8 +26,8 @@ const COMMON_OUT_OPTIONS = {
   exports: 'named',
   sourcemap: true,
   globals: {
-    vue: 'Vue'
-  }
+    vue: 'Vue',
+  },
 }
 
 export default {
@@ -41,30 +41,24 @@ export default {
     {
       file: `dist/vue-picture-cropper.min.js`,
       format: 'umd',
-      plugins: [
-        terser()
-      ],
+      plugins: [terser()],
       ...COMMON_OUT_OPTIONS,
     },
     {
       file: `dist/esm.js`,
       format: 'esm',
-      plugins: [
-        terser()
-      ],
+      plugins: [terser()],
       ...COMMON_OUT_OPTIONS,
-    }
+    },
   ],
-  external: [
-    'vue'
-  ],
+  external: ['vue'],
   plugins: [
     vue(),
     resolve({
-      browser: true
+      browser: true,
     }),
     babel({
-      babelHelpers: 'bundled'
+      babelHelpers: 'bundled',
     }),
     commonjs(),
     // Process only `<style module>` blocks.
@@ -73,19 +67,21 @@ export default {
         generateScopedName: '[local]___[hash:base64:5]',
       },
       include: /&module=.*\.css$/,
-      extensions: [ '.css' ],
-      plugins: [ postcssImport() ],
+      extensions: ['.css'],
+      plugins: [postcssImport()],
     }),
     // Process all `<style>` blocks except `<style module>`.
     postcss({
       include: /(?<!&module=.*)\.css$/,
-      extensions: [ '.css' ],
-      plugins: [ postcssImport() ],
+      extensions: ['.css'],
+      plugins: [postcssImport()],
     }),
     json(),
-    typescript(),
-    banner2( resolveBanner, {
-      sourcemap: true
-    })
-  ]
-};
+    typescript({
+      useTsconfigDeclarationDir: true,
+    }),
+    banner2(resolveBanner, {
+      sourcemap: true,
+    }),
+  ],
+}
