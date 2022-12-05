@@ -14,6 +14,7 @@ jobs:
     # generate artifacts
     - name: install and build
       run: |
+        npm i -g pnpm
         pnpm install
         pnpm build
     - name: github-ci
