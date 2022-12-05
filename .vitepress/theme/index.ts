@@ -1,7 +1,6 @@
 import { inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { changeLocales } from './plugins/locales'
-import { setSymbolStyle, replaceSymbol } from './plugins/symbol'
 import { siteIds, registerAnalytics, trackPageview } from './plugins/analytics'
 import { isInvalidRoute, redirect } from './plugins/redirect'
 import './styles/custom.css'
@@ -15,7 +14,6 @@ const theme: Theme = {
         redirect()
       }
 
-      setSymbolStyle()
       siteIds.forEach((id) => registerAnalytics(id))
 
       window.addEventListener('load', () => {
@@ -29,7 +27,6 @@ const theme: Theme = {
 
       router.onAfterRouteChanged = (to) => {
         changeLocales()
-        replaceSymbol()
         siteIds.forEach((id) => trackPageview(id, to))
       }
     }
