@@ -48,7 +48,16 @@ export default defineConfig({
     vueJsx(),
     banner({
       outDir,
-      content: `/*!\n * name: ${pkg.name}\n * version: v${pkg.version}\n * description: ${pkg.description}\n * author: ${pkg.author}\n * homepage: ${pkg.homepage}\n * license: ${pkg.license}\n */`,
+      content: [
+        `/**`,
+        ` * name: ${pkg.name}`,
+        ` * version: v${pkg.version}`,
+        ` * description: ${pkg.description}`,
+        ` * author: ${pkg.author}`,
+        ` * homepage: ${pkg.homepage}`,
+        ` * license: ${pkg.license}`,
+        ` */`,
+      ].join('\n'),
     }),
   ],
 })
