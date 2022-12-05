@@ -1,0 +1,26 @@
+name: github-ci
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    # checkout source
+    - name: Checkout
+      uses: actions/checkout@v2
+    # generate artifacts
+    - name: install and build
+      run: |
+        npm i -g pnpm
+        pnpm install
+        pnpm build
+    - name: github-ci
+      uses: crazy-max/ghaction-github-pages@v2
+      with:
+        target_branch: gh-pages
+        build_dir: dist
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
