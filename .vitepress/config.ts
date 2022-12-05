@@ -74,6 +74,7 @@ export default defineConfig({
           ` * description: ${pkg.description}`,
           ` * author: ${pkg.author}`,
           ` * homepage: ${pkg.homepage}`,
+          ` * license: ${pkg.license}`,
           ` */`,
         ].join('\n'),
         outDir: resolve(__dirname, '../dist'),

@@ -40,6 +40,8 @@ export function trackPageview(siteId: string, pageUrl: string) {
     pageUrl = pageUrl.replace(origin, '')
   }
 
+  // @ts-ignore
   window._hmt.push(['_setAccount', siteId])
+  // @ts-ignore
   window._hmt.push(['_trackPageview', pageUrl])
 }

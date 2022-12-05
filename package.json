@@ -31,7 +31,7 @@
     "mirror:set": "npm config set registry https://registry.npmmirror.com",
     "mirror:rm": "npm config rm registry",
     "backup": "git add . && git commit -m \"chore: backup\" && git push",
-    "postinstall": "simple-git-hooks"
+    "prepare": "simple-git-hooks"
   },
   "repository": {
     "type": "git",
