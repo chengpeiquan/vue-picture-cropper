@@ -1,30 +1,29 @@
 {
   "compilerOptions": {
-    "target": "ES5",
-    "module": "ES2015",
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "esModuleInterop": true,
+    "incremental": false,
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
+    "allowJs": true,
     "sourceMap": true,
+    "isolatedModules": false,
     "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@cp/*": [
-        "src/components/*"
-      ]
-    },
-    "declaration": true,
-    "declarationDir": "./types",
-    "jsx": "preserve"
+    "rootDir": ".",
+    "types": ["vite/client", "node"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "declaration": true
   },
-  "include": [
-    "src/*.ts",
-    "src/*.vue"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "lib"]
 }

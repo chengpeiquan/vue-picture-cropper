@@ -1,0 +1,16 @@
+:root {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.VPNavBar .VPNavBarTranslations .VPMenu .title {
+  display: none;
+}
+
+.vp-doc p,
+.vp-doc li + li {
+  text-align: justify;
+}
