@@ -1,20 +1,27 @@
 import { defineComponent, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import Cropper from 'cropperjs'
+import { isObject, loadRes, randomString } from '@bassist/utils'
+import { getImgMIMEType, getRoundedCanvas, updateResultOptions } from './utils'
 import { props } from './props'
-import {
-  isObject,
-  getImgMIMEType,
-  getRoundedCanvas,
-  injectStyle,
-  randomString,
-  updateResultOptions,
-} from './utils'
 import cropperStyle from 'cropperjs/dist/cropper.css'
 import vpcStyle from './style.css'
 import type { CropperInstance } from './types'
 
-injectStyle('cropperjs', cropperStyle)
-injectStyle('vue-picture-cropper', vpcStyle)
+loadRes({
+  type: 'style',
+  id: 'cropperjs',
+  resource: cropperStyle,
+}).catch((e) => {
+  console.log(e)
+})
+
+loadRes({
+  type: 'style',
+  id: 'vue-picture-cropper',
+  resource: vpcStyle,
+}).catch((e) => {
+  console.log(e)
+})
 
 export let cropper: CropperInstance | null
 

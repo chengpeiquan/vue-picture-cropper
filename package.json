@@ -42,6 +42,7 @@
     "vue3 cropperjs"
   ],
   "dependencies": {
+    "@bassist/utils": "^0.4.0",
     "cropperjs": "^1.5.13"
   },
   "devDependencies": {
