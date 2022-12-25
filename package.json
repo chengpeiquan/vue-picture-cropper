@@ -1,6 +1,6 @@
 {
   "name": "vue-picture-cropper",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A simple and easy-to-use picture cropping component for Vue 3.",
   "author": "chengpeiquan <chengpeiquan@chengpeiquan.com>",
   "homepage": "https://github.com/chengpeiquan/vue-picture-cropper",
@@ -42,6 +42,7 @@
     "vue3 cropperjs"
   ],
   "dependencies": {
+    "@bassist/utils": "^0.4.0",
     "cropperjs": "^1.5.13"
   },
   "devDependencies": {

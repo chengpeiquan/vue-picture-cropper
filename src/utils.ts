@@ -1,44 +1,5 @@
+import { getMimeType, isObject } from '@bassist/utils'
 import type { GetImgMIMETypeOptions, PresetModeOptions } from './types'
-
-/**
- * Check if a variable is an object
- */
-export function isObject(obj: any) {
-  return Object.prototype.toString.call(obj) === '[object Object]'
-}
-
-/**
- * Generate a random string
- * @param length - The length of the string to be returned
- * @return A random string
- */
-export function randomString(length: number = 10) {
-  // https://github.com/ai/nanoid
-  const dict =
-    'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict'
-  let str = ''
-  let i = length
-  const len = dict.length
-  while (i--) str += dict[(Math.random() * len) | 0]
-  return str
-}
-
-/**
- * Renders the component stylesheet inline
- * @description No need to import CSS files separately
- * @param id - Unique ID to prevent duplicate DOM creation
- * @param css - Stylesheet code of Component
- */
-export function injectStyle(id: string, css: string) {
-  if (!css || typeof document === 'undefined') return
-  const el = document.querySelector(id)
-  if (el) return
-  const head = document.head || document.querySelector('head')
-  const style = document.createElement('style')
-  style.id = id
-  head.appendChild(style)
-  style.appendChild(document.createTextNode(css))
-}
 
 /**
  * Extract the mime type of the original image
@@ -47,11 +8,7 @@ export function getImgMIMEType({
   mode,
   dataURI,
 }: GetImgMIMETypeOptions): string {
-  if (mode === 'round') return 'image/png'
-  const uriFragments = dataURI.split(',')
-  const info = uriFragments[0]
-  const mimeType = info.replace(/data:(.*);base64/, '$1')
-  return mimeType
+  return mode === 'round' ? 'image/png' : getMimeType(dataURI)
 }
 
 /**
