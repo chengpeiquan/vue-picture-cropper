@@ -12,7 +12,7 @@ This document only records the properties and methods of component extensions. I
 
 You can adjust it yourself by referring to the demo code of live demos.
 
-| Props      | Type     | 作用                                                                                                   |
+| Props      | Type     | Description                                                                                            |
 | :--------- | :------- | :----------------------------------------------------------------------------------------------------- |
 | boxStyle   | object   | Define the style of the cropping area, that is, the style of the parent element that wraps the Cropper |
 | img        | string   | Image address for cropping                                                                             |
