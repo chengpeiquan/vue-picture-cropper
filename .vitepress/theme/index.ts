@@ -22,7 +22,6 @@ const theme: Theme = {
           '8dca8e2532df48ea7f1b15c714588691', // Main site
           'd6895b6f22616e579e9e6d37936b8dca', // This site
         ],
-        debug: true,
       })
 
       window.addEventListener('load', () => {
