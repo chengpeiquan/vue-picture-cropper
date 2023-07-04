@@ -1,33 +1,45 @@
 import { inBrowser } from 'vitepress'
-import DefaultTheme from 'vitepress/theme'
+import defaultTheme from 'vitepress/theme'
+import { createVitePressBaiduAnalytics } from '@web-analytics/vue'
 import { changeLocales } from './plugins/locales'
-import { siteIds, registerAnalytics, trackPageview } from './plugins/analytics'
 import { isInvalidRoute, redirect } from './plugins/redirect'
 import './styles/custom.css'
 import type { Theme } from 'vitepress'
 
+const { baiduAnalytics, registerBaiduAnalytics } =
+  createVitePressBaiduAnalytics()
+
 const theme: Theme = {
-  ...DefaultTheme,
-  enhanceApp({ router }) {
+  ...defaultTheme,
+  enhanceApp({ app, router }) {
     if (inBrowser) {
       if (isInvalidRoute()) {
         redirect()
       }
 
-      siteIds.forEach((id) => registerAnalytics(id))
+      registerBaiduAnalytics(app, {
+        websiteIds: [
+          '8dca8e2532df48ea7f1b15c714588691', // Main site
+          'd6895b6f22616e579e9e6d37936b8dca', // This site
+        ],
+        debug: true,
+      })
 
       window.addEventListener('load', () => {
         changeLocales()
       })
 
       window.addEventListener('hashchange', () => {
-        const { href: url } = window.location
-        siteIds.forEach((id) => trackPageview(id, url))
+        baiduAnalytics.trackPageview({
+          pageUrl: window.location.href,
+        })
       })
 
       router.onAfterRouteChanged = (to) => {
         changeLocales()
-        siteIds.forEach((id) => trackPageview(id, to))
+        baiduAnalytics.trackPageview({
+          pageUrl: to,
+        })
       }
     }
   },

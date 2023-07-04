@@ -43,6 +43,7 @@
   ],
   "dependencies": {
     "@bassist/utils": "^0.4.0",
+    "@web-analytics/vue": "^0.2.2",
     "cropperjs": "^1.5.13"
   },
   "devDependencies": {
