@@ -34,7 +34,7 @@ export function getRoundedCanvas(sourceCanvas: HTMLCanvasElement) {
     Math.min(width, height) / 2,
     0,
     2 * Math.PI,
-    true
+    true,
   )
   context.fill()
 
@@ -48,7 +48,7 @@ export function getRoundedCanvas(sourceCanvas: HTMLCanvasElement) {
  */
 export function updateResultOptions(
   presetMode: PresetModeOptions,
-  options: Record<string, any> = {}
+  options: Record<string, any> = {},
 ): Record<string, any> {
   if (!isObject(presetMode)) return options
 

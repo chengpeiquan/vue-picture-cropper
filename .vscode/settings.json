@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["Pageview"]
+  "cSpell.words": ["cropperjs", "Pageview", "withtypes"],
+  "eslint.experimental.useFlatConfig": true
 }

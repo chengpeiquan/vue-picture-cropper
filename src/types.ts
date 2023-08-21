@@ -193,11 +193,11 @@ declare namespace Cropperjs {
 declare class Cropper {
   constructor(
     element: HTMLImageElement,
-    options?: Cropperjs.Options<HTMLImageElement>
+    options?: Cropperjs.Options<HTMLImageElement>,
   )
   constructor(
     element: HTMLCanvasElement,
-    options?: Cropperjs.Options<HTMLCanvasElement>
+    options?: Cropperjs.Options<HTMLCanvasElement>,
   )
   clear(): Cropper
   crop(): Cropper
@@ -208,7 +208,7 @@ declare class Cropper {
   getContainerData(): Cropperjs.ContainerData
   getCropBoxData(): Cropperjs.CropBoxData
   getCroppedCanvas(
-    options?: Cropperjs.GetCroppedCanvasOptions
+    options?: Cropperjs.GetCroppedCanvasOptions,
   ): HTMLCanvasElement
   getData(rounded?: boolean): Cropperjs.Data
   getImageData(): Cropperjs.ImageData
