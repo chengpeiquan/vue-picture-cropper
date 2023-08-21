@@ -1,28 +1,11 @@
 {
+  "extends": "@bassist/tsconfig/web.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "strict": true,
-    "jsx": "preserve",
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "forceConsistentCasingInFileNames": true,
-    "experimentalDecorators": true,
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "esModuleInterop": true,
-    "incremental": false,
-    "allowSyntheticDefaultImports": true,
-    "allowJs": true,
-    "sourceMap": true,
-    "isolatedModules": false,
     "baseUrl": ".",
     "rootDir": ".",
     "types": ["vite/client", "node"],
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "declaration": true
+    "lib": ["ESNext", "DOM", "DOM.Iterable"]
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "lib"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "dist", "lib"]
 }

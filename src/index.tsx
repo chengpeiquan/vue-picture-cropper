@@ -25,6 +25,8 @@ loadRes({
 
 export let cropper: CropperInstance | null
 
+type Options = Record<string, any>
+
 export default defineComponent({
   name: 'VuePictureCropper',
   props,
@@ -86,7 +88,7 @@ export default defineComponent({
       cropper!.getFile = getFile
     }
 
-    function getDataURL(options: Record<string, any> = {}) {
+    function getDataURL(options: Options = {}) {
       options = updateResultOptions(props.presetMode, options)
       try {
         let croppedCanvas = cropper!.getCroppedCanvas(options)
@@ -101,9 +103,7 @@ export default defineComponent({
       }
     }
 
-    async function getBlob(
-      options: Record<string, any> = {}
-    ): Promise<Blob | null> {
+    async function getBlob(options: Options = {}): Promise<Blob | null> {
       options = updateResultOptions(props.presetMode, options)
       return new Promise((resolve) => {
         try {
@@ -121,9 +121,7 @@ export default defineComponent({
       })
     }
 
-    async function getFile(
-      options: Record<string, any> = {}
-    ): Promise<File | null> {
+    async function getFile(options: Options = {}): Promise<File | null> {
       const { fileName: optFileName } = options
       const suffix: string = mimeType.value.replace(/image\//, '')
       const fileName: string = optFileName
@@ -158,7 +156,7 @@ export default defineComponent({
           console.log(e)
         }
       },
-      { immediate: true }
+      { immediate: true },
     )
 
     onBeforeUnmount(() => {

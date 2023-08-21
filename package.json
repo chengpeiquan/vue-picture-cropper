@@ -1,10 +1,11 @@
 {
   "name": "vue-picture-cropper",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "A simple and easy-to-use picture cropping component for Vue 3.",
   "author": "chengpeiquan <chengpeiquan@chengpeiquan.com>",
-  "homepage": "https://github.com/chengpeiquan/vue-picture-cropper",
+  "homepage": "https://cropper.chengpeiquan.com",
   "license": "MIT",
+  "type": "module",
   "files": [
     "lib"
   ],
@@ -15,7 +16,7 @@
     ".": {
       "import": "./lib/index.mjs",
       "require": "./lib/index.cjs",
-      "types": "./lib/index.d.js"
+      "types": "./lib/index.d.ts"
     }
   },
   "scripts": {
@@ -25,7 +26,7 @@
     "build:types": "tsx scripts/buildTypes",
     "build:docs": "vitepress build",
     "preview": "vitepress serve",
-    "lint": "eslint src --ext .js,.ts,.vue",
+    "lint": "eslint src",
     "format": "prettier --write src",
     "mirror:get": "npm config get registry",
     "mirror:set": "npm config set registry https://registry.npmmirror.com",
@@ -38,6 +39,9 @@
     "url": "git+https://github.com/chengpeiquan/vue-picture-cropper.git"
   },
   "keywords": [
+    "picture cropper",
+    "image cropper",
+    "photo cropper",
     "vue3 cropper",
     "vue3 cropperjs"
   ],
@@ -47,33 +51,29 @@
     "cropperjs": "^1.5.13"
   },
   "devDependencies": {
+    "@bassist/eslint": "^0.2.1",
+    "@bassist/tsconfig": "^0.1.1",
     "@types/node": "^18.11.9",
-    "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vitejs/plugin-vue-jsx": "^2.1.1",
-    "@vue/eslint-config-typescript": "^7.0.0",
     "@withtypes/fs-extra": "^0.1.1",
     "dts-bundle-generator": "^7.1.0",
-    "eslint": "^7.31.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-vue": "^7.14.0",
+    "eslint": "^8.47.0",
     "less": "^4.1.3",
     "lint-staged": "^11.1.1",
     "npm-run-all": "^4.1.5",
     "postcss-import": "^12.0.1",
-    "prettier": "^2.3.2",
+    "prettier": "^3.0.2",
     "simple-git-hooks": "^2.8.1",
-    "tsx": "^3.12.1",
-    "typescript": "^4.9.3",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6",
     "vite": "^3.2.4",
-    "vite-plugin-banner": "^0.6.1",
+    "vite-plugin-banner": "^0.7.0",
     "vitepress": "1.0.0-alpha.29",
     "vue": "^3.2.13"
   },
   "peerDependencies": {
-    "vue": "^3.2.13"
+    "vue": ">=3.2.13"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged --concurrent false",
