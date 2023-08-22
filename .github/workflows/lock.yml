@@ -2,7 +2,7 @@ name: 'lock-slate-issues'
 
 on:
   schedule:
-    - cron: '*/6 * * * *'
+    - cron: '0 8 * * *'
 
 permissions: {}
 jobs:
