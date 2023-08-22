@@ -8,8 +8,8 @@ permissions: {}
 jobs:
   lock:
     permissions:
-      issues: write # to lock issues (dessant/lock-threads)
-      pull-requests: write # to lock PRs (dessant/lock-threads)
+      issues: write # to lock issues
+      pull-requests: write # to lock PRs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/stale@v8
