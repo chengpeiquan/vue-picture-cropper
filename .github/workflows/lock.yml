@@ -2,9 +2,8 @@ name: 'lock-slate-issues'
 
 on:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: "0 8 * * *"
 
-permissions: {}
 jobs:
   lock:
     permissions:
@@ -12,16 +11,18 @@ jobs:
       pull-requests: write # to lock PRs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v8
+      - uses: actions-cool/issues-helper@v3
         with:
-          repo-token: ${{ secrets.ACCESS_TOKEN }}
-          days-before-stale: 14
-          days-before-close: 1
+          actions: 'close-issues'
+          token: ${{ secrets.ROBOT_TOKEN }}
+          inactive-day: 14
+          body: |
+            This issue has been automatically closed since there has not been any recent activity after it was created. Please open a new issue for related bugs.
+            
+            由于该 issue 创建后没有任何近期活动，因此已被自动关闭，请针对相关问题打开一个新 issue 。
       - uses: dessant/lock-threads@v4
         with:
           log-output: true
-          github-token: ${{ secrets.ACCESS_TOKEN }}
+          github-token: ${{ secrets.ROBOT_TOKEN }}
           issue-inactive-days: 15
-          issue-comment: >
-            This issue has been automatically locked since there has not been any recent activity after it was closed. Please open a new issue for related bugs.
           pr-inactive-days: 15
