@@ -1,14 +1,17 @@
-import { resolve } from 'path'
+import { dirname, resolve } from 'path'
+import { fileURLToPath } from 'url'
 import { defineConfig } from 'vitepress'
 import banner from 'vite-plugin-banner'
 import { head } from './head'
 import { nav } from './nav'
 import { sidebar } from './sidebar'
-import pkg from '../package.json'
+import pkg from '../../package.json'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const outDir = resolve(__dirname, '../../dist')
 
 export default defineConfig({
-  srcDir: 'docs',
-  outDir: 'dist',
+  outDir,
   lang: 'zh-CN',
   title: pkg.name,
   description: pkg.description,
@@ -60,11 +63,6 @@ export default defineConfig({
     server: {
       port: 5050,
     },
-    resolve: {
-      alias: {
-        '@cp': resolve(__dirname, '../docs/components'),
-      },
-    },
     plugins: [
       banner({
         content: [
@@ -77,7 +75,7 @@ export default defineConfig({
           ` * license: ${pkg.license}`,
           ` */`,
         ].join('\n'),
-        outDir: resolve(__dirname, '../dist'),
+        outDir,
       }),
     ],
   },

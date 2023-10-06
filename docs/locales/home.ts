@@ -1,5 +1,5 @@
 import { reactive } from 'vue'
-import { getLang } from '../../.vitepress/theme/plugins/locales'
+import { getLang } from '../.vitepress/theme/plugins/locales'
 
 export const homeLocales = reactive({
   /**
