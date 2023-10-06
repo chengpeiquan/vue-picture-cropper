@@ -3,7 +3,7 @@ import { sidebar } from '../../sidebar'
 import type { DefaultTheme } from 'vitepress'
 
 export const locales = <const>['en', 'zh']
-export type Locales = typeof locales[number]
+export type Locales = (typeof locales)[number]
 
 export function getLang() {
   if (!inBrowser) return 'en'
@@ -14,7 +14,7 @@ export function getLang() {
 
 function updateSidebarTitle(
   el: HTMLElement,
-  item: DefaultTheme.SidebarGroup | DefaultTheme.SidebarItem
+  item: DefaultTheme.SidebarGroup | DefaultTheme.SidebarItem,
 ) {
   if (!el || !item) return
   if (item.text && el.innerText !== item.text) {
@@ -36,7 +36,7 @@ function changeSidebarLocales() {
 
     // Update group title
     const titleElement = group.querySelector(
-      '.title .title-text'
+      '.title .title-text',
     ) as HTMLElement
     updateSidebarTitle(titleElement, currentSidebarGroup)
 

@@ -1,0 +1,19 @@
+{
+  "name": "docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress serve"
+  },
+  "dependencies": {
+    "@web-analytics/vue": "^0.2.2",
+    "vue": "^3.2.13"
+  },
+  "devDependencies": {
+    "vitepress": "1.0.0-alpha.29",
+    "vite-plugin-banner": "^0.7.1",
+    "vue-picture-cropper": "workspace:*"
+  }
+}

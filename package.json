@@ -1,6 +1,6 @@
 {
   "name": "vue-picture-cropper",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "A simple and easy-to-use picture cropping component for Vue 3.",
   "author": "chengpeiquan <chengpeiquan@chengpeiquan.com>",
   "homepage": "https://cropper.chengpeiquan.com",
@@ -20,19 +20,19 @@
     }
   },
   "scripts": {
-    "dev": "vitepress dev --host",
+    "dev": "pnpm -F docs dev",
     "build": "run-s build:*",
     "build:lib": "vite build",
     "build:types": "tsx scripts/buildTypes",
-    "build:docs": "vitepress build",
-    "preview": "vitepress serve",
+    "build:docs": "pnpm -F docs build",
+    "preview": "pnpm -F docs preview",
     "lint": "eslint src",
     "format": "prettier --write src",
     "mirror:get": "npm config get registry",
     "mirror:set": "npm config set registry https://registry.npmmirror.com",
     "mirror:rm": "npm config rm registry",
     "backup": "git add . && git commit -m \"chore: backup\" && git push",
-    "prepare": "simple-git-hooks"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -47,42 +47,36 @@
   ],
   "dependencies": {
     "@bassist/utils": "^0.4.0",
-    "@web-analytics/vue": "^0.2.2",
-    "cropperjs": "^1.5.13"
+    "cropperjs": "^1.6.1"
   },
   "devDependencies": {
-    "@bassist/eslint": "^0.2.1",
+    "@bassist/commit": "^0.1.0",
+    "@bassist/eslint": "^0.5.0",
     "@bassist/tsconfig": "^0.1.1",
-    "@types/node": "^18.11.9",
-    "@vitejs/plugin-vue": "^3.2.0",
-    "@vitejs/plugin-vue-jsx": "^2.1.1",
+    "@types/node": "^20.8.2",
+    "@vitejs/plugin-vue": "^4.4.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
     "@withtypes/fs-extra": "^0.1.1",
-    "dts-bundle-generator": "^7.1.0",
-    "eslint": "^8.47.0",
-    "less": "^4.1.3",
-    "lint-staged": "^11.1.1",
+    "dts-bundle-generator": "^8.0.1",
+    "eslint": "^8.50.0",
+    "husky": "^8.0.3",
+    "less": "^4.2.0",
+    "lint-staged": "^14.0.1",
     "npm-run-all": "^4.1.5",
-    "postcss-import": "^12.0.1",
-    "prettier": "^3.0.2",
-    "simple-git-hooks": "^2.8.1",
-    "tsx": "^3.12.7",
-    "typescript": "^5.1.6",
-    "vite": "^3.2.4",
-    "vite-plugin-banner": "^0.7.0",
-    "vitepress": "1.0.0-alpha.29",
+    "prettier": "^3.0.3",
+    "tsx": "^3.13.0",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.11",
+    "vite-plugin-banner": "^0.7.1",
     "vue": "^3.2.13"
   },
   "peerDependencies": {
     "vue": ">=3.2.13"
   },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged --concurrent false",
-    "commit-msg": "pnpm exec tsx scripts/verifyCommit $1"
-  },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
+      "prettier --write src",
+      "eslint --fix src"
     ]
   }
 }

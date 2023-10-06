@@ -79,8 +79,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
-// Replace `../../lib` with `vue-picture-cropper`
-import VuePictureCropper, { cropper } from '../../lib'
+import VuePictureCropper, { cropper } from 'vue-picture-cropper'
 // Only used in demo
 import { getLocales } from '../locales/live-demo'
 
