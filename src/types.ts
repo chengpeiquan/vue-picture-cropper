@@ -5,7 +5,7 @@
  * So copied its type declaration to here
  * @source ./node_modules/cropperjs/types/index.d.ts
  */
-declare namespace Cropperjs {
+declare namespace Cropper {
   export type Action =
     | 'crop'
     | 'move'
@@ -74,6 +74,7 @@ declare namespace Cropperjs {
     minHeight?: number
     maxWidth?: number
     maxHeight?: number
+    rounded?: boolean
     fillColor?: string
     imageSmoothingEnabled?: boolean
     imageSmoothingQuality?: ImageSmoothingQuality
@@ -169,7 +170,6 @@ declare namespace Cropperjs {
     minCropBoxWidth?: number
     modal?: boolean
     movable?: boolean
-    // eslint-disable-next-line no-undef
     preview?: HTMLElement | HTMLElement[] | NodeListOf<HTMLElement> | string
     responsive?: boolean
     restore?: boolean
@@ -193,25 +193,23 @@ declare namespace Cropperjs {
 declare class Cropper {
   constructor(
     element: HTMLImageElement,
-    options?: Cropperjs.Options<HTMLImageElement>,
+    options?: Cropper.Options<HTMLImageElement>,
   )
   constructor(
     element: HTMLCanvasElement,
-    options?: Cropperjs.Options<HTMLCanvasElement>,
+    options?: Cropper.Options<HTMLCanvasElement>,
   )
   clear(): Cropper
   crop(): Cropper
   destroy(): Cropper
   disable(): Cropper
   enable(): Cropper
-  getCanvasData(): Cropperjs.CanvasData
-  getContainerData(): Cropperjs.ContainerData
-  getCropBoxData(): Cropperjs.CropBoxData
-  getCroppedCanvas(
-    options?: Cropperjs.GetCroppedCanvasOptions,
-  ): HTMLCanvasElement
-  getData(rounded?: boolean): Cropperjs.Data
-  getImageData(): Cropperjs.ImageData
+  getCanvasData(): Cropper.CanvasData
+  getContainerData(): Cropper.ContainerData
+  getCropBoxData(): Cropper.CropBoxData
+  getCroppedCanvas(options?: Cropper.GetCroppedCanvasOptions): HTMLCanvasElement
+  getData(rounded?: boolean): Cropper.Data
+  getImageData(): Cropper.ImageData
   move(offsetX: number, offsetY?: number): Cropper
   moveTo(x: number, y?: number): Cropper
   replace(url: string, onlyColorChanged?: boolean): Cropper
@@ -222,14 +220,14 @@ declare class Cropper {
   scaleX(scaleX: number): Cropper
   scaleY(scaleY: number): Cropper
   setAspectRatio(aspectRatio: number): Cropper
-  setCanvasData(data: Cropperjs.SetCanvasDataOptions): Cropper
-  setCropBoxData(data: Cropperjs.SetCropBoxDataOptions): Cropper
-  setData(data: Cropperjs.SetDataOptions): Cropper
-  setDragMode(dragMode: Cropperjs.DragMode): Cropper
+  setCanvasData(data: Cropper.SetCanvasDataOptions): Cropper
+  setCropBoxData(data: Cropper.SetCropBoxDataOptions): Cropper
+  setData(data: Cropper.SetDataOptions): Cropper
+  setDragMode(dragMode: Cropper.DragMode): Cropper
   zoom(ratio: number): Cropper
   zoomTo(ratio: number, pivot?: { x: number; y: number }): Cropper
   static noConflict(): Cropper
-  static setDefaults(options: Cropperjs.Options<EventTarget>): void
+  static setDefaults(options: Cropper.Options<EventTarget>): void
 }
 
 /**
