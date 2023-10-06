@@ -1,6 +1,6 @@
 import { defineComponent, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import Cropper from 'cropperjs'
-import { isObject, loadRes, randomString } from '@bassist/utils'
+import { isObject, loadRes } from '@bassist/utils'
 import { getImgMIMEType, getRoundedCanvas, updateResultOptions } from './utils'
 import { props } from './props'
 import cropperStyle from 'cropperjs/dist/cropper.css?inline'
@@ -31,21 +31,19 @@ export default defineComponent({
   name: 'VuePictureCropper',
   props,
   setup(props) {
+    const imgElement = ref<HTMLImageElement>()
     const mimeType = ref<string>('')
-    const randomId = ref<string>('')
 
     async function init() {
       await nextTick()
-      randomId.value = randomString()
 
       const check = window.setInterval(() => {
-        const imgElement: HTMLImageElement | null = randomId.value
-          ? document.querySelector(`#vpc-img-${randomId.value}`)
-          : document.querySelector('.vue--picture-cropper__img')
-
-        if (imgElement) {
+        if (imgElement.value) {
           try {
-            cropper = new Cropper(imgElement, props.options) as CropperInstance
+            cropper = new Cropper(
+              imgElement.value,
+              props.options,
+            ) as CropperInstance
             window.clearInterval(check)
 
             updateInstance()
@@ -56,7 +54,7 @@ export default defineComponent({
             })
 
             // Check if preset mode needs to be activated
-            imgElement.addEventListener('ready', () => {
+            imgElement.value.addEventListener('ready', () => {
               usePresetMode()
             })
           } catch (e) {
@@ -166,24 +164,21 @@ export default defineComponent({
       }
     })
 
-    return () => {
-      return (
-        <div
-          id={`vpc-wrap-${randomId.value}`}
-          class={`vue--picture-cropper__wrap ${
-            props.presetMode.mode === 'round'
-              ? 'vue--picture-cropper__wrap-round'
-              : ''
-          }`}
-          style={props.boxStyle}
-        >
-          <img
-            id={`vpc-img-${randomId.value}`}
-            class="vue--picture-cropper__img"
-            src={props.img}
-          />
-        </div>
-      )
-    }
+    return () => (
+      <div
+        class={`vue--picture-cropper__wrap ${
+          props.presetMode.mode === 'round'
+            ? 'vue--picture-cropper__wrap-round'
+            : ''
+        }`}
+        style={props.boxStyle}
+      >
+        <img
+          ref={imgElement}
+          class="vue--picture-cropper__img"
+          src={props.img}
+        />
+      </div>
+    )
   },
 })
