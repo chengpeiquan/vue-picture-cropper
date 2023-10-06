@@ -1,6 +1,6 @@
 {
   "name": "vue-picture-cropper",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "A simple and easy-to-use picture cropping component for Vue 3.",
   "author": "chengpeiquan <chengpeiquan@chengpeiquan.com>",
   "homepage": "https://cropper.chengpeiquan.com",
