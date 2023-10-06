@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/npm/v/vue-picture-cropper?color=3fb984&label=npm" />
   </a>
   <a href="https://www.npmjs.com/package/vue-picture-cropper" target="__blank">
-    <img src="https://img.shields.io/npm/dm/vue-picture-cropper?color=3fb984&label=" />
+    <img src="https://img.shields.io/npm/dt/vue-picture-cropper?color=3fb984&label=downloads" />
   </a>
   <a href="https://cropper.chengpeiquan.com" target="__blank">
     <img src="https://img.shields.io/static/v1?label=&message=docs%20%26%20demos&color=3fb984" />
