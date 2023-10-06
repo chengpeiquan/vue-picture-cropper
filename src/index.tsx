@@ -3,8 +3,8 @@ import Cropper from 'cropperjs'
 import { isObject, loadRes, randomString } from '@bassist/utils'
 import { getImgMIMEType, getRoundedCanvas, updateResultOptions } from './utils'
 import { props } from './props'
-import cropperStyle from 'cropperjs/dist/cropper.css'
-import vpcStyle from './style.css'
+import cropperStyle from 'cropperjs/dist/cropper.css?inline'
+import vpcStyle from './style.css?inline'
 import type { CropperInstance } from './types'
 
 loadRes({
