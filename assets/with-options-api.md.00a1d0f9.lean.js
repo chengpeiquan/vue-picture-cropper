@@ -1,0 +1,9 @@
+/**
+ * name: vue-picture-cropper
+ * version: v0.7.0
+ * description: A simple and easy-to-use picture cropping component for Vue 3.
+ * author: chengpeiquan <chengpeiquan@chengpeiquan.com>
+ * homepage: https://cropper.chengpeiquan.com
+ * license: MIT
+ */
+import{W as o}from"./chunks/WithOptionsAPI.8d613d4c.js";import{d as i,c as a,b as s,a as r,e,h as t,o as n}from"./app.aa3c57a6.js";import"./chunks/live-demo.46a12735.js";const c=r('<h1 id="with-options-api" tabindex="-1">With Options API <a class="header-anchor" href="#with-options-api" aria-hidden="true">#</a></h1><p>Vue 3 also supports writing components using the Options API.</p><div class="tip custom-block"><p class="custom-block-title">TIP</p><p>This demo is the same as <a href="./with-composition-api.html">With Composition API</a>, except that the component use the Options API.</p></div><h2 id="live-demo" tabindex="-1">Live Demo <a class="header-anchor" href="#live-demo" aria-hidden="true">#</a></h2>',4),h=e("h2",{id:"source-code",tabindex:"-1"},[t("Source Code "),e("a",{class:"header-anchor",href:"#source-code","aria-hidden":"true"},"#")],-1),d=e("p",null,[t("You can adjust it yourself by referring to the usage of the demo: "),e("a",{href:"https://github.com/chengpeiquan/vue-picture-cropper/tree/main/docs/components/WithOptionsAPI.vue",target:"_blank",rel:"noreferrer"},"View the source code of this demo"),t(" .")],-1),g=JSON.parse('{"title":"With Options API","description":"","frontmatter":{},"headers":[{"level":2,"title":"Live Demo","slug":"live-demo","link":"#live-demo","children":[]},{"level":2,"title":"Source Code","slug":"source-code","link":"#source-code","children":[]}],"relativePath":"with-options-api.md"}'),p={name:"with-options-api.md"},b=i({...p,setup(l){return(u,m)=>(n(),a("div",null,[c,s(o),h,d]))}});export{g as __pageData,b as default};

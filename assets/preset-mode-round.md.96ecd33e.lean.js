@@ -1,0 +1,9 @@
+/**
+ * name: vue-picture-cropper
+ * version: v0.7.0
+ * description: A simple and easy-to-use picture cropping component for Vue 3.
+ * author: chengpeiquan <chengpeiquan@chengpeiquan.com>
+ * homepage: https://cropper.chengpeiquan.com
+ * license: MIT
+ */
+import{R as t}from"./chunks/RoundMode.439a01ce.js";import{d as r,c as a,b as d,a as s,e,h as o,o as i}from"./app.aa3c57a6.js";import"./chunks/live-demo.46a12735.js";const c=s('<h1 id="preset-mode-round" tabindex="-1">Preset Mode: Round <a class="header-anchor" href="#preset-mode-round" aria-hidden="true">#</a></h1><p>In some business scenarios, it may be necessary to crop the picture into a round image (e.g. avatar), this plugin provides out-of-the-box preset mode support, just need to pass in the relevant options of <code>presetMode</code> .</p><div class="tip custom-block"><p class="custom-block-title">TIP</p><p>Please note that in circular mode, the cropping result is fixed to a <code>.png</code> file.</p></div><h2 id="live-demo" tabindex="-1">Live Demo <a class="header-anchor" href="#live-demo" aria-hidden="true">#</a></h2>',4),n=e("h2",{id:"source-code",tabindex:"-1"},[o("Source Code "),e("a",{class:"header-anchor",href:"#source-code","aria-hidden":"true"},"#")],-1),u=e("p",null,[o("You can adjust it yourself by referring to the usage of the demo: "),e("a",{href:"https://github.com/chengpeiquan/vue-picture-cropper/tree/main/docs/components/RoundMode.vue",target:"_blank",rel:"noreferrer"},"View the source code of this demo"),o(" .")],-1),g=JSON.parse('{"title":"Preset Mode: Round","description":"","frontmatter":{},"headers":[{"level":2,"title":"Live Demo","slug":"live-demo","link":"#live-demo","children":[]},{"level":2,"title":"Source Code","slug":"source-code","link":"#source-code","children":[]}],"relativePath":"preset-mode-round.md"}'),l={name:"preset-mode-round.md"},b=r({...l,setup(p){return(h,m)=>(i(),a("div",null,[c,d(t),n,u]))}});export{g as __pageData,b as default};

@@ -1,0 +1,9 @@
+/**
+ * name: vue-picture-cropper
+ * version: v0.7.0
+ * description: A simple and easy-to-use picture cropping component for Vue 3.
+ * author: chengpeiquan <chengpeiquan@chengpeiquan.com>
+ * homepage: https://cropper.chengpeiquan.com
+ * license: MIT
+ */
+import{F as t}from"./chunks/FixedSizeMode.74604f8c.js";import{d as r,c as i,b as s,e,h as o,o as d}from"./app.aa3c57a6.js";import"./chunks/live-demo.46a12735.js";const a=e("h1",{id:"preset-mode-fixed-size",tabindex:"-1"},[o("Preset Mode: Fixed Size "),e("a",{class:"header-anchor",href:"#preset-mode-fixed-size","aria-hidden":"true"},"#")],-1),n=e("p",null,[o("In some business scenarios, it may be necessary to crop the picture according to a fixed size, not just according to a fixed ratio (e.g. recommended place for banner on a website), this plugin provides out-of-the-box preset mode support, just need to pass in the relevant options of "),e("code",null,"presetMode"),o(" .")],-1),c=e("h2",{id:"live-demo",tabindex:"-1"},[o("Live Demo "),e("a",{class:"header-anchor",href:"#live-demo","aria-hidden":"true"},"#")],-1),l=e("h2",{id:"source-code",tabindex:"-1"},[o("Source Code "),e("a",{class:"header-anchor",href:"#source-code","aria-hidden":"true"},"#")],-1),h=e("p",null,[o("You can adjust it yourself by referring to the usage of the demo: "),e("a",{href:"https://github.com/chengpeiquan/vue-picture-cropper/tree/main/docs/components/FixedSizeMode.vue",target:"_blank",rel:"noreferrer"},"View the source code of this demo"),o(" .")],-1),b=JSON.parse('{"title":"Preset Mode: Fixed Size","description":"","frontmatter":{},"headers":[{"level":2,"title":"Live Demo","slug":"live-demo","link":"#live-demo","children":[]},{"level":2,"title":"Source Code","slug":"source-code","link":"#source-code","children":[]}],"relativePath":"preset-mode-fixed-size.md"}'),u={name:"preset-mode-fixed-size.md"},g=r({...u,setup(p){return(m,f)=>(d(),i("div",null,[a,n,c,s(t),l,h]))}});export{b as __pageData,g as default};
