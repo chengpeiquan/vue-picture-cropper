@@ -38,6 +38,10 @@
     "type": "git",
     "url": "git+https://github.com/chengpeiquan/vue-picture-cropper.git"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "picture cropper",
     "image cropper",
