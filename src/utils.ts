@@ -1,9 +1,7 @@
 import { getMimeType, isObject } from '@bassist/utils'
 import type { GetImgMIMETypeOptions, PresetModeOptions } from './types'
 
-/**
- * Extract the mime type of the original image
- */
+/** Extract the mime type of the original image */
 export function getImgMIMEType({
   mode,
   dataURI,
@@ -13,7 +11,9 @@ export function getImgMIMEType({
 
 /**
  * Generate a circular canvas
- * @description Excerpted from the Cropperjs author's demo
+ *
+ * Excerpted from the Cropperjs author's demo
+ *
  * @see https://fengyuanchen.github.io/cropperjs/examples/crop-a-round-image.html
  */
 export function getRoundedCanvas(sourceCanvas: HTMLCanvasElement) {
@@ -43,7 +43,8 @@ export function getRoundedCanvas(sourceCanvas: HTMLCanvasElement) {
 
 /**
  * If using preset mode, some options need to be adjusted
- * @param presetMode - props.presetMode
+ *
+ * @param presetMode - Props.presetMode
  * @param options - Options for getting cropped result
  */
 export function updateResultOptions(
