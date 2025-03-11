@@ -1,13 +1,28 @@
 // @ts-check
-import { defineConfig, prettier, typescript } from '@bassist/eslint'
+import {
+  createGetConfigNameFactory,
+  defineFlatConfig,
+  javascript,
+  jsx,
+  typescript,
+  vue,
+} from '@bassist/eslint-config'
 
-export default defineConfig([
-  ...prettier,
-  ...typescript,
-  {
-    rules: {
-      '@typescript-eslint/no-namespace': 'off',
+const getConfigName = createGetConfigNameFactory('vue-picture-cropper')
+
+export default defineFlatConfig(
+  [
+    ...javascript,
+    ...jsx,
+    ...vue,
+    ...typescript,
+    {
+      name: getConfigName('override'),
+      rules: {
+        '@typescript-eslint/no-namespace': 'off',
+      },
+      ignores: ['dist', 'lib'],
     },
-    ignores: ['dist', 'lib'],
-  },
-])
+  ],
+  { tailwindcssEnabled: false },
+)

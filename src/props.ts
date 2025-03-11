@@ -1,13 +1,12 @@
 import type { PropType } from 'vue'
 import type { PresetModeOptions } from './types'
 
-/**
- * Props for Vue Component
- */
+/** Props for Vue Component */
 export const props = {
   /**
    * The source of the image to be cropped
-   * @description The value of the `src` attribute of `<img src="" />`
+   *
+   * The value of the `src` attribute of `<img src="" />`
    */
   img: {
     type: String,
@@ -15,9 +14,7 @@ export const props = {
     default: '',
   },
 
-  /**
-   * Style Sheet for Crop Box
-   */
+  /** Style Sheet for Crop Box */
   boxStyle: {
     type: Object,
     required: false,
@@ -26,6 +23,7 @@ export const props = {
 
   /**
    * Options for cropperjs
+   *
    * @see https://github.com/fengyuanchen/cropperjs#options
    */
   options: {
@@ -34,9 +32,7 @@ export const props = {
     default: () => ({}),
   },
 
-  /**
-   * Some preset modes provided by this plugin
-   */
+  /** Some preset modes provided by this plugin */
   presetMode: {
     type: Object as PropType<PresetModeOptions>,
     required: false,

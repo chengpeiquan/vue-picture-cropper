@@ -20,7 +20,7 @@ if (!commitRE.test(msg)) {
       `
         fix(v-model): handle events on blur (close #28)
       \n\n` +
-      `  See .github/commit-convention.md for more details.\n`
+      `  See .github/commit-convention.md for more details.\n`,
   )
   process.exit(1)
 }

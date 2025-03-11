@@ -12,7 +12,7 @@ loadRes({
   id: 'cropperjs',
   resource: cropperStyle,
 }).catch((e) => {
-  console.log(e)
+  console.error(e)
 })
 
 loadRes({
@@ -20,7 +20,7 @@ loadRes({
   id: 'vue-picture-cropper',
   resource: vpcStyle,
 }).catch((e) => {
-  console.log(e)
+  console.error(e)
 })
 
 export let cropper: CropperInstance | null
@@ -58,7 +58,7 @@ export default defineComponent({
               usePresetMode()
             })
           } catch (e) {
-            console.log(e)
+            console.error(e)
           }
         }
       }, 10)
@@ -96,12 +96,12 @@ export default defineComponent({
 
         const result: string = croppedCanvas.toDataURL(mimeType.value)
         return result
-      } catch (e) {
+      } catch {
         return ''
       }
     }
 
-    async function getBlob(options: Options = {}): Promise<Blob | null> {
+    function getBlob(options: Options = {}): Promise<Blob | null> {
       options = updateResultOptions(props.presetMode, options)
       return new Promise((resolve) => {
         try {
@@ -113,7 +113,7 @@ export default defineComponent({
           croppedCanvas.toBlob((blob: Blob | null) => {
             resolve(blob)
           }, mimeType.value)
-        } catch (e) {
+        } catch {
           resolve(null)
         }
       })
@@ -151,7 +151,7 @@ export default defineComponent({
           })
           updateInstance()
         } catch (e) {
-          console.log(e)
+          console.error(e)
         }
       },
       { immediate: true },

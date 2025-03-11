@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-vars */
-
 /**
- * Because cropperjs does not export instance types
- * So copied its type declaration to here
+ * Because cropperjs does not export instance types So copied its type
+ * declaration to here
+ *
  * @source ./node_modules/cropperjs/types/index.d.ts
  */
 declare namespace Cropper {
@@ -230,18 +229,14 @@ declare class Cropper {
   static setDefaults(options: Cropper.Options<EventTarget>): void
 }
 
-/**
- * The Cropper instance provided with the component
- */
+/** The Cropper instance provided with the component */
 export interface CropperInstance extends Cropper {
   getDataURL: (options?: Record<string, any>) => string
   getBlob: (options?: Record<string, any>) => Promise<Blob | null>
   getFile: (options?: Record<string, any>) => Promise<File | null>
 }
 
-/**
- * Preset Modes Supported by Components
- */
+/** Preset Modes Supported by Components */
 export type SupportedPresetMode =
   // Specifies the size of the cropped result
   | 'fixedSize'
@@ -250,6 +245,7 @@ export type SupportedPresetMode =
 
 /**
  * Preset options for component props
+ *
  * @since 0.4.0
  */
 export interface PresetModeOptions {
@@ -258,9 +254,7 @@ export interface PresetModeOptions {
   height?: number
 }
 
-/**
- * Options to get image mime type
- */
+/** Options to get image mime type */
 export interface GetImgMIMETypeOptions {
   mode: SupportedPresetMode | undefined
   dataURI: string

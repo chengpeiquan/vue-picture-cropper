@@ -9,5 +9,10 @@
     "withtypes",
     "zoomable"
   ],
-  "eslint.experimental.useFlatConfig": true
+  "editor.formatOnSave": true,
+  "eslint.useFlatConfig": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.fixAll.prettier": "always"
+  }
 }
