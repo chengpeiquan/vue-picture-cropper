@@ -1,0 +1,9 @@
+/**
+ * name: vue-picture-cropper
+ * version: v0.7.0
+ * description: A simple and easy-to-use picture cropping component for Vue 3.
+ * author: chengpeiquan <chengpeiquan@chengpeiquan.com>
+ * homepage: https://cropper.chengpeiquan.com
+ * license: MIT
+ */
+import{M as t}from"./chunks/MultipleCropper.9e01fe72.js";import{d as i,c as l,e as r,f as o,b as a,o as p}from"./app.b9b53fc1.js";import"./chunks/WithCompositionAPI.8a0613b6.js";import"./chunks/live-demo.4698ce0c.js";const f=JSON.parse('{"title":"Multiple Cropper","description":"","frontmatter":{},"headers":[{"level":2,"title":"Live Demo","slug":"live-demo","link":"#live-demo","children":[]},{"level":2,"title":"Source Code","slug":"source-code","link":"#source-code","children":[]}],"relativePath":"multiple-cropper.md"}'),s={name:"multiple-cropper.md"},v=i({...s,setup(d){return(n,e)=>(p(),l("div",null,[e[0]||(e[0]=r("h1",{id:"multiple-cropper",tabindex:"-1"},[o("Multiple Cropper "),r("a",{class:"header-anchor",href:"#multiple-cropper","aria-hidden":"true"},"#")],-1)),e[1]||(e[1]=r("p",null,"In some business scenarios, multiple cropper may need to exist on the same page. This is an example of usage.",-1)),e[2]||(e[2]=r("h2",{id:"live-demo",tabindex:"-1"},[o("Live Demo "),r("a",{class:"header-anchor",href:"#live-demo","aria-hidden":"true"},"#")],-1)),a(t),e[3]||(e[3]=r("h2",{id:"source-code",tabindex:"-1"},[o("Source Code "),r("a",{class:"header-anchor",href:"#source-code","aria-hidden":"true"},"#")],-1)),e[4]||(e[4]=r("p",null,[o("You can adjust it yourself by referring to the usage of the demo: "),r("a",{href:"https://github.com/chengpeiquan/vue-picture-cropper/tree/main/docs/components/MultipleCropper.vue",target:"_blank",rel:"noreferrer"},"View the source code of this demo"),o(" .")],-1))]))}});export{f as __pageData,v as default};
