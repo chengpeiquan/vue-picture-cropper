@@ -1,43 +1,35 @@
 {
   "name": "vue-picture-cropper",
-  "version": "0.7.0",
+  "version": "1.0.0",
   "description": "A simple and easy-to-use picture cropping component for Vue 3.",
   "author": "chengpeiquan <chengpeiquan@chengpeiquan.com>",
   "homepage": "https://cropper.chengpeiquan.com",
   "license": "MIT",
   "type": "module",
   "files": [
-    "lib"
+    "dist"
   ],
-  "main": "./lib/index.min.js",
-  "module": "./lib/index.mjs",
-  "types": "./lib/index.d.ts",
+  "types": "./dist/index.d.mts",
   "exports": {
-    ".": {
-      "import": "./lib/index.mjs",
-      "require": "./lib/index.cjs",
-      "types": "./lib/index.d.ts"
-    }
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json",
+    "./style.css": "./dist/style.css"
   },
   "scripts": {
     "dev": "pnpm -F docs dev",
     "build": "run-s build:*",
-    "build:lib": "vite build",
-    "build:types": "tsx scripts/buildTypes",
+    "build:lib": "tsdown",
     "build:docs": "pnpm -F docs build",
     "preview": "pnpm -F docs preview",
     "lint": "eslint src",
+    "lint:docs": "eslint docs",
     "lint:inspector": "npx @eslint/config-inspector",
     "format": "prettier --write src",
-    "mirror:get": "npm config get registry",
-    "mirror:set": "npm config set registry https://registry.npmmirror.com",
-    "mirror:rm": "npm config rm registry",
-    "backup": "git add . && git commit -m \"chore: backup\" && git push",
     "prepare": "husky install"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chengpeiquan/vue-picture-cropper.git"
+    "url": "https://github.com/chengpeiquan/vue-picture-cropper"
   },
   "publishConfig": {
     "access": "public",
@@ -51,29 +43,28 @@
     "vue3 cropperjs"
   ],
   "dependencies": {
-    "@bassist/utils": "^0.4.0",
-    "cropperjs": "^1.6.1"
+    "@bassist/utils": "^0.17.0",
+    "cropperjs": "^1.6.2"
   },
   "devDependencies": {
-    "@bassist/commit": "^0.1.0",
-    "@bassist/eslint-config": "^0.1.2",
+    "@bassist/build-config": "^0.1.0",
+    "@bassist/eslint-config": "^0.3.0",
     "@bassist/tsconfig": "^0.1.1",
-    "@types/node": "^20.8.2",
-    "@vitejs/plugin-vue": "^4.4.0",
-    "@vitejs/plugin-vue-jsx": "^3.0.2",
-    "@withtypes/fs-extra": "^0.1.1",
-    "dts-bundle-generator": "^8.0.1",
-    "eslint": "^9.22.0",
-    "husky": "^8.0.3",
+    "@commitlint/cli": "^20.4.1",
+    "@commitlint/config-conventional": "^20.4.1",
+    "@types/node": "^25.2.3",
+    "eslint": "^9.39.2",
+    "husky": "^9.1.7",
     "less": "^4.2.0",
-    "lint-staged": "^14.0.1",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^3.5.3",
-    "tsx": "^3.13.0",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.11",
-    "vite-plugin-banner": "^0.7.1",
-    "vue": "^3.2.13"
+    "lint-staged": "^16.2.7",
+    "npm-run-all2": "^8.0.4",
+    "prettier": "^3.8.1",
+    "tsdown": "^0.20.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "unplugin-vue": "^7.1.1",
+    "vue": "catalog:",
+    "vue-tsc": "^3.2.4"
   },
   "peerDependencies": {
     "vue": ">=3.2.13"

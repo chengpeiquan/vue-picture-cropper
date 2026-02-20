@@ -1,6 +1,42 @@
-node_modules
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
 dist
-lib
-yarn.lock
-package-lock.json
-.temp
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+.eslintcache
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# npm pack
+*.tgz
+
+# Temp files
+.tmp
+.profile
+*.0x
+
+# VSC
+.history
+.wrangler
+
+# Legacy
+src-legacy
+docs-legacy
+cache
