@@ -5,9 +5,20 @@
     "rootDir": ".",
     "jsx": "preserve",
     "jsxImportSource": "vue",
+    "moduleResolution": "bundler",
+    "module": "ESNext",
     "types": ["vite/client", "node"],
     "lib": ["ESNext", "DOM", "DOM.Iterable"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "docs/.vitepress/**/*.ts",
+    "docs/**/*.ts",
+    "docs/**/*.tsx",
+    "docs/**/*.vue",
+    "docs/**/*.md"
+  ],
   "exclude": ["node_modules", "dist", "lib"]
 }

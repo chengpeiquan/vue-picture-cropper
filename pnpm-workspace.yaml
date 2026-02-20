@@ -1,2 +1,5 @@
 packages:
   - docs
+
+catalog:
+  vue: ^3.5.28
