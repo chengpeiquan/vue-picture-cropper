@@ -14,9 +14,6 @@ importers:
 
   .:
     dependencies:
-      '@bassist/utils':
-        specifier: ^0.17.0
-        version: 0.17.0
       cropperjs:
         specifier: ^1.6.2
         version: 1.6.2
@@ -78,6 +75,9 @@ importers:
 
   docs:
     dependencies:
+      '@bassist/utils':
+        specifier: ^0.17.0
+        version: 0.17.0
       '@primeuix/themes':
         specifier: ^2.0.3
         version: 2.0.3
