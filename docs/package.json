@@ -8,12 +8,25 @@
     "preview": "vitepress serve"
   },
   "dependencies": {
+    "@bassist/utils": "^0.17.0",
+    "@primeuix/themes": "^2.0.3",
+    "@vueuse/core": "^14.2.1",
     "@web-analytics/vue": "^0.2.2",
-    "vue": "^3.2.13"
+    "primevue": "^4.5.4",
+    "shiki": "^3.22.0",
+    "vue": "catalog:",
+    "vue-i18n": "^11.2.8"
   },
   "devDependencies": {
-    "vitepress": "1.0.0-alpha.29",
-    "vite-plugin-banner": "^0.7.1",
+    "@tailwindcss/typography": "^0.5.19",
+    "clsx": "^2.1.1",
+    "postcss": "^8.5.6",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss": "^3.4.19",
+    "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-primeui": "^0.6.1",
+    "vite-plugin-banner": "^0.8.1",
+    "vitepress": "2.0.0-alpha.16",
     "vue-picture-cropper": "workspace:*"
   }
 }
