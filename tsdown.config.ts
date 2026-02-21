@@ -10,9 +10,9 @@ export default defineConfig({
   platform: 'browser',
   exports: true,
   fixedExtension: true,
+  format: ['esm', 'cjs'],
   banner: getBundleBanner(pkg),
   minify: true,
-  exports: true,
   dts: {
     vue: true,
   },
