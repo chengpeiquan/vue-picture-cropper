@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { isObject } from '@bassist/utils'
 import Cropper from 'cropperjs'
 import { nextTick, onBeforeUnmount, ref, shallowRef, watch } from 'vue'
 import {
@@ -11,6 +10,7 @@ import {
   applyPresetModeToCanvasOptions,
   getImgMIMEType,
   getRoundedCanvas,
+  isObject,
 } from './utils'
 import './style.css'
 
