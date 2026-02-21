@@ -1,4 +1,4 @@
-import { type CSSProperties, type Ref } from 'vue'
+import { type CSSProperties, type ShallowRef } from 'vue'
 import { type CropperInstance } from './instance'
 
 /**
@@ -66,5 +66,5 @@ export interface VuePictureCropperProps {
  * `.cropper.value` — use `.cropper` only.
  */
 export interface VuePictureCropperRefValue {
-  cropper: Ref<CropperInstance | null>
+  cropper: ShallowRef<CropperInstance | null>
 }
