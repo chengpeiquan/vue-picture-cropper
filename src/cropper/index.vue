@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { isObject } from '@bassist/utils'
 import Cropper from 'cropperjs'
-import { nextTick, onBeforeUnmount, ref, watch } from 'vue'
+import { nextTick, onBeforeUnmount, ref, shallowRef, watch } from 'vue'
 import {
   type CropperInstance,
   type VuePictureCropperProps,
@@ -24,9 +24,9 @@ const props = withDefaults(defineProps<VuePictureCropperProps>(), {
   presetMode: () => ({}),
 })
 
-const imgElement = ref<HTMLImageElement>()
+const cropperInstance = shallowRef<CropperInstance | null>(null)
+const imgElement = shallowRef<HTMLImageElement | null>(null)
 const mimeType = ref('')
-const cropperInstance = ref<CropperInstance | null>(null)
 
 const getDataURL: CropperInstance['getDataURL'] = (options = {}) => {
   if (!cropperInstance.value) {
