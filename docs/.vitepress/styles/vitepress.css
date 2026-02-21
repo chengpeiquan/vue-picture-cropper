@@ -1,0 +1,415 @@
+/**
+ * Noir 风格 - 纯黑白灰主色，无彩色
+ * -------------------------------------------------------------------------- */
+
+/**
+ * Colors: Solid
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-white: #ffffff;
+  --vp-c-black: #000000;
+
+  --vp-c-neutral: var(--vp-c-black);
+  --vp-c-neutral-inverse: var(--vp-c-white);
+}
+
+.dark {
+  --vp-c-neutral: var(--vp-c-white);
+  --vp-c-neutral-inverse: var(--vp-c-black);
+}
+
+/**
+ * Colors: Palette
+ * Gray / Indigo = Noir 主色（黑白灰）
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-gray-1: #52525b;
+  --vp-c-gray-2: #71717a;
+  --vp-c-gray-3: #a1a1aa;
+  --vp-c-gray-soft: rgba(113, 113, 122, 0.14);
+
+  /* Noir 主色 - 亮色模式 */
+  --vp-c-indigo-1: #18181b;
+  --vp-c-indigo-2: #27272a;
+  --vp-c-indigo-3: #3f3f46;
+  --vp-c-indigo-soft: rgba(63, 63, 70, 0.14);
+
+  --vp-c-purple-1: #3f3f46;
+  --vp-c-purple-2: #52525b;
+  --vp-c-purple-3: #71717a;
+  --vp-c-purple-soft: rgba(113, 113, 122, 0.14);
+
+  --vp-c-green-1: #166534;
+  --vp-c-green-2: #15803d;
+  --vp-c-green-3: #16a34a;
+  --vp-c-green-soft: rgba(34, 197, 94, 0.14);
+
+  --vp-c-yellow-1: #854d0e;
+  --vp-c-yellow-2: #a16207;
+  --vp-c-yellow-3: #ca8a04;
+  --vp-c-yellow-soft: rgba(234, 179, 8, 0.14);
+
+  --vp-c-red-1: #991b1b;
+  --vp-c-red-2: #b91c1c;
+  --vp-c-red-3: #dc2626;
+  --vp-c-red-soft: rgba(239, 68, 68, 0.14);
+
+  --vp-c-sponsor: #71717a;
+}
+
+.dark {
+  --vp-c-gray-1: #d4d4d8;
+  --vp-c-gray-2: #a1a1aa;
+  --vp-c-gray-3: #71717a;
+  --vp-c-gray-soft: rgba(161, 161, 170, 0.12);
+
+  /* Noir 主色 - 深色模式 */
+  --vp-c-indigo-1: #fafafa;
+  --vp-c-indigo-2: #d4d4d8;
+  --vp-c-indigo-3: #a1a1aa;
+  --vp-c-indigo-soft: rgba(161, 161, 170, 0.16);
+
+  --vp-c-purple-1: #d4d4d8;
+  --vp-c-purple-2: #a1a1aa;
+  --vp-c-purple-3: #71717a;
+  --vp-c-purple-soft: rgba(161, 161, 170, 0.16);
+
+  --vp-c-green-1: #4ade80;
+  --vp-c-green-2: #22c55e;
+  --vp-c-green-3: #16a34a;
+  --vp-c-green-soft: rgba(34, 197, 94, 0.16);
+
+  --vp-c-yellow-1: #facc15;
+  --vp-c-yellow-2: #eab308;
+  --vp-c-yellow-3: #ca8a04;
+  --vp-c-yellow-soft: rgba(234, 179, 8, 0.16);
+
+  --vp-c-red-1: #f87171;
+  --vp-c-red-2: #ef4444;
+  --vp-c-red-3: #b91c1c;
+  --vp-c-red-soft: rgba(239, 68, 68, 0.16);
+}
+
+/**
+ * Colors: Background（PrimeVue 深色：接近黑 + 略浅表面灰）
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #fafafa;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #f4f4f5;
+}
+
+.dark {
+  --vp-c-bg: #0d0d0d;
+  --vp-c-bg-alt: #171717;
+  --vp-c-bg-elv: #1e1e1e;
+  --vp-c-bg-soft: #1a1a1a;
+}
+
+/**
+ * Colors: Borders
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-border: #e5e5e5;
+  --vp-c-divider: #e5e5e5;
+  --vp-c-gutter: #e5e5e5;
+}
+
+.dark {
+  --vp-c-border: #2a2a2a;
+  --vp-c-divider: #262626;
+  --vp-c-gutter: #1a1a1a;
+}
+
+/**
+ * Colors: Text（深色下白/浅灰，与官网一致）
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-text-1: #18181b;
+  --vp-c-text-2: #52525b;
+  --vp-c-text-3: #71717a;
+}
+
+.dark {
+  --vp-c-text-1: #fafafa;
+  --vp-c-text-2: #a3a3a3;
+  --vp-c-text-3: #737373;
+}
+
+/**
+ * Colors: Function（Brand = Noir 黑白灰）
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-default-1: var(--vp-c-gray-1);
+  --vp-c-default-2: var(--vp-c-gray-2);
+  --vp-c-default-3: var(--vp-c-gray-3);
+  --vp-c-default-soft: var(--vp-c-gray-soft);
+
+  --vp-c-brand-1: var(--vp-c-indigo-1);
+  --vp-c-brand-2: var(--vp-c-indigo-2);
+  --vp-c-brand-3: var(--vp-c-indigo-3);
+  --vp-c-brand-soft: var(--vp-c-indigo-soft);
+
+  --vp-c-brand: var(--vp-c-brand-1);
+
+  --vp-c-tip-1: var(--vp-c-brand-1);
+  --vp-c-tip-2: var(--vp-c-brand-2);
+  --vp-c-tip-3: var(--vp-c-brand-3);
+  --vp-c-tip-soft: var(--vp-c-brand-soft);
+
+  --vp-c-note-1: var(--vp-c-brand-1);
+  --vp-c-note-2: var(--vp-c-brand-2);
+  --vp-c-note-3: var(--vp-c-brand-3);
+  --vp-c-note-soft: var(--vp-c-brand-soft);
+
+  --vp-c-success-1: var(--vp-c-green-1);
+  --vp-c-success-2: var(--vp-c-green-2);
+  --vp-c-success-3: var(--vp-c-green-3);
+  --vp-c-success-soft: var(--vp-c-green-soft);
+
+  --vp-c-important-1: var(--vp-c-purple-1);
+  --vp-c-important-2: var(--vp-c-purple-2);
+  --vp-c-important-3: var(--vp-c-purple-3);
+  --vp-c-important-soft: var(--vp-c-purple-soft);
+
+  --vp-c-warning-1: var(--vp-c-yellow-1);
+  --vp-c-warning-2: var(--vp-c-yellow-2);
+  --vp-c-warning-3: var(--vp-c-yellow-3);
+  --vp-c-warning-soft: var(--vp-c-yellow-soft);
+
+  --vp-c-danger-1: var(--vp-c-red-1);
+  --vp-c-danger-2: var(--vp-c-red-2);
+  --vp-c-danger-3: var(--vp-c-red-3);
+  --vp-c-danger-soft: var(--vp-c-red-soft);
+
+  --vp-c-caution-1: var(--vp-c-red-1);
+  --vp-c-caution-2: var(--vp-c-red-2);
+  --vp-c-caution-3: var(--vp-c-red-3);
+  --vp-c-caution-soft: var(--vp-c-red-soft);
+}
+
+/**
+ * Component: Code (内联/块 使用中性色)
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-code-line-height: 1.7;
+  --vp-code-font-size: 0.875em;
+  --vp-code-color: var(--vp-c-brand-1);
+  --vp-code-link-color: var(--vp-c-brand-1);
+  --vp-code-link-hover-color: var(--vp-c-brand-2);
+  --vp-code-bg: var(--vp-c-default-soft);
+
+  --vp-code-block-color: var(--vp-c-text-2);
+  --vp-code-block-bg: var(--vp-c-bg-alt);
+  --vp-code-block-divider-color: var(--vp-c-gutter);
+
+  --vp-code-lang-color: var(--vp-c-text-2);
+
+  --vp-code-line-highlight-color: var(--vp-c-default-soft);
+  --vp-code-line-number-color: var(--vp-c-text-2);
+
+  --vp-code-line-diff-add-color: var(--vp-c-success-soft);
+  --vp-code-line-diff-add-symbol-color: var(--vp-c-success-1);
+
+  --vp-code-line-diff-remove-color: var(--vp-c-danger-soft);
+  --vp-code-line-diff-remove-symbol-color: var(--vp-c-danger-1);
+
+  --vp-code-line-warning-color: var(--vp-c-warning-soft);
+  --vp-code-line-error-color: var(--vp-c-danger-soft);
+
+  --vp-code-copy-code-border-color: var(--vp-c-divider);
+  --vp-code-copy-code-bg: var(--vp-c-bg-soft);
+  --vp-code-copy-code-hover-border-color: var(--vp-c-divider);
+  --vp-code-copy-code-hover-bg: var(--vp-c-bg);
+  --vp-code-copy-code-active-text: var(--vp-c-text-2);
+  --vp-code-copy-copied-text-content: 'Copied';
+
+  --vp-code-tab-divider: var(--vp-code-block-divider-color);
+  --vp-code-tab-text-color: var(--vp-c-text-2);
+  --vp-code-tab-bg: var(--vp-code-block-bg);
+  --vp-code-tab-hover-text-color: var(--vp-c-text-1);
+  --vp-code-tab-active-text-color: var(--vp-c-text-1);
+  --vp-code-tab-active-bar-color: var(--vp-c-brand-1);
+}
+
+:lang(zh) {
+  --vp-code-copy-copied-text-content: '已复制';
+}
+
+/**
+ * Component: Button (Brand = Noir)
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: var(--vp-c-white);
+  --vp-button-brand-bg: var(--vp-c-brand-3);
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: var(--vp-c-white);
+  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: var(--vp-c-white);
+  --vp-button-brand-active-bg: var(--vp-c-brand-1);
+
+  --vp-button-alt-border: transparent;
+  --vp-button-alt-text: var(--vp-c-text-1);
+  --vp-button-alt-bg: var(--vp-c-default-3);
+  --vp-button-alt-hover-border: transparent;
+  --vp-button-alt-hover-text: var(--vp-c-text-1);
+  --vp-button-alt-hover-bg: var(--vp-c-default-2);
+  --vp-button-alt-active-border: transparent;
+  --vp-button-alt-active-text: var(--vp-c-text-1);
+  --vp-button-alt-active-bg: var(--vp-c-default-1);
+
+  --vp-button-sponsor-border: var(--vp-c-text-2);
+  --vp-button-sponsor-text: var(--vp-c-text-2);
+  --vp-button-sponsor-bg: transparent;
+  --vp-button-sponsor-hover-border: var(--vp-c-text-1);
+  --vp-button-sponsor-hover-text: var(--vp-c-text-1);
+  --vp-button-sponsor-hover-bg: transparent;
+  --vp-button-sponsor-active-border: var(--vp-c-text-1);
+  --vp-button-sponsor-active-text: var(--vp-c-text-1);
+  --vp-button-sponsor-active-bg: transparent;
+}
+
+/**
+ * Component: Custom Block
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-custom-block-font-size: 14px;
+  --vp-custom-block-code-font-size: 13px;
+
+  --vp-custom-block-info-border: transparent;
+  --vp-custom-block-info-text: var(--vp-c-text-1);
+  --vp-custom-block-info-bg: var(--vp-c-default-soft);
+  --vp-custom-block-info-code-bg: var(--vp-c-default-soft);
+
+  --vp-custom-block-note-border: transparent;
+  --vp-custom-block-note-text: var(--vp-c-text-1);
+  --vp-custom-block-note-bg: var(--vp-c-default-soft);
+  --vp-custom-block-note-code-bg: var(--vp-c-default-soft);
+
+  --vp-custom-block-tip-border: transparent;
+  --vp-custom-block-tip-text: var(--vp-c-text-1);
+  --vp-custom-block-tip-bg: var(--vp-c-tip-soft);
+  --vp-custom-block-tip-code-bg: var(--vp-c-tip-soft);
+
+  --vp-custom-block-important-border: transparent;
+  --vp-custom-block-important-text: var(--vp-c-text-1);
+  --vp-custom-block-important-bg: var(--vp-c-important-soft);
+  --vp-custom-block-important-code-bg: var(--vp-c-important-soft);
+
+  --vp-custom-block-warning-border: transparent;
+  --vp-custom-block-warning-text: var(--vp-c-text-1);
+  --vp-custom-block-warning-bg: var(--vp-c-warning-soft);
+  --vp-custom-block-warning-code-bg: var(--vp-c-warning-soft);
+
+  --vp-custom-block-danger-border: transparent;
+  --vp-custom-block-danger-text: var(--vp-c-text-1);
+  --vp-custom-block-danger-bg: var(--vp-c-danger-soft);
+  --vp-custom-block-danger-code-bg: var(--vp-c-danger-soft);
+
+  --vp-custom-block-caution-border: transparent;
+  --vp-custom-block-caution-text: var(--vp-c-text-1);
+  --vp-custom-block-caution-bg: var(--vp-c-caution-soft);
+  --vp-custom-block-caution-code-bg: var(--vp-c-caution-soft);
+
+  --vp-custom-block-details-border: var(--vp-custom-block-info-border);
+  --vp-custom-block-details-text: var(--vp-custom-block-info-text);
+  --vp-custom-block-details-bg: var(--vp-custom-block-info-bg);
+  --vp-custom-block-details-code-bg: var(--vp-custom-block-info-code-bg);
+}
+
+/**
+ * Component: Input
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-input-border-color: var(--vp-c-border);
+  --vp-input-bg-color: var(--vp-c-bg-alt);
+  --vp-input-switch-bg-color: var(--vp-c-default-soft);
+}
+
+/**
+ * Component: Nav
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-nav-height: 64px;
+  --vp-nav-bg-color: var(--vp-c-bg);
+  --vp-nav-screen-bg-color: var(--vp-c-bg);
+  --vp-nav-logo-height: 24px;
+}
+
+/**
+ * Component: Sidebar
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-sidebar-width: 272px;
+  --vp-sidebar-bg-color: var(--vp-c-bg-alt);
+}
+
+/**
+ * Component: Home
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-home-hero-name-color: var(--vp-c-brand-1);
+  --vp-home-hero-name-background: transparent;
+  --vp-home-hero-image-background-image: none;
+  --vp-home-hero-image-filter: none;
+}
+
+/**
+ * Component: Badge
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-badge-info-border: transparent;
+  --vp-badge-info-text: var(--vp-c-text-2);
+  --vp-badge-info-bg: var(--vp-c-default-soft);
+
+  --vp-badge-tip-border: transparent;
+  --vp-badge-tip-text: var(--vp-c-tip-1);
+  --vp-badge-tip-bg: var(--vp-c-tip-soft);
+
+  --vp-badge-warning-border: transparent;
+  --vp-badge-warning-text: var(--vp-c-warning-1);
+  --vp-badge-warning-bg: var(--vp-c-warning-soft);
+
+  --vp-badge-danger-border: transparent;
+  --vp-badge-danger-text: var(--vp-c-danger-1);
+  --vp-badge-danger-bg: var(--vp-c-danger-soft);
+}
+
+/**
+ * Component: Local Search
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-local-search-bg: var(--vp-c-bg);
+  --vp-local-search-result-bg: var(--vp-c-bg);
+  --vp-local-search-result-border: var(--vp-c-divider);
+  --vp-local-search-result-selected-bg: var(--vp-c-bg);
+  --vp-local-search-result-selected-border: var(--vp-c-brand-1);
+  --vp-local-search-highlight-bg: var(--vp-c-brand-1);
+  --vp-local-search-highlight-text: var(--vp-c-neutral-inverse);
+}
+
+/**
+ * Algolia DocSearch (若使用)
+ * -------------------------------------------------------------------------- */
+
+.DocSearch {
+  --docsearch-primary-color: var(--vp-c-brand-1) !important;
+}

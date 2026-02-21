@@ -1,0 +1,8 @@
+.VPDoc.has-aside .content-container {
+  max-width: 960px !important;
+}
+
+.p-tablist,
+.p-tabpanels {
+  background: var(--vp-sidebar-bg-color) !important;
+}

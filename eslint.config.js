@@ -29,6 +29,7 @@ export default defineFlatConfig(
       name: getConfigName('override'),
       rules: {
         '@typescript-eslint/no-namespace': 'off',
+        'vue/singleline-html-element-content-newline': 'off',
       },
     },
 
