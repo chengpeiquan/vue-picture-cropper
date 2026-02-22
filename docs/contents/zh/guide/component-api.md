@@ -2,7 +2,7 @@
 outline: deep
 ---
 
-# VuePictureCropper API
+# 组件 API
 
 VuePictureCropper 组件是为 Cropper.js 提供了一层 Vue 适配的薄封装，它支持 Cropper.js 的所有 API 。
 
