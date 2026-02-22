@@ -7,7 +7,7 @@ export default {
   darkMode: 'selector',
   content: [
     './.vitepress/theme/**/*.{js,ts,jsx,tsx,vue}',
-    './contents/**/*.{js,ts,jsx,tsx,vue}',
+    './contents/**/*.{js,ts,jsx,tsx,vue,md}',
     './components/**/*.{js,ts,jsx,tsx,vue}',
     './examples/**/*.{js,ts,jsx,tsx,vue}',
   ],

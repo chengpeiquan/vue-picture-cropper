@@ -3,6 +3,7 @@ import { Button } from 'primevue'
 import { useRouter } from 'vitepress'
 import { withLocaleBase } from '../i18n'
 import { cn } from '../utils/class-name'
+import NpmVersionBadge from './NpmVersionBadge.vue'
 
 const { go } = useRouter()
 </script>
@@ -39,15 +40,7 @@ const { go } = useRouter()
       {{ $t('home.description') }}
     </p>
 
-    <a
-      class="mb-16 block min-h-5"
-      href="https://www.npmjs.com/package/vue-picture-cropper"
-    >
-      <img
-        src="https://img.shields.io/npm/v/vue-picture-cropper?color=3fb984&label=npm"
-        alt="npm version"
-      />
-    </a>
+    <NpmVersionBadge class="mb-16" />
 
     <div class="flex shrink-0 p-1.5">
       <Button rounded @click="go(withLocaleBase('/guide/quick-start'))">
