@@ -6,6 +6,7 @@ import { vite } from './modules/vite'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   srcDir: 'contents',
+  cleanUrls: true,
 
   // SEO
   title,
