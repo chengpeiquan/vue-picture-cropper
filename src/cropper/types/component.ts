@@ -21,8 +21,19 @@ export type SupportedPresetMode =
  * @since 0.4.0
  */
 export interface PresetModeOptions {
+  /**
+   * The preset mode to use
+   */
   mode?: SupportedPresetMode
+
+  /**
+   * The width of the cropped result
+   */
   width?: number
+
+  /**
+   * The height of the cropped result
+   */
   height?: number
 }
 

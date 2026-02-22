@@ -33,6 +33,7 @@ const root = {
           text: 'Getting Started',
           items: [
             { text: 'Quick Start', link: '/guide/quick-start' },
+            { text: 'Preset Mode', link: '/guide/preset-mode' },
             { text: 'Design Concept', link: '/guide/design' },
           ],
         },
@@ -41,7 +42,6 @@ const root = {
           items: [
             { text: 'Component API', link: '/guide/component-api' },
             { text: 'Hook API', link: '/guide/hook-api' },
-            { text: 'Preset Mode', link: '/guide/preset-mode' },
           ],
         },
         {
@@ -139,6 +139,7 @@ const zh = {
           text: '开始',
           items: [
             { text: '快速上手', link: '/zh/guide/quick-start' },
+            { text: '预设模式', link: '/zh/guide/preset-mode' },
             { text: '设计理念', link: '/zh/guide/design' },
           ],
         },
@@ -147,7 +148,6 @@ const zh = {
           items: [
             { text: '组件 API', link: '/zh/guide/component-api' },
             { text: '组合式函数 API', link: '/zh/guide/hook-api' },
-            { text: '预设模式', link: '/zh/guide/preset-mode' },
           ],
         },
         {
