@@ -33,12 +33,20 @@ const contentClassName = cn('aspect-[4/3] w-full overflow-hidden rounded-md')
         {{ $t('examples.previewArea') }}
       </p>
 
-      <div :class="cn(contentClassName, 'bg-zinc-100 dark:bg-zinc-800')">
+      <div
+        :class="
+          cn(
+            contentClassName,
+            'flex items-center justify-center',
+            'bg-zinc-100 dark:bg-zinc-800',
+          )
+        "
+      >
         <img
           v-if="croppedPreview"
           :src="croppedPreview"
           alt="Crop preview"
-          class="size-full object-contain"
+          class="size-auto max-h-full max-w-full object-contain"
         />
       </div>
     </div>

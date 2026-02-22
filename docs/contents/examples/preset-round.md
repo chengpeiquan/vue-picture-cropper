@@ -2,7 +2,7 @@
 aside: false
 ---
 
-# Preset Round
+# Generate round cropping results
 
 Round preset mode: the crop box is a circle and the result is a circular image (e.g. for avatars). In this mode the output is always a PNG image.
 

@@ -2,7 +2,7 @@
 aside: false
 ---
 
-# Preset Fixed Size
+# Use fixed width and height cropping mode
 
 Fixed-size preset mode: the crop box has a fixed size and cannot be resized. The output image matches the crop box dimensions (e.g. for banners or fixed-size thumbnails).
 
