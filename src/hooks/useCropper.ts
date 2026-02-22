@@ -92,6 +92,14 @@ export const useCropper = (props: MaybeRef<VuePictureCropperProps>) => {
     return cropper.value?.getFile(options) ?? Promise.resolve(null)
   }
 
+  const clear: CropperInstance['clear'] = () => {
+    return cropper.value?.clear() as ReturnType<CropperInstance['clear']>
+  }
+
+  const reset: CropperInstance['reset'] = () => {
+    return cropper.value?.reset() as ReturnType<CropperInstance['reset']>
+  }
+
   /**
    * Register an effect to be executed when the underlying Cropper instance is
    * available.
@@ -176,6 +184,8 @@ export const useCropper = (props: MaybeRef<VuePictureCropperProps>) => {
       getDataURL,
       getBlob,
       getFile,
+      clear,
+      reset,
       onInstanceEffect,
     },
   ] as const
