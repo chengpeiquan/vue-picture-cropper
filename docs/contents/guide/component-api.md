@@ -2,7 +2,7 @@
 outline: deep
 ---
 
-# VuePictureCropper API
+# Component API
 
 VuePictureCropper is a thin Vue wrapper around Cropper.js and supports the full Cropper.js API.
 
@@ -16,13 +16,13 @@ The component is simple but its options are numerous; it’s best to check the [
 
 The component’s prop types are also the argument types for the [useCropper](./hook-api.md) composable.
 
-| Option     | Description                                                                 |
-| :--------- | :-------------------------------------------------------------------------- |
-| boxStyle   | Styles for the crop area container (the parent element that wraps Cropper)  |
-| img        | Image URL used for cropping                                                 |
-| options    | See [Cropper.js API](./cropperjs-api.md)                                    |
-| events     | See [Cropper.js API](./cropperjs-api.md)                                    |
-| presetMode | See [Preset mode](./preset-mode.md)                                         |
+| Option     | Description                                                                |
+| :--------- | :------------------------------------------------------------------------- |
+| boxStyle   | Styles for the crop area container (the parent element that wraps Cropper) |
+| img        | Image URL used for cropping                                                |
+| options    | See [Cropper.js API](./cropperjs-api.md)                                   |
+| events     | See [Cropper.js API](./cropperjs-api.md)                                   |
+| presetMode | See [Preset mode](./preset-mode.md)                                        |
 
 :::tip
 Remote images involve [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). The server must be configured accordingly; prefer local images to avoid issues.
@@ -108,17 +108,17 @@ Cropper.js also provides two common methods you can call on the instance:
 
 All three extended methods accept the same options to control the output.
 
-| Property              | Type    | Description                                                                 | Default                                            |
-| :-------------------- | :------ | :-------------------------------------------------------------------------- | :------------------------------------------------- |
-| width                 | number  | Width of the cropped result                                                 | Size of the cropped region on the source image     |
-| height                | number  | Height of the cropped result                                                | Size of the cropped region on the source image     |
-| minWidth              | number  | Minimum width of the cropped result                                         | 0                                                  |
-| minHeight             | number  | Minimum height of the cropped result                                        | 0                                                  |
-| maxWidth              | number  | Maximum width of the cropped result                                         | Infinity                                           |
-| maxHeight             | number  | Maximum height of the cropped result                                        | Infinity                                           |
-| fillColor             | string  | Background color of the result (e.g. for PNG transparent areas)              | transparent                                        |
-| imageSmoothingEnabled | boolean | Whether to smooth the cropped image                                         | true                                               |
-| imageSmoothingQuality | string  | Smoothing quality: `low` / `medium` / `high`                                | low                                                |
-| fileName              | string  | File name; only used by `getFile`. Optional.                                | `cropped-${timestamp}.${source extension}`         |
+| Property              | Type    | Description                                                     | Default                                        |
+| :-------------------- | :------ | :-------------------------------------------------------------- | :--------------------------------------------- |
+| width                 | number  | Width of the cropped result                                     | Size of the cropped region on the source image |
+| height                | number  | Height of the cropped result                                    | Size of the cropped region on the source image |
+| minWidth              | number  | Minimum width of the cropped result                             | 0                                              |
+| minHeight             | number  | Minimum height of the cropped result                            | 0                                              |
+| maxWidth              | number  | Maximum width of the cropped result                             | Infinity                                       |
+| maxHeight             | number  | Maximum height of the cropped result                            | Infinity                                       |
+| fillColor             | string  | Background color of the result (e.g. for PNG transparent areas) | transparent                                    |
+| imageSmoothingEnabled | boolean | Whether to smooth the cropped image                             | true                                           |
+| imageSmoothingQuality | string  | Smoothing quality: `low` / `medium` / `high`                    | low                                            |
+| fileName              | string  | File name; only used by `getFile`. Optional.                    | `cropped-${timestamp}.${source extension}`     |
 
 To change output format or work with remote images, use Cropper.js’s [getCroppedCanvas](./cropperjs-api.md).
