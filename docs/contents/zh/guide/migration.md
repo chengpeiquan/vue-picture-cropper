@@ -19,15 +19,6 @@ outline: deep
 
 从 1.x 开始，本库仅以 ESM（ES Modules）形式发布，不再提供 CommonJS (CJS) 或 IIFE 构建版本。
 
-背景与原因：
-
-- 现代 Vue 项目默认使用 ESM
-  > 绝大多数 Vue 3 项目都基于 Vite 或其他现代打包工具，这些环境原生支持 ESM。提供 CJS 或 IIFE 构建在这些场景下意义不大，同时增加维护成本。
-- IIFE / CDN 使用量极低
-  > 通过 CDN 分发 IIFE 构建的场景在实践中非常少见，本库统计和社区反馈均显示几乎无人使用。继续提供会增加打包体积和测试负担，但对用户价值有限。
-- 简化构建与维护
-  > 移除 CJS/IIFE 后，库的构建流程更简单，TypeScript 类型和模块导出更一致，也避免了 CJS 下 default + named export 的潜在混乱问题。
-
 如果你的项目依赖 CJS / IIFE，请迁移到支持 ESM 的环境，例如使用 Vite、Nuxt 或现代 Webpack 版本。
 
 ## 依赖与版本变化 {#install-deps}

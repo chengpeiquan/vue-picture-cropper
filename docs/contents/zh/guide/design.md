@@ -52,6 +52,21 @@ outline: deep
 
 如果希望使用 Cropper.js 2.x 的现代 Web Components 架构，建议直接使用 Cropper.js 原生库，而非本库的 Vue 封装层。
 
+## 为什么仅提供 ESM 版本 {#why-esm-only}
+
+从 1.x 开始，本库仅以 ESM（ES Modules）形式发布，不再提供 CommonJS (CJS) 或 IIFE 构建版本。
+
+背景与原因：
+
+- 现代 Vue 项目默认使用 ESM
+  > 绝大多数 Vue 3 项目都基于 Vite 或其他现代打包工具，这些环境原生支持 ESM。提供 CJS 或 IIFE 构建在这些场景下意义不大，同时增加维护成本。
+- IIFE / CDN 使用量极低
+  > 通过 CDN 分发 IIFE 构建的场景在实践中非常少见，本库统计和社区反馈均显示几乎无人使用。继续提供会增加打包体积和测试负担，但对用户价值有限。
+- 简化构建与维护
+  > 移除 CJS/IIFE 后，库的构建流程更简单，TypeScript 类型和模块导出更一致，也避免了 CJS 下 default + named export 的潜在混乱问题。
+
+如果你的项目依赖 CJS / IIFE，请迁移到支持 ESM 的环境，例如使用 Vite、Nuxt 或现代 Webpack 版本。
+
 ## 关于 Bundle 的调整 {#bundle-adjustments}
 
 在 0.x 中，Cropper.js 作为内部依赖被打包进 `vue-picture-cropper` 的产物中，用户只需安装一个包即可使用：
