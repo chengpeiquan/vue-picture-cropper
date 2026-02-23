@@ -22,5 +22,8 @@ export default {
     width: 'Width',
     height: 'Height',
     cropperInstance: 'Cropper Instance',
+    openModal: 'Open Modal',
+    cancel: 'Cancel',
+    confirm: 'Confirm',
   },
 } satisfies MessageStructure
