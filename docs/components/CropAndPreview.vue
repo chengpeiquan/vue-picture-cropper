@@ -2,9 +2,14 @@
 import { useI18n } from 'vue-i18n'
 import { cn } from '../utils/class-name'
 
-defineProps<{
+interface CropAndPreviewProps {
+  cropperAreaVisible?: boolean
   croppedPreview: string
-}>()
+}
+
+withDefaults(defineProps<CropAndPreviewProps>(), {
+  cropperAreaVisible: true,
+})
 
 const { t } = useI18n()
 
@@ -21,7 +26,7 @@ const contentClassName = cn('aspect-[4/3] w-full overflow-hidden rounded-md')
 
 <template>
   <div class="flex w-full flex-col gap-4 sm:flex-row">
-    <div :class="blockClassName">
+    <div v-if="cropperAreaVisible" :class="blockClassName">
       <p :class="titleClassName">
         {{ t('examples.cropArea') }}
       </p>
@@ -53,6 +58,11 @@ const contentClassName = cn('aspect-[4/3] w-full overflow-hidden rounded-md')
         />
       </div>
     </div>
+
+    <!-- Placeholder for cropperAreaVisible=false -->
+    <div
+      v-if="!cropperAreaVisible"
+      :class="cn(blockClassName, 'border-none')"
+    />
   </div>
 </template>
-x

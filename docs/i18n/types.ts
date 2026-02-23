@@ -19,5 +19,8 @@ export interface MessageStructure {
     width: string
     height: string
     cropperInstance: string
+    openModal: string
+    cancel: string
+    confirm: string
   }
 }

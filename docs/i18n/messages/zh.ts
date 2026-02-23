@@ -21,5 +21,8 @@ export default {
     width: '宽',
     height: '高',
     cropperInstance: 'Cropper 实例',
+    openModal: '打开模态框',
+    cancel: '取消',
+    confirm: '确认',
   },
 } satisfies MessageStructure

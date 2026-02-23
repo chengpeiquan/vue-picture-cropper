@@ -79,6 +79,12 @@ const root = {
             { text: 'Round', link: '/examples/preset-round' },
           ],
         },
+        {
+          text: 'Scenario Usage',
+          items: [
+            { text: 'Inside Modal', link: '/examples/scenario-modal-usage' },
+          ],
+        },
       ],
 
       '/v0.x/': [
@@ -208,6 +214,15 @@ const zh = {
           items: [
             { text: '固定尺寸', link: '/zh/examples/preset-fixed-size' },
             { text: '圆形', link: '/zh/examples/preset-round' },
+          ],
+        },
+        {
+          text: '场景用法',
+          items: [
+            {
+              text: '在模态框中使用',
+              link: '/zh/examples/scenario-modal-usage',
+            },
           ],
         },
       ],
