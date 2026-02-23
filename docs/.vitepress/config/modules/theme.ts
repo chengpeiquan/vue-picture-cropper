@@ -80,6 +80,26 @@ const root = {
           ],
         },
       ],
+
+      '/v0.x/': [
+        {
+          text: 'v0.x Docs (Legacy)',
+          items: [
+            {
+              text: 'Quick Start',
+              link: '/v0.x/quick-start',
+            },
+            {
+              text: 'Preset Mode',
+              link: '/v0.x/preset-mode',
+            },
+            {
+              text: 'API Reference',
+              link: '/v0.x/api',
+            },
+          ],
+        },
+      ],
     },
 
     nav: [
@@ -115,8 +135,8 @@ const root = {
             text: 'Legacy Versions',
             items: [
               {
-                text: 'v0.7.0 Docs',
-                link: `${pkg.repository.url}/tree/v0.7.0/docs`,
+                text: 'v0.7.0 Docs (Legacy)',
+                link: '/v0.x/quick-start',
               },
             ],
           },
@@ -187,6 +207,26 @@ const zh = {
           ],
         },
       ],
+
+      '/zh/v0.x/': [
+        {
+          text: 'v0.x 文档 (旧版)',
+          items: [
+            {
+              text: '快速上手',
+              link: '/zh/v0.x/quick-start',
+            },
+            {
+              text: '预设模式',
+              link: '/zh/v0.x/preset-mode',
+            },
+            {
+              text: 'API 参考',
+              link: '/zh/v0.x/api',
+            },
+          ],
+        },
+      ],
     },
 
     nav: [
@@ -222,8 +262,8 @@ const zh = {
             text: '旧版本',
             items: [
               {
-                text: 'v0.7.0 文档',
-                link: `${pkg.repository.url}/tree/v0.7.0/docs`,
+                text: 'v0.7.0 文档 (旧版)',
+                link: '/zh/v0.x/quick-start',
               },
             ],
           },
