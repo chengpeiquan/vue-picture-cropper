@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type ComputedRef, type Ref, computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import VuePictureCropper, {
   type CropperInstance,
   type VuePictureCropperRefValue,
@@ -12,6 +13,8 @@ import { cn } from '../utils/class-name'
 
 import 'cropperjs/dist/cropper.css'
 import 'vue-picture-cropper/style.css'
+
+const { t } = useI18n()
 
 // @doc-start script:typescript
 
@@ -49,7 +52,7 @@ const titleClassName = cn('!m-0 text-lg font-bold')
 <template>
   <!-- @doc-start template:html -->
   <div class="flex w-full flex-col gap-6">
-    <p :class="titleClassName">{{ $t('examples.cropperInstance') }} 1</p>
+    <p :class="titleClassName">{{ t('examples.cropperInstance') }} 1</p>
 
     <CropAndPreview :cropped-preview="croppedPreview1">
       <!-- Cropper for the first image -->
@@ -63,7 +66,7 @@ const titleClassName = cn('!m-0 text-lg font-bold')
       />
     </CropAndPreview>
 
-    <p :class="titleClassName">{{ $t('examples.cropperInstance') }} 2</p>
+    <p :class="titleClassName">{{ t('examples.cropperInstance') }} 2</p>
 
     <CropAndPreview :cropped-preview="croppedPreview2">
       <!-- Cropper for the second image -->

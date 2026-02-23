@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { Message, Tab, TabList, TabPanel, TabPanels, Tabs } from 'primevue'
 import { type Component, computed, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { pkg } from '../shared/pkg-data'
 import CodeFragments from './code-widgets/CodeFragments.vue'
 import SourceCode from './code-widgets/SourceCode.vue'
 import ExternalLinkIcon from './icons/ExternalLink.vue'
 import PictureIcon from './icons/Picture.vue'
 import VueIcon from './icons/Vue.vue'
+
+const { t } = useI18n()
 
 const props = defineProps<{
   filename: string
@@ -54,12 +57,12 @@ onMounted(init)
     <TabList>
       <Tab :value="TabValue.LiveDemo" class="flex items-center">
         <PictureIcon class="size-6" />
-        {{ $t('examples.liveDemo') }}
+        {{ t('examples.liveDemo') }}
       </Tab>
 
       <Tab :value="TabValue.SourceCode" class="flex items-center">
         <VueIcon class="size-5" />
-        {{ $t('examples.sourceCode') }}
+        {{ t('examples.sourceCode') }}
       </Tab>
     </TabList>
 

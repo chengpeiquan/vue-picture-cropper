@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { cn } from '../utils/class-name'
 
 defineProps<{
   croppedPreview: string
 }>()
+
+const { t } = useI18n()
 
 const blockClassName = cn(
   'flex min-w-0 flex-1 flex-col gap-4',
@@ -20,7 +23,7 @@ const contentClassName = cn('aspect-[4/3] w-full overflow-hidden rounded-md')
   <div class="flex w-full flex-col gap-4 sm:flex-row">
     <div :class="blockClassName">
       <p :class="titleClassName">
-        {{ $t('examples.cropArea') }}
+        {{ t('examples.cropArea') }}
       </p>
 
       <div :class="contentClassName">
@@ -30,7 +33,7 @@ const contentClassName = cn('aspect-[4/3] w-full overflow-hidden rounded-md')
 
     <div :class="blockClassName">
       <p :class="titleClassName">
-        {{ $t('examples.previewArea') }}
+        {{ t('examples.previewArea') }}
       </p>
 
       <div

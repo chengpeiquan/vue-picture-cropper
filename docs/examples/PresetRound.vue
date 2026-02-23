@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Button, Divider, InputGroup, InputNumber } from 'primevue'
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { type VuePictureCropperProps, useCropper } from 'vue-picture-cropper'
 
@@ -14,6 +15,8 @@ import {
 
 import 'cropperjs/dist/cropper.css'
 import 'vue-picture-cropper/style.css'
+
+const { t } = useI18n()
 
 const { originalPreview, croppedPreview, onSelectFile } = useFileCropState(
   exampleImages.friedRice,
@@ -65,7 +68,7 @@ cropper.onInstanceEffect((instance) => {
       <Divider layout="vertical" />
 
       <InputGroup class="!w-40">
-        <Button :label="$t('examples.size')" />
+        <Button :label="t('examples.size')" />
         <InputNumber
           v-model="presetSize"
           :fluid="false"
