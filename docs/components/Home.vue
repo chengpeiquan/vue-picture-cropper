@@ -19,7 +19,7 @@ const { t } = useI18n()
     <h1
       :class="
         cn(
-          'mb-2 whitespace-pre-wrap !font-bold text-primary',
+          'mb-2 whitespace-pre-wrap text-center !font-bold text-primary',
           '!text-[32px] !leading-[40px]',
           'md:!text-[56px] md:!leading-[64px]',
         )
