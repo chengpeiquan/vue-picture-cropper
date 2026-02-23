@@ -1,5 +1,5 @@
 <p align='center'>
-  <img src="./docs/public/logo-min.png" alt="vue-picture-cropper" />
+  <img src="./docs/contents/public/logo-min.png" alt="vue-picture-cropper" />
 </p>
 
 <h1 align='center'>vue-picture-cropper</h1>
