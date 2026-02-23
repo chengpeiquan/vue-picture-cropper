@@ -23,22 +23,38 @@ enum TabValue {
 
 const filename = computed(() => `${props.filename}.vue`)
 
-const remoteFile = computed(() => {
-  return `${pkg.repository.url}/blob/main/docs/examples/${filename.value}`
-})
+const remoteFile = computed(
+  () => `${pkg.repository.url}/blob/main/docs/examples/${filename.value}`,
+)
 
-const demoPath = computed(() => {
-  return `../examples/${filename.value}`
+// Use `import.meta.glob` to allow Vite to perform static analysis
+// and packaging during the build process,
+// avoiding 404 errors caused by dynamic paths after packaging.
+const demoPath = computed(() => `../examples/${filename.value}`)
+
+const demoModules = import.meta.glob<{ default: Component }>(
+  '../examples/*.vue',
+)
+const rawModules = import.meta.glob<string>('../examples/*.vue', {
+  query: '?raw',
+  import: 'default',
 })
 
 const renderLiveDemo = async () => {
-  const mod = await import(demoPath.value)
+  const loader = demoModules[demoPath.value]
+  if (!loader) {
+    throw new Error(`Demo not found: ${demoPath.value}`)
+  }
+  const mod = await loader()
   return mod.default
 }
 
-const renderSourceCode = async () => {
-  const mod = await import(`${demoPath.value}?raw`)
-  return mod.default
+const renderSourceCode = (): Promise<string> => {
+  const loader = rawModules[demoPath.value]
+  if (!loader) {
+    throw new Error(`Demo not found: ${demoPath.value}`)
+  }
+  return loader()
 }
 
 const liveDemo = ref<Component | null>(null)
