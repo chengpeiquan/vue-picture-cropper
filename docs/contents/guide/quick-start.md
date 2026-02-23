@@ -11,6 +11,8 @@ This package is a Vue component wrapper for Cropper.js v1.
 ::: tip Note
 It can only be used in Vue 3 projects, and the Vue version must be at least `{{ vueVersion }}`. Vue 2 is not supported.
 
+1.x is now ESM-only, with CJS/IIFE support removed. Please see the [migration guide](./migration.md) if you are upgrading from older versions.
+
 To learn why we use Cropper.js 1.x instead of 2.x, see [Design Philosophy](/guide/design).
 :::
 

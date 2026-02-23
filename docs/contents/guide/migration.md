@@ -10,9 +10,25 @@ This page describes the changes required when upgrading from vue-picture-cropper
 
 Although this is a breaking change, the VuePictureCropper component props in 1.x remain the same as in 0.x. The main differences are:
 
-1. [Dependencies](#install-deps)
-2. [Import styles](#load-style)
-3. [Cropper instance](#cropper-instance)
+1. [ESM only](#esm-only)
+2. [Dependencies](#install-deps)
+3. [Import styles](#load-style)
+4. [Cropper instance](#cropper-instance)
+
+## ESM only {#esm-only}
+
+As of 1.x, this library is published as ESM (ES Modules) only. CommonJS (CJS) and IIFE builds are no longer provided.
+
+Background and rationale:
+
+- Modern Vue projects use ESM by default
+  > The vast majority of Vue 3 projects use Vite or other modern bundlers, which support ESM natively. Shipping CJS or IIFE builds adds maintenance cost with little benefit in these setups.
+- IIFE / CDN usage is very low
+  > IIFE builds delivered via CDN are rare in practice; our metrics and community feedback show almost no usage. Continuing to ship them would increase bundle size and test surface for limited user value.
+- Simpler build and maintenance
+  > Dropping CJS/IIFE simplifies the build pipeline, keeps TypeScript types and module exports consistent, and avoids the default + named export quirks that can occur with CJS.
+
+If your project relies on CJS or IIFE, migrate to an ESM-capable setup, for example Vite, Nuxt, or a recent Webpack version.
 
 ## Dependencies {#install-deps}
 
