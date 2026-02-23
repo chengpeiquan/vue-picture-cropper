@@ -20,8 +20,8 @@ VuePictureCropper 组件是为 Cropper.js 提供了一层 Vue 适配的薄封装
 | :--------- | :---------------------------------------------------- |
 | boxStyle   | 定义裁剪区域的样式，也就是包裹 Cropper 的父级元素样式 |
 | img        | 用于裁剪的图片地址                                    |
-| options    | 见 [Cropper.js API](./cropperjs-api.md)               |
-| events     | 见 [Cropper.js API](./cropperjs-api.md)               |
+| options    | 见 [Cropper.js API](./cropperjs-api.md#options)       |
+| events     | 见 [Cropper.js API](./cropperjs-api.md#events)        |
 | presetMode | 见 [预设模式](./preset-mode.md) 的说明                |
 
 :::tip

@@ -42,6 +42,7 @@ const root = {
           items: [
             { text: 'Component API', link: '/guide/component-api' },
             { text: 'Hook API', link: '/guide/hook-api' },
+            { text: 'Cropper.js API', link: '/guide/cropperjs-api' },
           ],
         },
         {
@@ -94,7 +95,7 @@ const root = {
         text: 'Resources',
         items: [
           {
-            text: 'Cropper.js API',
+            text: 'Cropper.js 1.x',
             link: 'https://github.com/fengyuanchen/cropperjs/tree/v1.6.2',
           },
           {
@@ -148,6 +149,7 @@ const zh = {
           items: [
             { text: '组件 API', link: '/zh/guide/component-api' },
             { text: '组合式函数 API', link: '/zh/guide/hook-api' },
+            { text: 'Cropper.js API', link: '/zh/guide/cropperjs-api' },
           ],
         },
         {
@@ -200,7 +202,7 @@ const zh = {
         text: '相关链接',
         items: [
           {
-            text: 'Cropper.js API',
+            text: 'Cropper.js 1.x',
             link: 'https://github.com/fengyuanchen/cropperjs/tree/v1.6.2',
           },
           {
