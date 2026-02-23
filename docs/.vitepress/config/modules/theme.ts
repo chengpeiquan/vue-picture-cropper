@@ -34,7 +34,7 @@ const root = {
           items: [
             { text: 'Quick Start', link: '/guide/quick-start' },
             { text: 'Preset Mode', link: '/guide/preset-mode' },
-            { text: 'Design Concept', link: '/guide/design' },
+            { text: 'Design Philosophy', link: '/guide/design' },
           ],
         },
         {
