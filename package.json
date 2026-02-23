@@ -9,6 +9,8 @@
   "files": [
     "dist"
   ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.cts",
   "exports": {
     ".": {
@@ -45,9 +47,6 @@
     "vue3 cropper",
     "vue3 cropperjs"
   ],
-  "dependencies": {
-    "cropperjs": "^1.6.2"
-  },
   "devDependencies": {
     "@bassist/build-config": "^0.1.0",
     "@bassist/eslint-config": "^0.3.0",
@@ -55,6 +54,7 @@
     "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.4.1",
     "@types/node": "^25.2.3",
+    "cropperjs": "^1.6.2",
     "eslint": "^9.39.2",
     "husky": "^9.1.7",
     "less": "^4.2.0",
@@ -69,6 +69,7 @@
     "vue-tsc": "^3.2.4"
   },
   "peerDependencies": {
+    "cropperjs": "^1",
     "vue": ">=3.2.13"
   },
   "lint-staged": {
@@ -76,7 +77,5 @@
       "prettier --write src",
       "eslint --fix src"
     ]
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs"
+  }
 }
