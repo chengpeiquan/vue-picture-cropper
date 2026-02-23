@@ -30,7 +30,7 @@ A simple and easy-to-use picture cropping component for Vue 3.
 Install the package from npm (or yarn, or pnpm).
 
 ```bash
-npm install vue-picture-cropper
+npm install vue-picture-cropper cropperjs@^1
 ```
 
 ## Documentation
