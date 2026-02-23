@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { Button } from 'primevue'
 import { useRouter } from 'vitepress'
+import { useI18n } from 'vue-i18n'
 import { withLocaleBase } from '../i18n'
 import { cn } from '../utils/class-name'
 import NpmVersionBadge from './NpmVersionBadge.vue'
 
 const { go } = useRouter()
+const { t } = useI18n()
 </script>
 
 <template>
   <div class="flex flex-col items-center pt-[60px]">
     <div class="mb-6 w-[200px] max-w-full md:w-[400px]">
-      <img src="/logo.svg" :alt="$t('home.name')" />
+      <img src="/logo.svg" :alt="t('home.name')" />
     </div>
 
     <h1
@@ -23,7 +25,7 @@ const { go } = useRouter()
         )
       "
     >
-      {{ $t('home.name') }}
+      {{ t('home.name') }}
     </h1>
 
     <p
@@ -37,7 +39,7 @@ const { go } = useRouter()
         )
       "
     >
-      {{ $t('home.description') }}
+      {{ t('home.description') }}
     </p>
 
     <NpmVersionBadge class="mb-16" />
@@ -45,7 +47,7 @@ const { go } = useRouter()
     <div class="flex shrink-0 p-1.5">
       <Button rounded @click="go(withLocaleBase('/guide/quick-start'))">
         <div class="mx-2 flex items-center gap-2">
-          <span class="font-bold">{{ $t('home.start') }}</span>
+          <span class="font-bold">{{ t('home.start') }}</span>
           <svg
             class="fill-[var(--p-button-primary-color)]"
             xmlns="http://www.w3.org/2000/svg"

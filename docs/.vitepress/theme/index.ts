@@ -10,6 +10,11 @@ import '../styles/tailwind.css'
 import '../styles/vitepress.css'
 import '../styles/override.css'
 
+// Ensure vue-i18n install completes in SSR (VitePress build)
+if (typeof globalThis !== 'undefined') {
+  ;(globalThis as Record<string, unknown>).__VUE_PROD_DEVTOOLS__ = false
+}
+
 const { baiduAnalytics, registerBaiduAnalytics } =
   createVitePressBaiduAnalytics()
 

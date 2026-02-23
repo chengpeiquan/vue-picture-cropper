@@ -3,9 +3,12 @@ import { capitalize } from '@bassist/utils'
 import { Fieldset } from 'primevue'
 import { codeToHtml } from 'shiki'
 import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { normalizeHtml, themes } from '../../utils/shiki-format'
 import CodeTemplate from './CodeTemplate.vue'
 import { type SourceCodeProps } from './types'
+
+const { t } = useI18n()
 
 const props = defineProps<SourceCodeProps>()
 
@@ -94,7 +97,7 @@ onMounted(render)
     >
       <Fieldset
         :legend="
-          $t('examples.codeFragmentTitle', { name: capitalize(section.name) })
+          t('examples.codeFragmentTitle', { name: capitalize(section.name) })
         "
         :toggleable="true"
       >
