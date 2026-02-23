@@ -112,6 +112,10 @@ const root = {
         link: '/examples/basic-component',
       },
       {
+        text: 'Migration',
+        link: '/guide/migration',
+      },
+      {
         text: 'Resources',
         items: [
           {
@@ -135,7 +139,7 @@ const root = {
             text: 'Legacy Versions',
             items: [
               {
-                text: 'v0.7.0 Docs (Legacy)',
+                text: 'v0.7.0 Docs',
                 link: '/v0.x/quick-start',
               },
             ],
@@ -239,6 +243,10 @@ const zh = {
         link: '/zh/examples/basic-component',
       },
       {
+        text: '迁移',
+        link: '/zh/guide/migration',
+      },
+      {
         text: '相关链接',
         items: [
           {
@@ -262,7 +270,7 @@ const zh = {
             text: '旧版本',
             items: [
               {
-                text: 'v0.7.0 文档 (旧版)',
+                text: 'v0.7.0 文档',
                 link: '/zh/v0.x/quick-start',
               },
             ],
