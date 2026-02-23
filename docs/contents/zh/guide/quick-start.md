@@ -11,6 +11,8 @@ outline: deep
 ::: tip 提醒
 请注意只能在 Vue 3 项目里使用，且 Vue 版本号至少为 `{{ vueVersion }}` ，不支持 Vue 2 。
 
+另外，1.x 版本现在仅支持 ESM 格式，已移除对 CJS/IIFE 的支持，老用户请参考 [迁移指南](./migration.md) 。
+
 若想了解为何选用 Cropper.js 1.x 而非 2.x，可参阅 [设计理念](/zh/guide/design)。
 :::
 
