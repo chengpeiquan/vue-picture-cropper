@@ -12,10 +12,12 @@
     "@primeuix/themes": "^2.0.3",
     "@vueuse/core": "^14.2.1",
     "@web-analytics/vue": "^0.2.2",
+    "cropperjs": "^1.6.2",
     "primevue": "^4.5.4",
     "shiki": "^3.22.0",
     "vue": "catalog:",
-    "vue-i18n": "^11.2.8"
+    "vue-i18n": "^11.2.8",
+    "vue-picture-cropper": "workspace:*"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
@@ -26,7 +28,6 @@
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-primeui": "^0.6.1",
     "vite-plugin-banner": "^0.8.1",
-    "vitepress": "2.0.0-alpha.16",
-    "vue-picture-cropper": "workspace:*"
+    "vitepress": "2.0.0-alpha.16"
   }
 }
