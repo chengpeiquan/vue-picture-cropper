@@ -23,7 +23,7 @@ Unlike 0.x, where you only needed to install `vue-picture-cropper` (external dep
 +npm i vue-picture-cropper cropperjs@^1
 ```
 
-For the rationale and benefits, see [Design concept: Bundle adjustments](./design.md#bundle-adjustments).
+For the rationale and benefits, see [Design Philosophy: Bundle adjustments](./design.md#bundle-adjustments).
 
 ## Import styles {#load-style}
 
@@ -37,7 +37,7 @@ import 'cropperjs/dist/cropper.css'
 import 'vue-picture-cropper/style.css'
 ```
 
-For the rationale and benefits, see [Design concept: Style loading](./design.md#load-styles).
+For the rationale and benefits, see [Design Philosophy: Style loading](./design.md#load-styles).
 
 ## Cropper instance {#cropper-instance}
 
@@ -94,7 +94,7 @@ const [CropperComponent, cropper] = useCropper(cropperProps) // [!code focus:3]
 </template>
 ```
 
-For the rationale and benefits, see [Design concept: Obtaining the instance](./design.md#obtain-instance).
+For the rationale and benefits, see [Design Philosophy: Obtaining the instance](./design.md#obtain-instance).
 
 ## Summary {#summary}
 
