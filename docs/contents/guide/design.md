@@ -6,6 +6,28 @@ outline: deep
 
 This document explains the design choices and rationale behind vue-picture-cropper’s upgrade from v0.x to v1.x, covering bundling, style loading, and instance management.
 
+## Why Is It Still Cropper.js 1.x? {#why-is-it-still-cropperjs-v1}
+
+Although the Cropper.js main branch has moved to 2.x, v1 and v2 differ significantly in architecture and usage:
+
+| Dimension                   | 1.x                                                                                     | 2.x                                                                                                                                                                                       |
+| :-------------------------- | :-------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Architecture**            | Traditional monolithic JavaScript library; all APIs exposed via constructor and options | Refactored around Web Components (custom elements); capabilities split into composable elements (e.g. `<cropper-image>`, `<cropper-selection>`), with a more "native DOM component" style |
+| **API and usage**           | Configuration options and methods; fits Vue or plain JS component wrappers              | Part of the API replaced by DOM events, attributes, and custom element composition; e.g. viewMode, dragMode move to attributes/events on different elements                               |
+| **Ecosystem and migration** | API shape is Vue-wrapper friendly, stable, low migration cost                           | Modern Web Components architecture, but adapts to Vue reactivity and lifecycle with extra bridging                                                                                        |
+| **Maturity and stability**  | Long-standing, stable maintenance, large user base, clear semantics                     | New architecture, but upgrade still requires API and behavior adaptation; not a drop-in replacement                                                                                       |
+
+Based on these differences, the reasons to stay on v1 are:
+
+- Stable, predictable API that is easy to wrap and call
+- Low migration and learning cost, preserving current usage for existing users
+- Ecosystem-friendly; issues are easier to look up and fix
+- Suited to real-world projects: build, SSR, and multi-instance scenarios remain under control
+
+Therefore, this library continues to depend on Cropper.js 1.x rather than 2.x, for maturity, stability, maintainability, and ecosystem compatibility.
+
+If you want the modern Web Components approach of Cropper.js 2.x, we recommend using the Cropper.js library directly rather than this Vue wrapper.
+
 ## Why This Package Exists {#the-history-of-this-package}
 
 Before discussing the v1.x design, it helps to recall the original goals of v0.x.
