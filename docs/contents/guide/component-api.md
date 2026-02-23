@@ -20,8 +20,8 @@ The component’s prop types are also the argument types for the [useCropper](./
 | :--------- | :------------------------------------------------------------------------- |
 | boxStyle   | Styles for the crop area container (the parent element that wraps Cropper) |
 | img        | Image URL used for cropping                                                |
-| options    | See [Cropper.js API](./cropperjs-api.md)                                   |
-| events     | See [Cropper.js API](./cropperjs-api.md)                                   |
+| options    | See [Cropper.js API](./cropperjs-api.md#options)                           |
+| events     | See [Cropper.js API](./cropperjs-api.md#events)                            |
 | presetMode | See [Preset mode](./preset-mode.md)                                        |
 
 :::tip
