@@ -42,7 +42,7 @@ const { t } = useI18n()
       {{ t('home.description') }}
     </p>
 
-    <NpmVersionBadge class="mb-16" />
+    <NpmVersionBadge class="mb-16 justify-center" />
 
     <div class="flex shrink-0 p-1.5">
       <Button rounded @click="go(withLocaleBase('/guide/quick-start'))">
