@@ -6,6 +6,7 @@ import { type Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 import { i18n, updateLocaleByPath } from '../../i18n'
+import { ensureRedirect } from './plugins/redirects'
 import '../styles/tailwind.css'
 import '../styles/vitepress.css'
 import '../styles/override.css'
@@ -50,6 +51,16 @@ export default {
           pageUrl: window.location.href,
         })
       })
+
+      router.onBeforeRouteChange = (to: string) => {
+        const target = ensureRedirect(to)
+        if (target) {
+          setTimeout(() => router.go(target))
+          return false
+        } else {
+          return true
+        }
+      }
 
       router.onAfterRouteChange = (to) => {
         updateLocaleByPath(to)
