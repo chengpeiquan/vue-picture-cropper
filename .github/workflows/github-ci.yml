@@ -30,6 +30,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       - name: codecov
         uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: chengpeiquan/vue-picture-cropper
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
