@@ -1,4 +1,8 @@
-import type { PresetModeOptions, SupportedPresetMode } from './types'
+import {
+  type Cropper,
+  type PresetModeOptions,
+  type SupportedPresetMode,
+} from './types'
 
 export const isObject = (value: unknown): value is Record<string, any> => {
   return Object.prototype.toString.call(value).slice(8, -1) === 'Object'

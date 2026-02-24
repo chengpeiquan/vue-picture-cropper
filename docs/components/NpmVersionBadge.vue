@@ -21,6 +21,16 @@
     </a>
 
     <a
+      href="https://codecov.io/gh/chengpeiquan/vue-picture-cropper"
+      target="__blank"
+    >
+      <img
+        src="https://codecov.io/gh/chengpeiquan/vue-picture-cropper/graph/badge.svg?token=ZKIYUIKG5B&color=3fb984"
+        alt="Test Coverage"
+      />
+    </a>
+
+    <a
       href="https://github.com/chengpeiquan/vue-picture-cropper"
       target="__blank"
     >

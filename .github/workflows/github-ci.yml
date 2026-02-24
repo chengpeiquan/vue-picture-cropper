@@ -26,3 +26,7 @@ jobs:
           build_dir: docs/.vitepress/dist
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      - name: codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
