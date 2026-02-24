@@ -1,5 +1,7 @@
 <template>
-  <div class="flex min-h-5 shrink-0 items-center gap-2">
+  <div
+    class="flex min-h-5 shrink-0 flex-wrap items-center justify-center gap-2"
+  >
     <a
       href="https://www.npmjs.com/package/vue-picture-cropper"
       target="__blank"
@@ -25,7 +27,7 @@
       target="__blank"
     >
       <img
-        src="https://codecov.io/gh/chengpeiquan/vue-picture-cropper/graph/badge.svg?token=ZKIYUIKG5B&color=3fb984"
+        src="https://img.shields.io/codecov/c/github/chengpeiquan/vue-picture-cropper?color=3fb984"
         alt="Test Coverage"
       />
     </a>

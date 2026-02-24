@@ -32,7 +32,7 @@ const { t } = useI18n()
       :class="
         cn(
           'mb-6 whitespace-pre-wrap text-center',
-          'max-w-[300px] md:max-w-full',
+          'max-w-[320px] md:max-w-full',
           'text-[var(--vp-c-text-2)]',
           'text-lg leading-7',
           'md:text-2xl md:leading-9',

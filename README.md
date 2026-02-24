@@ -15,7 +15,7 @@
     <img src="https://img.shields.io/static/v1?label=&message=docs%20%26%20demos&color=3fb984" />
   </a>
   <a href="https://codecov.io/gh/chengpeiquan/vue-picture-cropper">
-    <img alt="Test Coverage" src="https://codecov.io/gh/chengpeiquan/vue-picture-cropper/graph/badge.svg?token=ZKIYUIKG5B&color=3fb984" />
+    <img alt="Test Coverage" src="https://img.shields.io/codecov/c/github/chengpeiquan/vue-picture-cropper?color=3fb984" />
   </a>
   <a href="https://github.com/chengpeiquan/vue-picture-cropper" target="__blank">
     <img alt="GitHub stars" src="https://img.shields.io/github/stars/chengpeiquan/vue-picture-cropper?style=social" />
