@@ -7,13 +7,14 @@
     "jsxImportSource": "vue",
     "moduleResolution": "bundler",
     "module": "ESNext",
-    "types": ["vite/client", "node"],
+    "types": ["vite/client", "node", "vitest/globals"],
     "lib": ["ESNext", "DOM", "DOM.Iterable"]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "test/**/*.ts",
     "docs/.vitepress/**/*.ts",
     "docs/**/*.ts",
     "docs/**/*.tsx",

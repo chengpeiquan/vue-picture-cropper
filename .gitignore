@@ -36,6 +36,9 @@ logs
 .history
 .wrangler
 
+# Coverage
+coverage
+
 # Legacy
 src-legacy
 docs-legacy
