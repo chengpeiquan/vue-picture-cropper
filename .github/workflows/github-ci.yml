@@ -18,8 +18,8 @@ jobs:
         run: |
           npm i -g pnpm
           pnpm install
-          pnpm test
-          pnpm coverage
+          pnpm test:run
+          pnpm test:coverage
           pnpm build
       - name: github-ci
         uses: crazy-max/ghaction-github-pages@v2
