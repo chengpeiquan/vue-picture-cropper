@@ -6,6 +6,26 @@ outline: deep
 
 This document explains the design choices and rationale behind vue-picture-cropper’s upgrade from v0.x to v1.x, covering bundling, style loading, and instance management.
 
+## Why This Package Exists {#the-history-of-this-package}
+
+Before discussing the v1.x design, it helps to recall the original goals of v0.x.
+
+The first v0.x release was in November 2020. Vue 3 had just been released, the ecosystem was still young, many libraries had not yet adapted, and build practices were not fully settled. As a result, Vue 3 projects often faced delays due to missing or immature tooling.
+
+This package was not intended as a general-purpose component library. It was a small, personal tool to get a Cropper working quickly in a real project. The goals were:
+
+- Provide a usable Cropper wrapper for Vue 3 as quickly as possible
+- Keep integration cost low
+- Prioritize “works out of the box”
+
+So in v0.x, Cropper.js was bundled inside the library; users only needed to install one package.
+
+From that standpoint, the choice was reasonable: it favored “usability” and “convenience” over strict dependency boundaries and a clean dependency model.
+
+Over time, the project was used in more scenarios, project sizes grew, and dependency graphs became more complex. The early, convenience-oriented design started to show its limits.
+
+The v1.x changes are not a rejection of v0.x; they are an architectural upgrade in response to how the package is used today.
+
 ## Why Is It Still Cropper.js 1.x? {#why-is-it-still-cropperjs-v1}
 
 Although the Cropper.js main branch has moved to 2.x, v1 and v2 differ significantly in architecture and usage:
@@ -27,26 +47,6 @@ Based on these differences, the reasons to stay on v1 are:
 Therefore, this library continues to depend on Cropper.js 1.x rather than 2.x, for maturity, stability, maintainability, and ecosystem compatibility.
 
 If you want the modern Web Components approach of Cropper.js 2.x, we recommend using the Cropper.js library directly rather than this Vue wrapper.
-
-## Why This Package Exists {#the-history-of-this-package}
-
-Before discussing the v1.x design, it helps to recall the original goals of v0.x.
-
-The first v0.x release was in November 2020. Vue 3 had just been released, the ecosystem was still young, many libraries had not yet adapted, and build practices were not fully settled. As a result, Vue 3 projects often faced delays due to missing or immature tooling.
-
-This package was not intended as a general-purpose component library. It was a small, personal tool to get a Cropper working quickly in a real project. The goals were:
-
-- Provide a usable Cropper wrapper for Vue 3 as quickly as possible
-- Keep integration cost low
-- Prioritize “works out of the box”
-
-So in v0.x, Cropper.js was bundled inside the library; users only needed to install one package.
-
-From that standpoint, the choice was reasonable: it favored “usability” and “convenience” over strict dependency boundaries and a clean dependency model.
-
-Over time, the project was used in more scenarios, project sizes grew, and dependency graphs became more complex. The early, convenience-oriented design started to show its limits.
-
-The v1.x changes are not a rejection of v0.x; they are an architectural upgrade in response to how the package is used today.
 
 ## Why ESM only {#why-esm-only}
 
