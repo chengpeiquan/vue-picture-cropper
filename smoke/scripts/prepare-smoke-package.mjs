@@ -2,6 +2,7 @@ import { execSync } from 'node:child_process'
 import {
   existsSync,
   mkdirSync,
+  readFileSync,
   readdirSync,
   rmSync,
   writeFileSync,
@@ -15,6 +16,7 @@ const repoRoot = path.resolve(smokeRoot, '..')
 const consumerRoot = path.resolve(smokeRoot, 'consumer')
 const artifactsRoot = path.resolve(smokeRoot, '.artifacts')
 const manifestPath = path.resolve(artifactsRoot, 'package-path.txt')
+const consumerPackageJsonPath = path.resolve(consumerRoot, 'package.json')
 
 mkdirSync(artifactsRoot, { recursive: true })
 
@@ -52,14 +54,30 @@ const installedPackagePath = path.resolve(
   consumerRoot,
   'node_modules/vue-picture-cropper',
 )
+const originalConsumerPackageJson = readFileSync(consumerPackageJsonPath, 'utf8')
+const consumerPackage = JSON.parse(originalConsumerPackageJson)
 
 if (existsSync(installedPackagePath)) {
   rmSync(installedPackagePath, { recursive: true, force: true })
 }
 
-execSync(`pnpm add "${targetTarball}"`, {
-  cwd: consumerRoot,
-  stdio: 'inherit',
-})
+consumerPackage.dependencies = {
+  ...consumerPackage.dependencies,
+  'vue-picture-cropper': targetTarball,
+}
+
+writeFileSync(
+  consumerPackageJsonPath,
+  `${JSON.stringify(consumerPackage, null, 2)}\n`,
+)
+
+try {
+  execSync('pnpm install --force --no-lockfile', {
+    cwd: consumerRoot,
+    stdio: 'inherit',
+  })
+} finally {
+  writeFileSync(consumerPackageJsonPath, originalConsumerPackageJson)
+}
 
 writeFileSync(manifestPath, `${targetTarball}\n`)
