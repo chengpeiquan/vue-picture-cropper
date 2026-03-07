@@ -61,6 +61,14 @@ export default defineFlatConfig(
         ],
       },
     },
+
+    {
+      name: getConfigName('e2e'),
+      files: ['e2e/**/*.{js,mjs,ts,vue}', 'playwright.config.ts'],
+      rules: {
+        'tailwindcss/no-custom-classname': 'off',
+      },
+    },
   ],
 
   // Options
