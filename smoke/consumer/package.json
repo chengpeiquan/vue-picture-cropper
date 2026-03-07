@@ -6,7 +6,6 @@
     "dev": "vite"
   },
   "dependencies": {
-    "vue": "catalog:",
-    "vue-picture-cropper": "file:/Users/chengpeiquan/Documents/projects/pkg/vue-picture-cropper/smoke/.artifacts/vue-picture-cropper-1.0.0.tgz"
+    "vue": "catalog:"
   }
 }
