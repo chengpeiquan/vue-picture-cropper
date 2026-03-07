@@ -16,7 +16,12 @@ const getConfigName = createGetConfigNameFactory('vue-picture-cropper')
 export default defineFlatConfig(
   // Rules
   [
-    globalIgnores(['**/__test__/**', '**/types/**/*.d.ts', '**/dist/**']),
+    globalIgnores([
+      '**/__test__/**',
+      '**/types/**/*.d.ts',
+      '**/dist/**',
+      'smoke/**/*.html',
+    ]),
 
     ...imports,
     ...javascript,
@@ -64,7 +69,12 @@ export default defineFlatConfig(
 
     {
       name: getConfigName('e2e'),
-      files: ['e2e/**/*.{js,mjs,ts,vue}', 'playwright.config.ts'],
+      files: [
+        'e2e/**/*.{js,mjs,ts,vue}',
+        'smoke/**/*.{js,mjs,ts,vue,html}',
+        'playwright.config.ts',
+        'smoke/playwright.config.ts',
+      ],
       rules: {
         'tailwindcss/no-custom-classname': 'off',
       },

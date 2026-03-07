@@ -151,6 +151,15 @@ importers:
         specifier: 2.0.0-alpha.16
         version: 2.0.0-alpha.16(@types/node@25.2.3)(change-case@5.4.4)(fuse.js@7.1.0)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.31.1)(oxc-minify@0.112.0)(postcss@8.5.6)(terser@5.46.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
 
+  smoke/consumer:
+    dependencies:
+      vue:
+        specifier: 'catalog:'
+        version: 3.5.28(typescript@5.9.3)
+      vue-picture-cropper:
+        specifier: file:/Users/chengpeiquan/Documents/projects/pkg/vue-picture-cropper/smoke/.artifacts/vue-picture-cropper-1.0.0.tgz
+        version: file:smoke/.artifacts/vue-picture-cropper-1.0.0.tgz(cropperjs@1.6.2)(vue@3.5.28(typescript@5.9.3))
+
 packages:
 
   '@acemir/cssom@0.9.31':
@@ -4469,6 +4478,13 @@ packages:
     engines: {node: '>= 16'}
     peerDependencies:
       vue: ^3.0.0
+
+  vue-picture-cropper@file:smoke/.artifacts/vue-picture-cropper-1.0.0.tgz:
+    resolution: {integrity: sha512-hAirUIKSrQ63vDt14U8KZZ5bcCNUvnnJo/xqKVstbBF9hi+QkHPs/IUJl/W35nxtjrDpj3NcqBtCPIn9zPP2IQ==, tarball: file:smoke/.artifacts/vue-picture-cropper-1.0.0.tgz}
+    version: 1.0.0
+    peerDependencies:
+      cropperjs: ^1
+      vue: '>=3.2.13'
 
   vue-tsc@3.2.4:
     resolution: {integrity: sha512-xj3YCvSLNDKt1iF9OcImWHhmYcihVu9p4b9s4PGR/qp6yhW+tZJaypGxHScRyOrdnHvaOeF+YkZOdKwbgGvp5g==}
@@ -9580,6 +9596,11 @@ snapshots:
       '@intlify/core-base': 11.2.8
       '@intlify/shared': 11.2.8
       '@vue/devtools-api': 6.6.4
+      vue: 3.5.28(typescript@5.9.3)
+
+  vue-picture-cropper@file:smoke/.artifacts/vue-picture-cropper-1.0.0.tgz(cropperjs@1.6.2)(vue@3.5.28(typescript@5.9.3)):
+    dependencies:
+      cropperjs: 1.6.2
       vue: 3.5.28(typescript@5.9.3)
 
   vue-tsc@3.2.4(typescript@5.9.3):

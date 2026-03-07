@@ -1,5 +1,6 @@
 packages:
   - docs
+  - smoke/consumer
 
 catalog:
   vue: ^3.5.28
